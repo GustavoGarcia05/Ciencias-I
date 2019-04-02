@@ -1,4 +1,4 @@
-function generarDatos() {
+function generarDatosBurbuja() {
 
     var pareja = [];
     var filas = [];

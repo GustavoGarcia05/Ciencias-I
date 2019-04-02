@@ -2,12 +2,12 @@
 google.charts.load('current', { 'packages': ['corechart'] });
 
 
-function graficar() {
+function graficar(arreglo,id) {
 
     var data = new google.visualization.DataTable();
     data.addColumn('number','tamanio');
     data.addColumn('number', 'Opereciones elementales');
-    data.addRows(generarDatos());
+    data.addRows(arreglo);
     // Set chart options
     var options = {
         'title': 'Tamaño Vs OPeraciones Fundamentales',
@@ -22,7 +22,7 @@ function graficar() {
     };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.LineChart(document.getElementById('graficaBurbuja'));
+    var chart = new google.visualization.LineChart(document.getElementById(id));
     chart.draw(data, options);
 
 

@@ -1,17 +1,17 @@
 
 
-var tamanio;
-var vector;
 
+var tamanio;
 function iniciarBurbuja() {
+
+    var vector = [];
 
     tamanio = document.getElementById('entradaBurbuja').value;
     if (tamanio <= 0 || tamanio == "") {
         alert('expresion no valida');
     } else {
-        vector = [];
+        vector = generarArreglo(tamanio, 'vectorGeneradoB');
 
-        generarArreglo(vector);
         ordenarPorBurbujaCasoNormal(vector);
         ordenarPorBurbujaMejorcaso(vector);
         ordenarPorBurbujaPeorcaso(vector);
@@ -21,22 +21,11 @@ function iniciarBurbuja() {
 
 
 
-        var arregloOrdenado = document.getElementById('arregloOrdenado');
+        var arregloOrdenado = document.getElementById('arregloOrdenadoB');
         arregloOrdenado.innerHTML = vector;
 
     }
 
-}
-
-function generarArreglo(arreglo) {
-    for (i = 0; i < tamanio; i++) {
-        arreglo[i] = Math.round(Math.random() * tamanio);
-
-    }
-
-    console.log(arreglo);
-    var arregloGenerado = document.getElementById('vectorGeneradoB:');
-    arregloGenerado.innerHTML = arreglo;
 }
 
 
@@ -47,8 +36,7 @@ function ordenarPorBurbuja(arreglo) {
     var contador = 0;
 
     for (i = 0; i < tamanio - 1; i++) {
-        contador += 2;
-        contador += 1;
+        contador += 3;
         for (j = i + 1; j < tamanio; j++) {
             contador += 5;
             if (arreglo[i] >= arreglo[j]) {
@@ -57,11 +45,12 @@ function ordenarPorBurbuja(arreglo) {
                 arreglo[j] = temp;
                 contador += 7;
 
-            }
+
+            } contador += 1;
         } contador += 1;
 
     } contador += 2;
-    contador += 9;
+
     return contador;
 }
 
@@ -90,21 +79,7 @@ function ordenarPorBurbujaMejorcaso(arreglo) {
 
 function ordenarPorBurbujaPeorcaso(arreglo) {
 
-    for (i = 0; i < tamanio - 1; i++) {
-
-        for (j = i + 1; j < tamanio; j++) {
-
-            if (arreglo[i] < arreglo[j]) {
-                temp = arreglo[i];
-                arreglo[i] = arreglo[j];
-                arreglo[j] = temp;
-
-
-            }
-        }
-
-    }
-    var contadorPeorCaso = ordenarPorBurbuja(arreglo);
+    var contadorPeorCaso = ordenarPorBurbuja(arreglo.reverse());
 
     var prueba = document.getElementById('resultadoPCBC');
     prueba.innerHTML = contadorPeorCaso;
@@ -141,3 +116,6 @@ function calculoMejorCaso() {
 
 //---------------------------------------------------------------------
 
+function graficarBurbuja(){
+    graficar(generarDatosBurbuja(),'graficaBurbuja');
+}

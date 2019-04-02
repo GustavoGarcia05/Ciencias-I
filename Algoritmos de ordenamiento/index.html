@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Algoritmos de ordenamiento </title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="GenerarArreglo.js"></script>
+    <script src="Burbuja/js/ordenar.js"></script>
+    <script src="graficar.js"></script>
+    <script src="Burbuja/js/datosAGrafiicar.js"> </script>
+
+
+    <link rel="stylesheet" href="Burbuja/css/estilos.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Algoritmos de Ordenamiento</h1>
+        </div>
+    </header>
+
+    <main>
+
+
+
+        <section id="burbuja">
+            <h2>Ordenamiento por Burbuja</h2>
+            <button id="ordenarBurbuja" onclick="iniciarBurbuja()">Ordenar</button>
+            <input type="number" id="entradaBurbuja">
+            <p class="vectores">El vector Generado es: <i id="vectorGeneradoB"></i></p>
+
+            
+            <div id="datosBurbuja">
+                <p>Caso Normal  (17(N^2) + 7N - 12) / 4: <i id="resultadoCNBF"></i> | Por contador: <i id="resultadoCNBC"></i>  </p>
+                <p>Mejor Caso  (5(N^2) + 7N - 6) / 2: <i id="resultadoMCBF"></i> | Por contador: <i id="resultadoMCBC"></i>  </p>
+                <p>Peor Caso 6(N^2)-3: <i id="resultadoPCBF"></i> | Por contador: <i id="resultadoPCBC"></i>  </p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoB"></i></p>
+            </div>
+            
+
+            <button id="graficarBurbuja" onclick="graficarBurbuja()">Graficar</button>
+            <div id="graficaBurbuja"></div>
+
+        </section>
+
+        <section id="seleccion">
+            <h2>Ordenamiento por Seleccion</h2>
+            <button id="ordenarSeleccion" onclick="iniciarSeleccion()">Ordenar</button>
+            <input type="number" id="entradaSeleccion">
+            <p class="vectores">El vector Generado es: <i id="vectorGeneradoS"></i></p>
+
+            
+            <div id="datosSeleccion">
+                <p>Caso Normal // : <i id="resultadoCNSF"></i> | Por contador: <i id="resultadoCNSC"></i>  </p>
+                <p>Mejor Caso  // : <i id="resultadoMCSF"></i> | Por contador: <i id="resultadoMCSC"></i>  </p>
+                <p>Peor Caso // : <i id="resultadoPCSF"></i> | Por contador: <i id="resultadoPCSC"></i>  </p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoS"></i></p>
+            </div>
+            
+
+            <button id="graficarSeleccion" onclick="graficarSeleccion()">Graficar</button>
+            <div id="graficaSeleccion"></div>
+        </section>
+
+        <section class="imagen">
+                <img src="Burbuja/img/66adaf7071d6c36b30a6dbe984be48dc.jpg" alt="ns purdrs ver la imagen">
+            </section >
+
+
+
+    </main>
+
+
+</body>
+
+</html>

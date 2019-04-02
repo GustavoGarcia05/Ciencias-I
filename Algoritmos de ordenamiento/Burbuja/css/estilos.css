@@ -44,9 +44,14 @@ img{
 main section{
     display: inline-block;/*permite alinear el contenido en bloques ajustables al tamaño de la pantalla*/
     margin: 3px;
+    text-align: center;
 
 }
 .imagen{
     display: none; /*no muestra el elemento, en este caso lo que estan con la class imagen*/
+}
+
+.vectores{
+    /* display: none; */
 }
 
