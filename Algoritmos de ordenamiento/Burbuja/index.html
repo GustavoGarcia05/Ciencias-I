@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Algoritmos de ordenamiento </title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/ordenar.js"></script>
+    <script src="js/graficar.js"></script>
+    <script src="js/datosAGrafiicar.js"> </script>
+
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Algoritmos de Ordenamiento</h1>
+        </div>
+    </header>
+
+    <main>
+
+
+
+        <section id="burbuja">
+            <h2>Ordenamiento por Burbuja</h2>
+            <button id="ordenarBurbuja" onclick="iniciarBurbuja()">Ordenar</button>
+            <input type="number" id="entradaBurbuja">
+            <p>El vector Generado es: <i id="vectorGeneradoB:"></i></p>
+
+            
+            <div id="datosBurbuja">
+                <p>Caso Normal  (17(N^2) + 7N - 12) / 4: <i id="resultadoCNBF"></i> | Por contador: <i id="resultadoCNBC"></i>  </p>
+                <p>Mejor Caso  (5(N^2) + 7N - 6) / 2: <i id="resultadoMCBF"></i> | Por contador: <i id="resultadoMCBC"></i>  </p>
+                <p>Peor Caso 6(N^2)-3: <i id="resultadoPCBF"></i> | Por contador: <i id="resultadoPCBC"></i>  </p>
+                <p>Arreglo ordenado: <i id="arregloOrdenado"></i></p>
+            </div>
+            
+
+            <button id="graficarBurbuja" onclick="graficar()">Graficar</button>
+            <div id="graficaBurbuja"></div>
+
+        </section>
+
+        <section class="imagen">
+            <img src="img/code-wallpaper-18.png" alt="ns purdrs ver la imagen">
+        </section>
+
+        <section class="imagen">
+                <img src="img/66adaf7071d6c36b30a6dbe984be48dc.jpg" alt="ns purdrs ver la imagen">
+            </section >
+
+
+
+    </main>
+
+</body>
+
+</html>
