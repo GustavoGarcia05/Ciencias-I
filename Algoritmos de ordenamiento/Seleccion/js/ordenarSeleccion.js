@@ -103,7 +103,7 @@ function ordenarPorSeleccionPeorcaso(arreglo) {
 
 function calculoPeorCaso() {
     var calculo = 6 * (Math.pow(tamanioS, 2)) - 3;
-    var prueba = document.getElementById('resultadoPCBF');
+    var prueba = document.getElementById('resultadoPCSF');
     prueba.innerHTML = calculo;
     return calculo
 }
@@ -111,7 +111,7 @@ function calculoPeorCaso() {
 function calculoCasoNormal() {
 
     var calculo = (17 * (Math.pow(tamanioS, 2)) + (7 * tamanioS) - 12) / 4;
-    var prueba = document.getElementById('resultadoCNBF');
+    var prueba = document.getElementById('resultadoCNSF');
     prueba.innerHTML = calculo;
     return calculo;
 
@@ -119,7 +119,7 @@ function calculoCasoNormal() {
 
 function calculoMejorCaso() {
     var calculo = (5 * (Math.pow(tamanioS, 2)) + (7 * tamanioS) - 6) / 2;
-    var prueba = document.getElementById('resultadoMCBF');
+    var prueba = document.getElementById('resultadoMCSF');
     prueba.innerHTML = calculo;
     return calculo;
 }
@@ -127,5 +127,5 @@ function calculoMejorCaso() {
 //---------------------------------------------------------------------
 
 function graficarSeleccion(){
-    graficar(generarSeleccion(),'graficaBurbuja');
+    graficar(generarDatosSeleccion(),'graficaSeleccion');
 }
