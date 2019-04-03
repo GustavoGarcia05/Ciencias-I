@@ -1,18 +1,16 @@
-function generarArreglo(tamanio,id) {
+function generarArreglo(tamanio, id) {
     var arreglo = [];
 
-    for (i = 0; i < tamanio; i++) {
+    for (var i = 0; i < tamanio; i++) {
         arreglo[i] = Math.round(Math.random() * tamanio);
-
     }
-    
-    if(id!=""){
+
+    if (id != "") {
         var arregloGenerado = document.getElementById(id);
         arregloGenerado.innerHTML = arreglo;
-    }else{
+    } else {
         console.log('no declaraste id o lugar para publicar el resultado');
     }
-
 
     return arreglo;
 }
