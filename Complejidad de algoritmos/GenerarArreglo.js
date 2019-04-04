@@ -14,3 +14,4 @@ function generarArreglo(tamanio, id) {
 
     return arreglo;
 }
+

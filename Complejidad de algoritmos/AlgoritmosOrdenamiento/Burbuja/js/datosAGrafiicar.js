@@ -6,7 +6,7 @@ function generarDatosBurbuja() {
     var constanteAumento = 1;
     var constanteTamanio = 100;
 
-    for (i = 0; i < constanteTamanio; i += constanteAumento) {
+    for (var i = 0; i < constanteTamanio; i += constanteAumento) {
         pareja = [i, calcular(i)];
 
         if (i == 0) {
