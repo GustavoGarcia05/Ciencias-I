@@ -1,3 +1,4 @@
+//https://www.geogebra.org/m/ptHaMUwP
 // Algoritmo tomado de: https://www.ecured.cu/Algoritmo_de_ordenamiento_por_selecci%C3%B3n
 
 var tamanioS;
@@ -36,6 +37,7 @@ function ordenarPorSeleccion(arreglo) {
         for (j = i + 1; j < tamanioS; j++) {
             contador += 5;
             if (arreglo[j] < arreglo[min]) {
+
                 min = j;
                 contador += 1;
             }
@@ -89,7 +91,7 @@ function ordenarPorSeleccionPeorcaso(arreglo) {
 //---Calculo del numero de operaciones elementales mediante la funcion---
 
 function calculoPeorCasoS() {
-    var calculo = (Math.pow(tamanioS, 2));
+    var calculo = (1.5 * Math.pow(tamanioS, 2) + (7.5 * tamanioS) + 3); //
     var prueba = document.getElementById('resultadoPCSF');
     prueba.innerHTML = calculo;
     return calculo
