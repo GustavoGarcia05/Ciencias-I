@@ -80,7 +80,7 @@ function ordenarPorInsercionPeorcaso(arreglo) {
 //---Calculo del numero de operaciones elementales mediante formulas---
 
 function calculoPeorCasoI() {
-    var calculo = (Math.pow(tamanioI, 2));
+    var calculo = (5.036 * Math.pow(tamanioI, 2) - 5.507 * tamanioI + 23);
     var prueba = document.getElementById('resultadoPCIF');
     prueba.innerHTML = calculo;
     return calculo;
@@ -88,14 +88,15 @@ function calculoPeorCasoI() {
 
 function calculoCasoNormalI() {
 
-    var calculo = (Math.pow(tamanioI, 2)) ;
+    var calculo = (Math.pow(tamanioI, 2));
+    calculo = (calculoMejorCasoI() + calculoPeorCasoI()) / 2
     var prueba = document.getElementById('resultadoCNIF');
     prueba.innerHTML = calculo;
     return calculo;
 }
 
 function calculoMejorCasoI() {
-    var calculo = (Math.pow(tamanioI, 2)) ;
+    var calculo = (2.5 * Math.pow(tamanioI, 2) + (3.5 * tamanioI) - 3);
     var prueba = document.getElementById('resultadoMCIF');
     prueba.innerHTML = calculo;
     return calculo;
