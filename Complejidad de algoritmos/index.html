@@ -1,176 +1,176 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Algoritmos de ordenamiento </title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Algoritmos de ordenamiento </title>
 
-    <!--libreria necesaria para que Google Charts funcione-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="GenerarArreglo.js"></script>
-    <script src="graficar.js"></script>
-    <script src="datosCombinados.js"></script>
+        <!--libreria necesaria para que Google Charts funcione-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="GenerarArreglo.js"></script>
+        <script src="graficar.js"></script>
+        <script src="datosCombinados.js"></script>
 
-    <script src="AlgoritmosOrdenamiento/Burbuja/js/datosAGrafiicar.js"></script>
-    <script src="AlgoritmosOrdenamiento/Burbuja/js/ordenar.js"></script>
+        <script src="AlgoritmosOrdenamiento/Burbuja/js/datosAGrafiicar.js"></script>
+        <script src="AlgoritmosOrdenamiento/Burbuja/js/ordenar.js"></script>
 
-    <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
-    <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
+        <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
+        <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
 
-    <script src="AlgoritmosOrdenamiento/Insercion/js/datosAGrafiicarInsercion.js"></script>
-    <script src="AlgoritmosOrdenamiento/Insercion/js/ordenarInsercion.js"></script>
+        <script src="AlgoritmosOrdenamiento/Insercion/js/datosAGrafiicarInsercion.js"></script>
+        <script src="AlgoritmosOrdenamiento/Insercion/js/ordenarInsercion.js"></script>
 
-    <!--        <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
-                <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
-        
-                <script src="AlgoritmosOrdenamiento/Burbuja/js/datosAGrafiicar.js"></script>
-                <script src="AlgoritmosOrdenamiento/Burbuja/js/ordenar.js"></script>
-        
-                <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
-                <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
+        <!--        <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
+                    <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
+            
+                    <script src="AlgoritmosOrdenamiento/Burbuja/js/datosAGrafiicar.js"></script>
+                    <script src="AlgoritmosOrdenamiento/Burbuja/js/ordenar.js"></script>
+            
+                    <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
+                    <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
         -->
-    <link rel="stylesheet" href="css/estilos.css">
+        <link rel="stylesheet" href="css/estilos.css">
 
-</head>
+    </head>
 
-<body onload="graficarTodos()">
-    <header>
-        <div class="contenedor">
-            <h1>Algoritmos de Ordenamiento</h1>
-        </div>
-    </header>
-
-    <main>
-        <section>
-            <p>
-                A continuacion se genera un vector con numeros aleatorios, se ordenan
-                usando el metodo burbuja y se presenta la cantidad de operaciones fundamentales
-                que se tienen que realizar para el peor caso, el mejor y el caso promedio.
-                Se calcula teniendo en cuenta la formula y un contandor.<br>
-                Ingrese un numero entre 1 y 100.
-            </p>
-
-        </section>
-
-        <section id="burbuja">
-            <h2>Ordenamiento por Burbuja</h2>
-            <span>N=</span>
-            <input type="number" id="entradaBurbuja">
-            <button id="ordenarBurbuja" onclick="iniciarBurbuja()">Ordenar</button>
-            <p class="vectores">El vector Generado es: <i id="vectorGeneradoB"></i></p>
-            <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoB"></i></p>
-
-            <div id="datosBurbuja">
-                <p>Caso Normal (17(N^2) + 7N - 12) / 4: <i id="resultadoCNBF"></i> | Por contador: <i
-                        id="resultadoCNBC"></i> </p>
-                <p>Mejor Caso (5(N^2) + 7N - 6) / 2: <i id="resultadoMCBF"></i> | Por contador: <i
-                        id="resultadoMCBC"></i> </p>
-                <p>Peor Caso 6(N^2)-3: <i id="resultadoPCBF"></i> | Por contador: <i id="resultadoPCBC"></i> </p>
+    <body onload="graficarTodos()">
+        <header>
+            <div class="contenedor">
+                <h1>Algoritmos de Ordenamiento</h1>
             </div>
+        </header>
 
-            <button id="graficarBurbuja" onclick="graficarBurbuja()">Graficar</button>
-            <div id="graficaBurbuja"></div>
+        <main>
+            <section>
+                <p>
+                    A continuacion se genera un vector con numeros aleatorios, se ordenan
+                    usando el metodo burbuja y se presenta la cantidad de operaciones fundamentales
+                    que se tienen que realizar para el peor caso, el mejor y el caso promedio.
+                    Se calcula teniendo en cuenta la formula y un contandor.<br>
+                    Ingrese un numero entre 1 y 100.
+                </p>
 
-        </section>
+            </section>
 
-        <section id="seleccion">
+            <section id="burbuja">
+                <h2>Ordenamiento por Burbuja</h2>
+                <span>N=</span>
+                <input type="number" id="entradaBurbuja">
+                <button id="ordenarBurbuja" onclick="iniciarBurbuja()">Ordenar</button>
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoB"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoB"></i></p>
 
-            <h2>Ordenamiento por Seleccion</h2>
-            <span>N=</span>
-            <input type="number" id="entradaSeleccion">
-            <button id="ordenarSeleccion" onclick="iniciarSeleccion()">Ordenar</button>
-            <p class="vectores">El vector Generado es: <i id="vectorGeneradoS"></i></p>
-            <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoS"></i></p>
+                <div id="datosBurbuja">
+                    <p>Caso Normal (17(N^2) + 7N - 12) / 4: <i id="resultadoCNBF"></i> | Por contador: <i
+                            id="resultadoCNBC"></i> </p>
+                    <p>Mejor Caso (5(N^2) + 7N - 6) / 2: <i id="resultadoMCBF"></i> | Por contador: <i
+                            id="resultadoMCBC"></i> </p>
+                    <p>Peor Caso 6(N^2)-3: <i id="resultadoPCBF"></i> | Por contador: <i id="resultadoPCBC"></i> </p>
+                </div>
 
-            <div id="datosSeleccion">
-                <p>Caso Normal n^2 : <i id="resultadoCNSF"></i> | Por contador: <i id="resultadoCNSC"></i> </p>
-                <p>Mejor Caso n^2 : <i id="resultadoMCSF"></i> | Por contador: <i id="resultadoMCSC"></i> </p>
-                <p>Peor Caso n^2 : <i id="resultadoPCSF"></i> | Por contador: <i id="resultadoPCSC"></i> </p>
-            </div>
+                <button id="graficarBurbuja" onclick="graficarBurbuja()">Graficar</button>
+                <div id="graficaBurbuja"></div>
 
-            <button id="graficarSeleccion" onclick="graficarSeleccion()">Graficar</button>
-            <div id="graficaSeleccion"></div>
-        </section>
-        <section id="insercion">
-            <h2>Ordenamiento por Insercion</h2>
-            <span>N=</span>
-            <input type="number" id="entradaInsercion">
-            <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
-            <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
-            <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+            </section>
 
-            <div id="datosInsercion">
-                <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
-                <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
-                <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
-            </div>
+            <section id="seleccion">
 
-            <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
-            <div id="graficaInsercion"></div>
-        </section>
-        <section id="radix">
-            <h2>Ordenamiento por Radix</h2>
-            <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
-            <input type="number" id="entradaInsercion">
-            <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
-            <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+                <h2>Ordenamiento por Seleccion</h2>
+                <span>N=</span>
+                <input type="number" id="entradaSeleccion">
+                <button id="ordenarSeleccion" onclick="iniciarSeleccion()">Ordenar</button>
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoS"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoS"></i></p>
 
-            <div id="datosInsercion">
-                <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
-                <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
-                <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
-            </div>
+                <div id="datosSeleccion">
+                    <p>Caso Normal 2.45n^2 + 10.75n - 24.5: <i id="resultadoCNSF"></i> | Por contador: <i id="resultadoCNSC"></i> </p>
+                    <p>Mejor Caso 2.5n^2 + 5.5n - 5  : <i id="resultadoMCSF"></i> | Por contador: <i id="resultadoMCSC"></i> </p>
+                    <p>Peor Caso 2.4n^2 + 16n - 44 : <i id="resultadoPCSF"></i> | Por contador: <i id="resultadoPCSC"></i> </p>
+                </div>
 
-            <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
-            <div id="graficaInsercion"></div>
-        </section>
-        <section id="quickSort">
-            <h2>Ordenamiento por Quicksort</h2>
-            <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
-            <input type="number" id="entradaInsercion">
-            <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
-            <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+                <button id="graficarSeleccion" onclick="graficarSeleccion()">Graficar</button>
+                <div id="graficaSeleccion"></div>
+            </section>
+            <section id="insercion">
+                <h2>Ordenamiento por Insercion</h2>
+                <span>N=</span>
+                <input type="number" id="entradaInsercion">
+                <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
 
-            <div id="datosInsercion">
-                <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
-                <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
-                <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
-            </div>
+                <div id="datosInsercion">
+                    <p>Caso Normal 3.768n^2 - 1.0035n + 10 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
+                    <p>Mejor Caso 2.5n^2 + 3.5n - 3 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
+                    <p>Peor Caso 5.036n^2 - 5.507n + 23 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
+                </div>
 
-            <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
-            <div id="graficaInsercion"></div>
-        </section>
-        <section id="mergeSort">
-            <h2>Ordenamiento por Merge Sort</h2>
-            <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
-            <input type="number" id="entradaInsercion">
-            <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
-            <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+                <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
+                <div id="graficaInsercion"></div>
+            </section>
+            <section id="radix">
+                <h2>Ordenamiento por Radix</h2>
+                <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
+                <input type="number" id="entradaInsercion">
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
 
-            <div id="datosInsercion">
-                <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
-                <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
-                <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
-            </div>
+                <div id="datosRadix">
+                    <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
+                    <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
+                    <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
+                </div>
 
-            <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
-            <div id="graficaInsercion"></div>
-        </section>
-        <section>
-            <h1>Comparación métodos de clasificación</h1>
-            <div id="graficaGeneral"> grafica comparativa </div>
-            <button id="graficarTodos" onclick="graficarTodos()">Recargar datos</button>
-            <div id="graficaComparativa"></div>
-        </section>
+                <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
+                <div id="graficaInsercion"></div>
+            </section>
+            <section id="quickSort">
+                <h2>Ordenamiento por Quicksort</h2>
+                <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
+                <input type="number" id="entradaInsercion">
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
 
-    </main>
+                <div id="datosInsercion">
+                    <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
+                    <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
+                    <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
+                </div>
 
-    <footer>
-        <br>
-        Hecho por: <br>
-        Brayan A. Lopez G. <br>
-        Dannyr Gustavo Garcia Cardozo
-    </footer>
-</body>
+                <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
+                <div id="graficaInsercion"></div>
+            </section>
+            <section id="mergeSort">
+                <h2>Ordenamiento por Merge Sort</h2>
+                <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
+                <input type="number" id="entradaInsercion">
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+
+                <div id="datosInsercion">
+                    <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
+                    <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
+                    <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
+                </div>
+
+                <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
+                <div id="graficaInsercion"></div>
+            </section>
+            <section>
+                <h1>Comparación métodos de clasificación</h1>
+                <div id="graficaGeneral"> grafica comparativa </div>
+                <button id="graficarTodos" onclick="graficarTodos()">Recargar datos</button>
+                <div id="graficaComparativa"></div>
+            </section>
+
+        </main>
+
+        <footer>
+            <br>
+            Hecho por: <br>
+            Brayan A. Lopez G. <br>
+            Dannyr Gustavo Garcia Cardozo
+        </footer>
+    </body>
 
 </html>

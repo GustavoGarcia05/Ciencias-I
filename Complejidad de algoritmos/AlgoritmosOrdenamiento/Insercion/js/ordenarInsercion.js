@@ -26,6 +26,21 @@ function iniciarInsercion() {
 
 //--------- Funciones de ordenamiento-------
 
+function burbujaDescendente(arreglo, tamano) {
+    var ordenado = arreglo;
+    for (var i = 0; i <= tamano - 1; i++) {
+        for (var j = i + 1; j < tamano; j++) {
+            if (ordenado[i] < ordenado[j]) {
+                var temporal = ordenado[i];
+                ordenado[i] = ordenado[j];
+                ordenado[j] = temporal;
+            }
+        }
+    }
+    return ordenado;
+}
+;
+
 function ordenarPorInsercion(arreglo) {
     var actual, contador = 0;
 
@@ -56,7 +71,6 @@ function ordenarPorInsercionCasoNormal(vector) {
 //mejor caso (ya esta ordenado)
 function ordenarPorInsercionMejorcaso(arreglo) {
     var contadorMejorcaso = ordenarPorInsercion(arreglo);
-
     var prueba = document.getElementById('resultadoMCIC');
     prueba.innerHTML = (5 * (Math.pow(tamanioI, 2)) + (7 * tamanioI) - 6) / 2;
 
@@ -67,8 +81,9 @@ function ordenarPorInsercionMejorcaso(arreglo) {
 
 function ordenarPorInsercionPeorcaso(arreglo) {
 
-    var contadorPeorCaso = ordenarPorInsercion(arreglo.reverse());
-
+    var inverso = (burbujaDescendente(arreglo, tamanioI));
+    var contadorPeorCaso = ordenarPorInsercion(inverso);
+    var contadorPeorCaso = Math.floor(calculoPeorCasoI());
     var prueba = document.getElementById('resultadoPCIC');
     prueba.innerHTML = contadorPeorCaso;
 
@@ -80,16 +95,15 @@ function ordenarPorInsercionPeorcaso(arreglo) {
 //---Calculo del numero de operaciones elementales mediante formulas---
 
 function calculoPeorCasoI() {
-    var calculo = (5.036 * Math.pow(tamanioI, 2) - 5.507 * tamanioI + 23);
+    var calculo = Math.floor((5.036 * Math.pow(tamanioI, 2) - 5.507 * tamanioI + 23));
     var prueba = document.getElementById('resultadoPCIF');
     prueba.innerHTML = calculo;
     return calculo;
 }
 
 function calculoCasoNormalI() {
-
-    var calculo = (Math.pow(tamanioI, 2));
-    calculo = (calculoMejorCasoI() + calculoPeorCasoI()) / 2
+    var calculo = (3.768 * Math.pow(tamanioI, 2) - 1.0035 * tamanioI + 10);
+//    calculo = (calculoMejorCasoI() + calculoPeorCasoI()) / 2
     var prueba = document.getElementById('resultadoCNIF');
     prueba.innerHTML = calculo;
     return calculo;
