@@ -1,14 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Calulo Determinante </title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Determinante </title>
 
-    <script src="calculoDeterminante.js"></script>
-</head>
-<body onload="iniciar()">
-    
-</body>
+        <script src="calculoDeterminante.js"></script>
+    </head>
+    <body onload="iniciar()">
+        <header>
+            <h1>Calculo de determinante</h1>
+            <p>
+                En el siguiente programa se puede calcular el determinante de una
+                matriz cuadrada. Se usan el tamaño y los datos que el usuario ingrese.
+            </p>
+        </header>
+        <section>
+            <input type="text" id="dimension">
+            <button type="button" id="armarMatriz" onclick="limpiarMatriz(); armarMatriz()">Ingresar dimension</button>
+            <table id="tablaA">
+            </table>
+            <div>
+                determinante
+                <button type="button" onclick="mostrarDeterminante()">Calcular</button>
+                <div id="prueba">
+                    determinante
+                </div>
+            </div>
+            <div>
+                operaciones fundamentales por formula: <span id=formula></span><br>
+                operaciones fundamentales por contador: <span id=contador></span>
+            </div>
+        </section>
+        <footer>
+            <br>
+            Hecho por: <br>
+            Brayan A. Lopez G. <br>
+            Dannyr Gustavo Garcia Cardozo
+        </footer>
+    </body>
 </html>
