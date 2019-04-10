@@ -20,10 +20,10 @@
         <script src="AlgoritmosOrdenamiento/Insercion/js/datosAGrafiicarInsercion.js"></script>
         <script src="AlgoritmosOrdenamiento/Insercion/js/ordenarInsercion.js"></script>
 
-        <!--        <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
-                    <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
-            
-                    <script src="AlgoritmosOrdenamiento/Burbuja/js/datosAGrafiicar.js"></script>
+        <script src="AlgoritmosOrdenamiento/Radix/js/ordenarRadix.js"></script>
+        <script src="AlgoritmosOrdenamiento/Radix/js/datosAGraficarRadix.js"></script>
+
+        <!--            <script src="AlgoritmosOrdenamiento/Burbuja/js/datosAGrafiicar.js"></script>
                     <script src="AlgoritmosOrdenamiento/Burbuja/js/ordenar.js"></script>
             
                     <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
@@ -110,22 +110,24 @@
             </section>
             <section id="radix">
                 <h2>Ordenamiento por Radix</h2>
-                <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
-                <input type="number" id="entradaInsercion">
-                <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
-                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+                <span>N=</span>
+                <input type="number" id="entradaRadix">
+                <button id="ordenarRadix" onclick="iniciarRadix()">Ordenar</button>
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoR"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoR"></i></p>
 
                 <div id="datosRadix">
-                    <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
-                    <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
-                    <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
+                    <p>Caso Normal n^2 : <i id="resultadoCNRF"></i> | Por contador: <i id="resultadoCNRC"></i> </p>
+                    <p>Mejor Caso n^2 : <i id="resultadoMCRF"></i> | Por contador: <i id="resultadoMCRC"></i> </p>
+                    <p>Peor Caso n^2 : <i id="resultadoPCRF"></i> | Por contador: <i id="resultadoPCRC"></i> </p>
                 </div>
 
-                <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
-                <div id="graficaInsercion"></div>
+                <button id="graficarRadix" onclick="graficarRadix()">Graficar</button>
+                <div id="graficaRadix"></div>
             </section>
             <section id="quickSort">
                 <h2>Ordenamiento por Quicksort</h2>
+                <span>N=</span>
                 <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
                 <input type="number" id="entradaInsercion">
                 <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
@@ -142,6 +144,7 @@
             </section>
             <section id="mergeSort">
                 <h2>Ordenamiento por Merge Sort</h2>
+                <span>N=</span>
                 <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
                 <input type="number" id="entradaInsercion">
                 <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>

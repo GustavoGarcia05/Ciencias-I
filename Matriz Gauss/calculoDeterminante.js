@@ -14,7 +14,7 @@ function armarMatriz(tamanio = document.getElementById("dimension").value) {
             CELDA = CELDA + "size=\"1\">";
             z.innerHTML = CELDA;
         }
-    }
+}
 }
 
 //limpia la creacion de celdas de la tabla
@@ -106,21 +106,23 @@ function determinante(mat, n) {
     }
     c = c + 1;
 
+    var h = document.getElementById('detr');
+
     if (Number.isNaN(det)) {
         alert("�El determinante no existe!");
+        h.innerHTML = " ";
+    } else {
+        // muestra el determinante redondeado en 2 decimales
+        h.innerHTML = "" + Math.round((det * 100)) / 100;
+        //muestra el contador del algoritmo
+        var p = document.getElementById("contador");
+        p.color = "white";
+        p.innerHTML = "Contador=" + c;
+        // muestra el calculo de la formula del algoritmo
+        var res = (1 / 6) * ((32 * (n * n * n)) - (33 * (n * n)) + (73 * n));
+        var K = document.getElementById('formula');
+        K.innerHTML = "Formula=" + res;
     }
-
-    // muestra el determinante redondeado en 2 decimales
-    var h = document.getElementById('detr');
-    h.innerHTML = "" + Math.round((det * 100)) / 100;
-    //muestra el contador del algoritmo
-    var p = document.getElementById("contador");
-    p.color = "white";
-    p.innerHTML = "Contador=" + c;
-    // muestra el calculo de la formula del algoritmo
-    var res = (1 / 6) * ((32 * (n * n * n)) - (33 * (n * n)) + (73 * n));
-    var K = document.getElementById('formula');
-    K.innerHTML = "Formula=" + res;
 
     return det;
 }
@@ -134,7 +136,7 @@ function mostrarDeterminante() {
     var formula = document.getElementById("contador");
 
     determ.textContent = determinante(capturarmatriz(tamano), tamano);
-/*    contador.textContent = c;
-    formula.textContent = (1 / 6) * ((32 * (tamano * tamano * tamano)) - (33 * (tamano * tamano)) + (73 * tamano));
-*/
+    /*    contador.textContent = c;
+     formula.textContent = (1 / 6) * ((32 * (tamano * tamano * tamano)) - (33 * (tamano * tamano)) + (73 * tamano));
+     */
 }
