@@ -106,20 +106,21 @@ function determinante(mat, n) {
     c = c + 1;
 
     if (Number.isNaN(det)) {
-        alert("¡El determinante no existe!");
+        alert("ï¿½El determinante no existe!");
     }
 
-/*    // muestra el determinante redondeado en 2 decimales
+    // muestra el determinante redondeado en 2 decimales
     var h = document.getElementById('detr');
     h.innerHTML = "" + Math.round((det * 100)) / 100;
     //muestra el contador del algoritmo
     var p = document.getElementById("contador");
+    p.color = "white";
     p.innerHTML = "Contador=" + c;
     // muestra el calculo de la formula del algoritmo
     var res = (1 / 6) * ((32 * (n * n * n)) - (33 * (n * n)) + (73 * n));
     var K = document.getElementById('formula');
     K.innerHTML = "Formula=" + res;
-*/
+
     return det;
 }
 
@@ -131,7 +132,7 @@ function mostrarDeterminante() {
     var contador = document.getElementById("formula");
     var formula = document.getElementById("contador");
 
-    determ.textContent = determinante(capturarmatriz(tamano),tamano);
+    determ.textContent = determinante(capturarmatriz(tamano), tamano);
     contador.textContent = c;
     formula.textContent = 12;
 }
