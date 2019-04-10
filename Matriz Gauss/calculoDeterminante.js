@@ -1,6 +1,6 @@
-//crea la matriz cuadrada segun el numero de la dimension
 var c;
 
+//crea la matriz cuadrada segun el numero de la dimension
 function armarMatriz(tamanio = document.getElementById("dimension").value) {
     var n = tamanio;
     var tabla = document.getElementById("tablaA");
@@ -25,6 +25,7 @@ function limpiarMatriz() {
     }
 }
 
+//captura los datos ingresados por el usuario
 function capturarmatriz(n) {
     var mat = new Array(n);
     for (var i = 0; i < n; i++) {
@@ -133,16 +134,7 @@ function mostrarDeterminante() {
     var formula = document.getElementById("contador");
 
     determ.textContent = determinante(capturarmatriz(tamano), tamano);
-    contador.textContent = c;
-    formula.textContent = 12;
-}
-
-function iniciar() {
-
-    var matriz = [
-        [1, 2, 3, 4],
-        [5, 1, 7, 8],
-        [9, 8, 1, 6],
-        [5, 4, 3, 1]
-    ];
+/*    contador.textContent = c;
+    formula.textContent = (1 / 6) * ((32 * (tamano * tamano * tamano)) - (33 * (tamano * tamano)) + (73 * tamano));
+*/
 }

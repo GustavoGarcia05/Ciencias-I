@@ -7,37 +7,42 @@
         <title>Determinante </title>
 
         <script src="calculoDeterminante.js"></script>
+        <link type="text/css" rel="stylesheet" href="Estilos.css">
     </head>
-    <body onload="iniciar()">
+    <body>
+    <center>
         <header>
             <h1>Calculo de determinante</h1>
             <p>
                 En el siguiente programa se puede calcular el determinante de una
-                matriz cuadrada. Se usan el tamaño y los datos que el usuario ingrese.
+                matriz cuadrada, usando el tamaño y los datos que el usuario ingrese.
             </p>
         </header>
-        <section>
-            <input type="text" id="dimension">
-            <button type="button" id="armarMatriz" onclick="limpiarMatriz(); armarMatriz()">Ingresar dimension</button>
-            <table id="tablaA">
-            </table>
-            <div>
-                determinante
-                <button type="button" onclick="mostrarDeterminante()">Calcular</button>
-                <div id="detr">
-                    determinante
+        <main>
+            <section>
+                <input type="text" id="dimension">
+                <button type="button" id="armarMatriz" onclick="limpiarMatriz(); armarMatriz()">Ingresar dimension</button>
+                <table id="tablaA">
+                </table>
+                <div>
+                    Determinante
+                    <button type="button" onclick="mostrarDeterminante()">Calcular</button>
+                    <div id="detr">
+                        Determinante
+                    </div>
                 </div>
-            </div>
-            <div>
-                operaciones fundamentales por formula: <span id=formula></span><br>
-                operaciones fundamentales por contador: <span id=contador></span>
-            </div>
-        </section>
+                <div>
+                    Operaciones fundamentales por formula: <span id=formula></span><br>
+                    Operaciones fundamentales por contador: <span id=contador></span>
+                </div>
+            </section>
+        </main>
         <footer>
             <br>
             Hecho por: <br>
             Brayan A. Lopez G. <br>
             Dannyr Gustavo Garcia Cardozo
         </footer>
-    </body>
+    </center>
+</body>
 </html>
