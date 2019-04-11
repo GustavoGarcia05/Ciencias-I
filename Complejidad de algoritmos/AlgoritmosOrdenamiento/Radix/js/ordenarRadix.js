@@ -2,6 +2,7 @@
 // Algoritmo tomado de: https://www.ecured.cu/Algoritmo_de_ordenamiento_por_selecci%C3%B3n
 
 var tamanioR;
+var arregloRadix = [];
 function iniciarRadix() {
 
     var vector = [];
@@ -13,46 +14,44 @@ function iniciarRadix() {
         vector = generarArreglo(tamanioR, 'vectorGeneradoR');
 
         ordenarPorRadixCasoNormal(vector);
-        ordenarPorRadixMejorcaso(vector);
-        ordenarPorRadixPeorcaso(vector);
+        ordenarPorRadixMejorcaso(arregloRadix);
+        ordenarPorRadixPeorcaso(arregloRadix);
         calculoPeorCasoR();
         calculoCasoNormalR();
         calculoMejorCasoR();
 
         var arregloOrdenado = document.getElementById('arregloOrdenadoR');
-        arregloOrdenado.innerHTML = vector;
+        arregloOrdenado.innerHTML = arregloRadix;
     }
 }
 
 //--------- Funciones de ordenamiento-------
 
 function ordenarPorRadix(arreglo) {
-
     var contador = 0;
-
-    contador = 1;
-    for (var i = 0; i < tamanioR - 1; i++) {
-        contador += 6;
-        var min = i;
-        for (var j = i + 1; j < tamanioR; j++) {
-            contador += 5;
-            if (arreglo[j] < arreglo[min]) {
-
-                min = j;
-                contador += 1;
-            }
+    let maxValue = arreglo[0]
+    contador += 4;
+    for (let i = 1; i < arreglo.length; i++) {
+        if (arreglo[i] > maxValue) {
+            maxValue = arreglo[i]
+            contador += 4;
         }
-        contador += 1;
-        contador += 1;
-        if (i != min) {
-            contador += 7;
-            var aux = arreglo[i];
-            arreglo[i] = arreglo[min];
-            arreglo[min] = aux;
+        contador += 2;
+    }
+    const iterationCount = maxValue.toString().length
+    contador += 1;
+    for (let digit = 0; digit < iterationCount; digit++) {
+        const bucketArray = Array.from({ length: 10 }, () => [])
+        for (let i = 0; i < arreglo.length; i++) {
+            const digitValue = Math.floor(arreglo[i] / Math.pow(10, digit)) % 10
+            bucketArray[digitValue].push(arreglo[i])
+            contador += 11;
         }
+        arreglo = [].concat(...bucketArray)
+        arregloRadix = arreglo;
+        contador += 10;
     }
     contador += 2;
-
     return contador;
 }
 
