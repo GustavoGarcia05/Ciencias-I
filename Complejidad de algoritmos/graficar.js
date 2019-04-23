@@ -32,6 +32,7 @@ function graficarTodos(){
     data.addColumn('number', 'Burbuja');
     data.addColumn('number', 'Seleccion');
     data.addColumn('number', 'Insercion');
+    data.addColumn('number','Radix');
     
     data.addRows(generarDatosCombinados());
     // Set chart options
