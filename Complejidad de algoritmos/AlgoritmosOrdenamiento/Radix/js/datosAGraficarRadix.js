@@ -19,7 +19,7 @@ function generarDatosRadix() {
 
 function calcularR(tam) {
 
-    var array = [];
+    var arreglo = [];
     var cont = 0;
 
     if (tam == 0) {
@@ -28,34 +28,37 @@ function calcularR(tam) {
     } else {
 
         for (i = 0; i < tam; i++) {
-            array[i] = Math.round(Math.random() * tam);
+            arreglo[i] = Math.round(Math.random() * tam);
         }
 
         /*NOTA: si utilizo (i) en un for en el siguiente for no puedo usarla 
          porque el programa no la entiende como otra (i) diferente 
          (o por lo menos de la forma como escribi el codigo sucede de esa manera) */
 
-        cont = 1;
-        for (j = 0; j < tam - 1; j++) {
-            cont += 6;
-            min = j;
-            for (k = j + 1; k < tam; k++) {
-                cont += 5;
-                if (array[k] < array[min]) {
-                    min = k;
-                    cont += 1;
-                }
+        var contador = 0;
+        let maxValue = arreglo[0]
+        contador += 4;
+        for (let i = 1; i < arreglo.length; i++) {
+            if (arreglo[i] > maxValue) {
+                maxValue = arreglo[i]
+                contador += 4;
             }
-            cont += 1;
-            cont += 1;
-            if (j != min) {
-                cont += 7;
-                var aux = array[j];
-                array[j] = array[min];
-                array[min] = aux;
-            }
+            contador += 2;
         }
-        cont += 2;
+        const iterationCount = maxValue.toString().length
+        contador += 1;
+        for (let digit = 0; digit < iterationCount; digit++) {
+            const bucketArray = Array.from({ length: 10 }, () => [])
+            for (let i = 0; i < arreglo.length; i++) {
+                const digitValue = Math.floor(arreglo[i] / Math.pow(10, digit)) % 10
+                bucketArray[digitValue].push(arreglo[i])
+                contador += 11;
+            }
+            arreglo = [].concat(...bucketArray)
+            arregloRadix = arreglo;
+            contador += 10;
+        }
+        contador += 2;
+        return contador;
     }
-    return cont;
 }

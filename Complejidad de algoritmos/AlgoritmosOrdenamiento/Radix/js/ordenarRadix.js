@@ -78,7 +78,7 @@ function ordenarPorRadixMejorcaso(arreglo) {
 function ordenarPorRadixPeorcaso(arreglo) {
 
     var contadorPeorCaso = ordenarPorRadix(arreglo.reverse());
-    contadorPeorCaso = calculoPeorCasoR();
+    //contadorPeorCaso = calculoPeorCasoR();
     var prueba = document.getElementById('resultadoPCRC');
     prueba.innerHTML = contadorPeorCaso;
 
@@ -113,5 +113,5 @@ function calculoMejorCasoR() {
 //---------------------------------------------------------------------
 
 function graficarRadix() {
-    graficar(generarDatosSeleccion(), 'graficaRadix');
+    graficar(generarDatosRadix(), 'graficaRadix');
 }
