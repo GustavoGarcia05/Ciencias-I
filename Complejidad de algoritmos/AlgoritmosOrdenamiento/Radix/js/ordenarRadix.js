@@ -74,7 +74,7 @@ function ordenarPorRadixMejorcaso(arreglo) {
     return contadorMejorcaso;
 }
 
-//peor caso (mayor a menor)
+//peor caso
 function ordenarPorRadixPeorcaso(arreglo) {
 
     var contadorPeorCaso = ordenarPorRadix(arreglo.reverse());
@@ -89,7 +89,7 @@ function ordenarPorRadixPeorcaso(arreglo) {
 //---Calculo del numero de operaciones elementales mediante la funcion---
 
 function calculoPeorCasoR() {
-    var calculo = (2.4 * Math.pow(tamanioR, 2) + (16 * tamanioR) - 44); //
+    var calculo = (26.6 * tamanioR) - 27; //
     var prueba = document.getElementById('resultadoPCRF');
     prueba.innerHTML = calculo;
     return calculo

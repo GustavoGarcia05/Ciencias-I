@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Determinante </title>
+
+        <script src="calculoDeterminante.js"></script>
+        <link type="text/css" rel="stylesheet" href="Estilos.css">
+    </head>
+    <body>
+    <center>
+        <header>
+            <h1>Multiplicacion de matrices</h1>
+            <p>
+                En el siguiente programa se puede multiplicar dos matrices usando
+                el metodo de straseen.
+            </p>
+        </header>
+        <main>
+            <section>
+                <div >Matriz A</div>
+                
+                <div >Matriz B</div>
+                
+                <input type="text" id="dimension">
+                <button type="button" id="armarMatriz" onclick="limpiarMatriz(); armarMatriz()">Ingresar dimension</button>
+                <table id="tablaA">
+                </table>
+                <div>
+                    Determinante
+                    <button type="button" onclick="mostrarDeterminante()">Calcular</button>
+                    <div id="detr">
+                        Determinante
+                    </div>
+                </div>
+                <div>
+                    Operaciones fundamentales por formula: <span id=formula></span><br>
+                    Operaciones fundamentales por contador: <span id=contador></span>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <br>
+            Hecho por: <br>
+            Brayan A. Lopez G. <br>
+            Dannyr Gustavo Garcia Cardozo
+        </footer>
+    </center>
+</body>
+</html>
