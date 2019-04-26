@@ -158,3 +158,55 @@ function mostrarDeterminante() {
      formula.textContent = (1 / 6) * ((32 * (tamano * tamano * tamano)) - (33 * (tamano * tamano)) + (73 * tamano));
      */
 }
+
+//Aqui enpieza el codigo que estoy escribiendo 
+
+function sumarMatrcices(matriz1, matriz2) {
+    var matrizSumada=[];
+
+    for (let i = 0; i < matriz1.length; i++) {
+        for (let j = 0; j < matriz1.length; i++) {
+            matrizSumada[i][j] = matriz1[i][j] + matriz2[i][j];
+        }
+
+    }
+
+    return matrizSumada;
+}
+
+function sacarSeccionMatriz(matriz, coordenadaX, coordenadaY, tamanioSubdivision) { //rango de subdivision = tamanioSubdivision
+    
+    console.log('matriz: '+matriz);
+    var matrizSubdividida=[];
+
+    for (let i = coordenadaX; i < tamanioSubdivision + coordenadaX; i++) {
+        for (let j = coordenadaY; i < tamanioSubdivision + coordenadaY; j++) {
+            matrizSubdividida[i - coordenadaX][j - coordenadaY] = matriz[i][j];
+
+        }
+    }
+
+    return matrizSubdividida;
+}
+
+function subDividirMatriz(matriz) {
+
+    var a11, a12, a21, a22;
+    var tamanioSeccion = matriz.length;
+
+    a11 = sacarSeccionMatriz(matriz, 0, 0, tamanioSeccion);
+    a12 = sacarSeccionMatriz(matriz, 0, tamanioSeccion, tamanioSeccion);
+    a21 = sacarSeccionMatriz(matriz, tamanioSeccion, 0, tamanioSeccion);
+    a22 = sacarSeccionMatriz(matriz, tamanioSeccion, tamanioSeccion, tamanioSeccion);
+    
+    console.log('matriz a11: '+a11);
+    console.log('matriz a12: '+a12);
+    console.log('matriz a21: '+a21);
+    console.log('matriz a22: '+a22);
+
+}
+
+function probarPrograma(){
+    var matrizPrueba=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]];
+    subDividirMatriz(matrizPrueba);
+}
