@@ -21,20 +21,23 @@
         <main>
             <section>
                 <div >Matriz A</div>
-                <input type="text" id="dimension">
-                <button type="button" id="armarMatriz" onclick="limpiarMatriz(); armarMatriz()">Ingresar dimension</button>
-                
-                <div >Matriz B</div>
-                
-                <input type="text" id="dimension">
-                <button type="button" id="armarMatriz" onclick="limpiarMatriz(); armarMatriz()">Ingresar dimension</button>
+                <input type="text" id="filasA">
+                <input type="text" id="columnasA">
+                <button type="button" id="armarMatrizA" onclick="limpiarMatrizA(); crearMatrizA()">Crear matriz A</button>
                 <table id="tablaA">
                 </table>
+
+                <div >Matriz B</div>
+                <input type="text" id="filasB">
+                <input type="text" id="columnasB">
+                <button type="button" id="columnasB" onclick="limpiarMatrizB(); crearMatrizB()">Crear Matriz B</button>
+                <table id="tablaB">
+                </table>
                 <div>
-                    Determinante
-                    <button type="button" onclick="mostrarDeterminante()">Calcular</button>
+                    Multiplicar
+                    <button type="button" onclick="prueba()">Calcular</button>
                     <div id="detr">
-                        Determinante
+                        El resultado se mostrara aca.
                     </div>
                 </div>
                 <div>

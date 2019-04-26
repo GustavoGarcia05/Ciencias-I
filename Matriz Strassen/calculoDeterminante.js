@@ -1,73 +1,77 @@
 var c;
 
-//crea la matriz cuadrada segun el numero de la dimension
-function armarMatriz(tamanio = document.getElementById("dimension").value) {
-    var n = tamanio;
+function crearMatrizA() {
+    var filas = document.getElementById("filasA").value;
+    var columnas = document.getElementById("columnasA").value;
     var tabla = document.getElementById("tablaA");
-    for (var i = 0; i < n; i++) {
+    armarMatriz(filas, columnas, tabla, "A");
+}
+
+function crearMatrizB() {
+    var filas = document.getElementById("filasB").value;
+    var columnas = document.getElementById("columnasB").value;
+    var tabla = document.getElementById("tablaB");
+    armarMatriz(filas, columnas, tabla, "B");
+
+}
+
+
+//crea la matriz usando las filas y las columnas que le ingresan como parametro
+function armarMatriz(filas, columnas, tabla, id) {
+    for (var i = 0; i < filas; i++) {
         var f = tabla.insertRow(-1);
-        for (var j = 0; j < n; j++) {
-            var nid = "" + i + j;
+        for (var j = 0; j < columnas; j++) {
+            var nid = "" + id + i + j;
             var z = f.insertCell(-1);
             var CELDA = "<input type=\"text\"";
             CELDA = CELDA + "id=\"" + nid + "\"";
             CELDA = CELDA + "size=\"1\">";
             z.innerHTML = CELDA;
         }
-}
+    }
 }
 
-//limpia la creacion de celdas de la tabla
-function limpiarMatriz() {
+function limpiarMatrizA() {
     var t = document.getElementById("tablaA");
-    for (var i = t.rows.length - 1; i >= 0; i--) {
-        t.deleteRow(i);
+    limpiarMatriz(t);
+}
+
+function limpiarMatrizB() {
+    var t = document.getElementById("tablaB");
+    limpiarMatriz(t);
+}
+
+//limpia la creacion de celdas de la tabla que le ingresen
+function limpiarMatriz(tabla) {
+    for (var i = tabla.rows.length - 1; i >= 0; i--) {
+        tabla.deleteRow(i);
     }
 }
 
 //captura los datos ingresados por el usuario
-function capturarmatriz(n) {
-    var mat = new Array(n);
-    for (var i = 0; i < n; i++) {
-        mat[i] = new Array(n);
-        for (var j = 0; j < n; j++) {
-            var temp = document.getElementById("" + i + j).value;
+function capturarmatriz(filas, columnas, tabla) {
+    var mat = new Array(filas);
+    for (var i = 0; i < filas; i++) {
+        mat[i] = new Array(columnas);
+        for (var j = 0; j < columnas; j++) {
+            var temp = document.getElementById("" + tabla + i + j).value;
             mat[i][j] = Number(temp);
         }
     }
     return mat;
 }
 
-function calcularDeterminante(array) {
-    var tam = array.length;//tamanio de la matriz cuadradada
-    console.log("tamanio: " + tam);
-
-    for (var i = 0; i < tam - 1; i++) {
-
-        for (var j = i + 1; j < tam; j++) {
-
-            for (var k = i + 1; k < tam; k++) {
-                array[k][j] = array[k][j] - (array[k][i] * array[i][j]) / array[i][i];
-            }
-        }
-    }
-
-    var traza = 1;
-
-    for (var h = 0; h < tam; h++) {
-        traza = traza * array[h][h];
-    }
-    console.log("matriz resultante: " + array);
-    console.log("determinante: " + traza);
-
-    return traza;
+function prueba() {
+    var MatrizA = capturarmatriz(document.getElementById("filasA").value, document.getElementById("columnasA").value, "A");
+    console.log(MatrizA);
+    alert(MatrizA);
 }
 
 /**
  * tamano es un multiplo de 2^n
  * 
  * */
-function multiplicacionStrassen(matrizA, matrizB, tamano) {
+function multiplicacionStrassen(matrizA, matrizB, c, tamano) {
     // c es por referencia
     if (tamano == 1) {
         c[0][0] = a[0][0] * b[0][0];
