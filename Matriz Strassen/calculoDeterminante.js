@@ -63,6 +63,10 @@ function calcularDeterminante(array) {
     return traza;
 }
 
+/**
+ * tamano es un multiplo de 2^n
+ * 
+ * */
 function multiplicacionStrassen(matrizA, matrizB, tamano) {
     // c es por referencia
     if (tamano == 1) {
@@ -96,7 +100,7 @@ function multiplicacionStrassen(matrizA, matrizB, tamano) {
             //calcula a11, a12, a21, a22, b11, b12, b21, b22
         }
     }
-    
+
     sum(a11, a22, aResult, tama); // a11 + a22
     sum(b11, b22, bResult, tama); // b11 + b22
 
