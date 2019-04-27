@@ -159,10 +159,12 @@ function mostrarDeterminante() {
      */
 }
 
-//Aqui enpieza el codigo que estoy escribiendo 
+//Aqui empieza el codigo que estoy escribiendo 
 
+
+//-------Operaciones entre matrices-------
 function sumarMatrcices(matriz1, matriz2) {
-    var matrizSumada=[];
+    var matrizSumada = [];
 
     for (let i = 0; i < matriz1.length; i++) {
         for (let j = 0; j < matriz1.length; i++) {
@@ -173,40 +175,163 @@ function sumarMatrcices(matriz1, matriz2) {
 
     return matrizSumada;
 }
+function restarMatrcices(matriz1, matriz2) {
+    var matrizRestada = [];
 
-function sacarSeccionMatriz(matriz, coordenadaX, coordenadaY, tamanioSubdivision) { //rango de subdivision = tamanioSubdivision
-    
-    console.log('matriz: '+matriz);
-    var matrizSubdividida=[];
-
-    for (let i = coordenadaX; i < tamanioSubdivision + coordenadaX; i++) {
-        for (let j = coordenadaY; i < tamanioSubdivision + coordenadaY; j++) {
-            matrizSubdividida[i - coordenadaX][j - coordenadaY] = matriz[i][j];
-
+    for (let i = 0; i < matriz1.length; i++) {
+        for (let j = 0; j < matriz1.length; i++) {
+            matrizRestada[i][j] = matriz1[i][j] - matriz2[i][j];
         }
+
     }
 
+    return matrizRestada;
+}
+
+function multiplicarMatrices(matriz1, matriz2) {
+    var matrizMultiplicada = [];
+
+    var numeroFilas=matriz1.length;
+    var numeroColumnas=matriz2[0].length;
+    console.log('matriz2: '+matriz2);
+    
+    for (let i = 0; i < numeroFilas; i++) {
+        console.log('matriz2: '+matriz2[i]);
+        for (let j = 0; j < numeroColumnas; j++) {
+            //matrizMultiplicada[i][j] = matriz1[i][j]*matriz2[j][i];
+        }
+
+    }
+
+    return matrizMultiplicada;
+}
+
+
+
+//----------------------------------------
+
+//-------Operaciones de verificacion-------
+function verificarMultiplicacion(matriz1, matriz2) {
+    var sePuedeMultiplicar;
+
+    if (matriz1[0].length == matriz2.length) {
+        sePuedeMultiplicar = true;
+    } else {
+        sePuedeMultiplicar = false;
+    }
+
+    return sePuedeMultiplicar;
+
+}
+
+function verificarMatrizCuadrada(matriz) {
+    var esCuadrada;
+
+    if (matriz[0].length == matriz.length) {
+        esCuadrada = true;
+    } else {
+        esCuadrada = false;
+    }
+
+    return esCuadrada;
+}
+//----------------------------------------
+
+
+//-------Redimension conceros de la matriz-------
+//verifica si el tamaño es multiplo de 2^n
+function completarConCeros(matriz) {
+
+    var numeroFilas;
+    var numeroColumnas;
+    var dimensionMayor;
+    var exponente;
+    var nuevaDimension;
+    var nuevaMatriz = matriz;
+
+    numeroFilas = matriz.length;
+    numeroColumnas = matriz[0].length;
+
+    dimensionMayor = Math.max(numeroFilas, numeroColumnas);
+    //ceil redondea por encima (techo), floor por el contario redondea por debajo (piso)
+    exponente = Math.ceil(Math.log(dimensionMayor) / Math.log(2));
+    nuevaDimension = exponente;
+
+    while (nuevaDimension % Math.pow(2, exponente)) {
+        nuevaDimension += 1;
+    }
+    nuevaMatriz = completarConCerosFilas(nuevaMatriz, nuevaDimension, numeroFilas, numeroColumnas);
+    nuevaMatriz = completarConCerosColumnas(nuevaMatriz, nuevaDimension, numeroFilas);
+    return nuevaMatriz;
+
+}
+
+function completarConCerosFilas(matriz, nuevaDimension, numeroFilas, numeroColumnas) {
+
+    var matrizFilasCompletadas = matriz;
+    for (let i = 0; i < numeroFilas; i++) {
+        for (let j = numeroColumnas; j < nuevaDimension; j++) {
+            matrizFilasCompletadas[i].push(0);
+        }
+    }
+    return matrizFilasCompletadas;
+}
+
+function completarConCerosColumnas(matriz, nuevaDimension, numeroFilas) {
+    var matrizColumnasCompletadas = matriz;
+    for (let i = numeroFilas; i < nuevaDimension; i++) {
+        matrizColumnasCompletadas.push([0]);
+        for (let j = 0; j < nuevaDimension; j++) {
+            matrizColumnasCompletadas[i].push(0);
+        }
+
+    }
+
+    for (let i = 0; i < matrizColumnasCompletadas.length; i++) {
+        console.log('matriz[' + i + ']: ' + matrizColumnasCompletadas[i]);
+    }
+    return matrizColumnasCompletadas;
+}
+//----------------------------------------
+
+//-------Operaciones para Strauss-------
+function sacarSeccionMatriz(matriz, coordenadaX, coordenadaY, tamanioSubdivision) { //rango de subdivision = tamanioSubdivision
+
+    var matrizSubdividida = [];
+
+    for (let i = coordenadaX; i < tamanioSubdivision + coordenadaX; i++) {
+        var matrizAux = [];
+        for (let j = coordenadaY; j < tamanioSubdivision + coordenadaY; j++) {
+            matrizAux[j - coordenadaY] = matriz[i][j];
+        }
+        matrizSubdividida[i - coordenadaX] = matrizAux;
+
+    }
     return matrizSubdividida;
 }
 
 function subDividirMatriz(matriz) {
 
-    var a11, a12, a21, a22;
-    var tamanioSeccion = matriz.length;
+    var subMatriz11, subMatriz12, subMatriz21, subMatriz22;
+    var tamanioSeccion = matriz.length / 2;
+    var matrizSectorizada = [];
 
-    a11 = sacarSeccionMatriz(matriz, 0, 0, tamanioSeccion);
-    a12 = sacarSeccionMatriz(matriz, 0, tamanioSeccion, tamanioSeccion);
-    a21 = sacarSeccionMatriz(matriz, tamanioSeccion, 0, tamanioSeccion);
-    a22 = sacarSeccionMatriz(matriz, tamanioSeccion, tamanioSeccion, tamanioSeccion);
-    
-    console.log('matriz a11: '+a11);
-    console.log('matriz a12: '+a12);
-    console.log('matriz a21: '+a21);
-    console.log('matriz a22: '+a22);
+    subMatriz11 = sacarSeccionMatriz(matriz, 0, 0, tamanioSeccion);
+    subMatriz12 = sacarSeccionMatriz(matriz, 0, tamanioSeccion, tamanioSeccion);
+    subMatriz21 = sacarSeccionMatriz(matriz, tamanioSeccion, 0, tamanioSeccion);
+    subMatriz22 = sacarSeccionMatriz(matriz, tamanioSeccion, tamanioSeccion, tamanioSeccion);
+    return matrizSectorizada = [subMatriz11, subMatriz12, subMatriz21, subMatriz22];
 
 }
 
-function probarPrograma(){
-    var matrizPrueba=[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]];
-    subDividirMatriz(matrizPrueba);
+//----------------------------------------
+
+function probarPrograma() {
+    var matrizPrueba = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]];
+    var matrizPrueba2 = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16], [17, 18, 19, 20]];
+    var matrizPrueba3=[[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]];
+    //console.log('exponente ' + completarConCeros(matrizPrueba2));
+    console.log('multiplicaion' + multiplicarMatrices(matrizPrueba3,matrizPrueba));
+
+
 }
