@@ -71,10 +71,10 @@ function prueba() {
     var matrizA1 = [[1, 2, 1, 2], [4, 4, 5, 6], [6, 5, 3, 7], [7, 8, 9, 8]];
     var matrizB2 = [[2, 3, 4, 7], [6, 2, 6, 5], [5, 1, 7, 1], [4, 3, 8, 9]];
 
-    var matrizOperada =strassen(matrizA1,matrizB2);
+    var matrizOperada = strassenCasobase(matrizA1, matrizB2);
 
     for (var i = 0; i < matrizOperada.length; i++) {
-        console.log('matris por straseen: ' + matrizOperada[i]);
+        console.log('matriz por straseen: ' + matrizOperada[i]);
     }
 
 }
@@ -135,8 +135,8 @@ function multiplicarMatrices(matriz1, matriz2) {
 
 
     /*for (var i = 0; i < matrizMultiplicada.length; i++) {
-        console.log('fila [' + i + '] :' + matrizMultiplicada[i]);
-    }*/
+     console.log('fila [' + i + '] :' + matrizMultiplicada[i]);
+     }*/
 
     return matrizMultiplicada;
 }
@@ -174,7 +174,7 @@ function verificarMatrizCuadrada(matriz) {
 
 
 //-------Redimension conceros de la matriz-------
-//verifica si el tamaño es multiplo de 2^n
+//verifica si el tamaÃ±o es multiplo de 2^n
 function completarConCeros(matriz) {
 
     var numeroFilas;
@@ -198,7 +198,7 @@ function completarConCeros(matriz) {
     nuevaMatriz = completarConCerosFilas(nuevaMatriz, nuevaDimension, numeroFilas, numeroColumnas);
     nuevaMatriz = completarConCerosColumnas(nuevaMatriz, nuevaDimension, numeroFilas);
 
-    
+
     return nuevaMatriz;
 
 }
@@ -224,8 +224,8 @@ function completarConCerosColumnas(matriz, nuevaDimension, numeroFilas) {
 
     }
     /*for (let i = 0; i < matrizColumnasCompletadas.length; i++) {
-        console.log('matriz[' + i + ']: ' + matrizColumnasCompletadas[i]);
-    }*/
+     console.log('matriz[' + i + ']: ' + matrizColumnasCompletadas[i]);
+     }*/
     return matrizColumnasCompletadas;
 }
 //----------------------------------------
@@ -260,7 +260,7 @@ function subDividirMatriz(matriz) {
 
 }
 
-function strassen(matriz1, matriz2) {
+function strassenCasobase(matriz1, matriz2) {
 
     console.log();
 
@@ -288,14 +288,31 @@ function strassen(matriz1, matriz2) {
     var c21 = sumarMatrices(m2, m4);
     var c22 = sumarMatrices(sumarMatrices(restarMatrices(m1, m2), m3), m6);
 
-    var matricesOperadas = [c11, c12, c21, c22];
-
+    //var matricesOperadas = [c11, c12, c21, c22];
+    var matricesOperadas = reorganizarMatrisOperada(c11,c12,c21,c22);
+    
+    
+    
     return matricesOperadas;
 }
 
-function iprimirMatriz(matriz){
-    for(var i=0;i<matriz.length;i++){
-        console.log('matriz: '+matriz[i]);
+function reorganizarMatrisOperada(c11, c12, c21, c22) {
+    var matrizReoganizada=[];
+    matrizReoganizada.push(c11[0]+','+c12[0]);
+    matrizReoganizada.push(c11[1]+','+c12[1]);
+    matrizReoganizada.push(c21[0]+','+c22[0]);
+    matrizReoganizada.push(c21[1]+','+c22[1]);
+    
+    for(var i=0;i<matrizReoganizada.length;i++){
+        console.log('matriz: '+matrizReoganizada[i]);
+    }
+    
+    return matrizReoganizada;
+}
+
+function iprimirMatriz(matriz) {
+    for (var i = 0; i < matriz.length; i++) {
+        console.log('matriz: ' + matriz[i]);
     }
 }
 //----------------------------------------
