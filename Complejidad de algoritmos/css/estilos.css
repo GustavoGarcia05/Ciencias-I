@@ -56,13 +56,6 @@ main section{
     /* display: none; */
 }
 
-#mergeSort{
-    display: none;
-}
-#quickSort{
-    display: none;
-}
-
 .eliminar{
     display: none;
 }

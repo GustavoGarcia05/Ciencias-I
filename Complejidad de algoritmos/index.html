@@ -20,20 +20,20 @@
         <script src="AlgoritmosOrdenamiento/Insercion/js/datosAGrafiicarInsercion.js"></script>
         <script src="AlgoritmosOrdenamiento/Insercion/js/ordenarInsercion.js"></script>
 
-        <script src="AlgoritmosOrdenamiento/Radix/js/ordenarRadix.js"></script>
         <script src="AlgoritmosOrdenamiento/Radix/js/datosAGraficarRadix.js"></script>
+        <script src="AlgoritmosOrdenamiento/Radix/js/ordenarRadix.js"></script>
 
-        <!--            <script src="AlgoritmosOrdenamiento/Burbuja/js/datosAGrafiicar.js"></script>
-                    <script src="AlgoritmosOrdenamiento/Burbuja/js/ordenar.js"></script>
-            
-                    <script src="AlgoritmosOrdenamiento/Seleccion/js/ordenarSeleccion.js"></script>
-                    <script src="AlgoritmosOrdenamiento/Seleccion/js/datosAGraficarSeleccion.js"></script>
-        -->
+        <script src="AlgoritmosOrdenamiento/QuickSort/js/datosAGraficarQuicksort.js"></script>
+        <script src="AlgoritmosOrdenamiento/QuickSort/js/ordenarQuickSort.js"></script>
+
+        <script src="AlgoritmosOrdenamiento/MergeSort/js/datosAGraficarMergeSort.js"></script>
+        <script src="AlgoritmosOrdenamiento/MergeSort/js/ordenarMergeSort.js"></script>
+
         <link rel="stylesheet" href="css/estilos.css">
 
     </head>
 
-    <body onload="graficarTodos()">
+    <body onload="graficarTodos(), prueba()">
         <header>
             <div class="contenedor">
                 <h1>Algoritmos de Ordenamiento</h1>
@@ -91,6 +91,7 @@
                 <button id="graficarSeleccion" onclick="graficarSeleccion()">Graficar</button>
                 <div id="graficaSeleccion"></div>
             </section>
+
             <section id="insercion">
                 <h2>Ordenamiento por Insercion</h2>
                 <span>N=</span>
@@ -108,6 +109,7 @@
                 <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
                 <div id="graficaInsercion"></div>
             </section>
+
             <section id="radix">
                 <h2>Ordenamiento por Radix</h2>
                 <span>N=</span>
@@ -125,40 +127,43 @@
                 <button id="graficarRadix" onclick="graficarRadix()">Graficar</button>
                 <div id="graficaRadix"></div>
             </section>
+
             <section id="quickSort">
                 <h2>Ordenamiento por Quicksort</h2>
                 <span>N=</span>
-                <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
-                <input type="number" id="entradaInsercion">
-                <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
-                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+                <input type="number" id="entradaQuickSort">
+                <button id="ordenarQuickSort" onclick="iniciarQuickSort()">Ordenar</button>
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoQ"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoQ"></i></p>
 
-                <div id="datosInsercion">
-                    <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
-                    <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
-                    <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
+                <div id="datosQuickSort">
+                    <p>Caso Normal n^2 : <i id="resultadoCNQF"></i> | Por contador: <i id="resultadoCNQC"></i> </p>
+                    <p>Mejor Caso n^2 : <i id="resultadoMCQF"></i> | Por contador: <i id="resultadoMCQC"></i> </p>
+                    <p>Peor Caso n^2 : <i id="resultadoPCQF"></i> | Por contador: <i id="resultadoPCQC"></i> </p>
                 </div>
 
-                <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
-                <div id="graficaInsercion"></div>
+                <button id="graficarQuickSort" onclick="graficarQuickSort()">Graficar</button>
+                <div id="graficaQuickSort"></div>
             </section>
+
             <section id="mergeSort">
                 <h2>Ordenamiento por Merge Sort</h2>
                 <span>N=</span>
-                <button id="ordenarInsercion" onclick="iniciarInsercion()">Ordenar</button>
-                <input type="number" id="entradaInsercion">
-                <p class="vectores">El vector Generado es: <i id="vectorGeneradoI"></i></p>
-                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoI"></i></p>
+                <input type="number" id="entradaMergeSort">
+                <button id="ordenarMergeSort" onclick="iniciarMergeSort()">Ordenar</button>
+                <p class="vectores">El vector Generado es: <i id="vectorGeneradoM"></i></p>
+                <p class="vectores">Arreglo ordenado: <i id="arregloOrdenadoM"></i></p>
 
                 <div id="datosInsercion">
-                    <p>Caso Normal n^2 : <i id="resultadoCNIF"></i> | Por contador: <i id="resultadoCNIC"></i> </p>
-                    <p>Mejor Caso n^2 : <i id="resultadoMCIF"></i> | Por contador: <i id="resultadoMCIC"></i> </p>
-                    <p>Peor Caso n^2 : <i id="resultadoPCIF"></i> | Por contador: <i id="resultadoPCIC"></i> </p>
+                    <p>Caso Normal n^2 : <i id="resultadoCNMF"></i> | Por contador: <i id="resultadoCNMC"></i> </p>
+                    <p>Mejor Caso n^2 : <i id="resultadoMCMF"></i> | Por contador: <i id="resultadoMCMC"></i> </p>
+                    <p>Peor Caso n^2 : <i id="resultadoPCMF"></i> | Por contador: <i id="resultadoPCMC"></i> </p>
                 </div>
 
-                <button id="graficarInsercion" onclick="graficarInsercion()">Graficar</button>
-                <div id="graficaInsercion"></div>
+                <button id="graficarMergeSort" onclick="graficarMergeSort()">Graficar</button>
+                <div id="graficaMergeSort"></div>
             </section>
+
             <section>
                 <h1>Comparación métodos de clasificación</h1>
                 <div id="graficaGeneral"> grafica comparativa </div>
