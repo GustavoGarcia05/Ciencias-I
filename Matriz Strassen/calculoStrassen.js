@@ -62,146 +62,81 @@ function capturarmatriz(filas, columnas, tabla) {
 }
 
 function prueba() {
-    var MatrizA = capturarmatriz(document.getElementById("filasA").value, document.getElementById("columnasA").value, "A");
-    console.log(MatrizA);
-    alert(MatrizA);
-}
+    //var matrizA = capturarmatriz(document.getElementById("filasA").value, document.getElementById("columnasA").value, "A");
+    //var matrizB = capturarmatriz(document.getElementById("filasB").value, document.getElementById("columnasB").value, "B");
 
-/**
- * tamano es un multiplo de 2^n
- * 
- * */
-function multiplicacionStrassen(matrizA, matrizB, c, tamano) {
-    // c es por referencia
-    if (tamano == 1) {
-        c[0][0] = a[0][0] * b[0][0];
-        return;
-    }
-    var tama = tamano / 2;
-    a11 = array();
-    a12 = array();
-    a21 = array();
-    a22 = array();
-    b11 = array();
-    b12 = array();
-    b21 = array();
-    b22 = array();
-    c11 = array();
-    c12 = array();
-    c21 = array();
-    c22 = array();
-    p1 = array();
-    p2 = array();
-    p3 = array();
-    p4 = array();
-    p5 = array();
-    p6 = array();
-    p7 = array();
-    aResult = array();
-    bResult = array();
-    for (let i = 0; i < tama; i++) {
-        for (let j = 0; j < tama; j++) {
-            //calcula a11, a12, a21, a22, b11, b12, b21, b22
-        }
+    var matrizA = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]];
+    var matrizB = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20]];
+
+    var matrizA1 = [[1, 2, 1, 2], [4, 4, 5, 6], [6, 5, 3, 7], [7, 8, 9, 8]];
+    var matrizB2 = [[2, 3, 4, 7], [6, 2, 6, 5], [5, 1, 7, 1], [4, 3, 8, 9]];
+
+    var matrizOperada =strassen(matrizA1,matrizB2);
+
+    for (var i = 0; i < matrizOperada.length; i++) {
+        console.log('matris por straseen: ' + matrizOperada[i]);
     }
 
-    sum(a11, a22, aResult, tama); // a11 + a22
-    sum(b11, b22, bResult, tama); // b11 + b22
-
-    strassen(aResult, bResult, p1, tama); // p1 = (a11+a22) * (b11+b22)
-    sum(a21, a22, aResult, tama); // a21 + a22
-
-    strassen(aResult, b11, p2, tama); // p2 = (a21+a22) * (b11)
-    subtract(b12, b22, bResult, tama); // b12 - b22
-
-    strassen(a11, bResult, p3, tama); // p3 = (a11) * (b12 - b22)
-    subtract(b21, b11, bResult, tama); // b21 - b11
-
-    strassen(a22, bResult, p4, tama); // p4 = (a22) * (b21 - b11)
-    sum(a11, a12, aResult, tama); // a11 + a12
-
-    strassen(aResult, b22, p5, tama); // p5 = (a11+a12) * (b22)
-    subtract(a21, a11, aResult, tama); // a21 - a11
-    sum(b11, b12, bResult, tama); // b11 + b12
-
-    strassen(aResult, bResult, p6, tama); // p6 = (a21-a11) * (b11+b12)
-    subtract(a12, a22, aResult, tama); // a12 - a22
-    sum(b21, b22, bResult, tama); // b21 + b22
-
-    strassen(aResult, bResult, p7, tama); // p7 = (a12-a22) * (b21+b22)
-    sum(p3, p5, c12, tama); // c12 = p3 + p5
-    sum(p2, p4, c21, tama); // c21 = p2 + p4
-    sum(p1, p4, aResult, tama); // p1 + p4
-    sum(aResult, p7, bResult, tama); // p1 + p4 + p7
-    subtract(bResult, p5, c11, tama); // c11 = p1 + p4 - p5 + p7
-    sum(p1, p3, aResult, tama); // p1 + p3
-    sum(aResult, p6, bResult, tama); // p1 + p3 + p6
-    subtract(bResult, p2, c22, tama); // c22 = p1 + p3 - p2 + p6
-    for (let i = 0; i < tama; i++) {
-        for (let j = 0; j < tama; j++) {
-            // almacena en c las submatrices
-            // c11, c12, c21, c22
-        }
-    }
 }
 
-
-function mostrarDeterminante() {
-    var cont = c;
-    var tamano = document.getElementById("dimension").value;
-    var determ = document.getElementById("prueba");
-    var contador = document.getElementById("formula");
-    var formula = document.getElementById("contador");
-
-    determ.textContent = determinante(capturarmatriz(tamano), tamano);
-    /*    contador.textContent = c;
-     formula.textContent = (1 / 6) * ((32 * (tamano * tamano * tamano)) - (33 * (tamano * tamano)) + (73 * tamano));
-     */
-}
 
 //Aqui empieza el codigo que estoy escribiendo 
 
 
 //-------Operaciones entre matrices-------
-function sumarMatrcices(matriz1, matriz2) {
-    var matrizSumada = [];
-
-    for (let i = 0; i < matriz1.length; i++) {
-        for (let j = 0; j < matriz1.length; i++) {
+function sumarMatrices(matriz1, matriz2) {
+    var matrizSumada = Array(matriz1.length); // crea una matriz de longitud 4
+    for (var i = 0; i < matriz1.length; i++) {
+        matrizSumada[i] = new Array(matriz2.length); // define cada elemento como una matriz de longitud 4
+        for (var j = 0; j < matriz2.length; j++) {
+            matrizSumada[i][j] = "[" + i + "," + j + "]"; // asigna a cada elemento de la matriz bidimensional 
+            // los valores de i y j
+        }
+    }
+    for (var i = 0; i < matriz1.length; i++) {
+        for (var j = 0; j < matriz2.length; j++) {
             matrizSumada[i][j] = matriz1[i][j] + matriz2[i][j];
         }
-
     }
-
     return matrizSumada;
 }
-function restarMatrcices(matriz1, matriz2) {
-    var matrizRestada = [];
-
+function restarMatrices(matriz1, matriz2) {
+    var matrizRestada = Array(matriz1.length); // crea una matriz de longitud 4
+    for (var i = 0; i < matriz1.length; i++) {
+        matrizRestada[i] = new Array(matriz1.length); // define cada elemento como una matriz de longitud 4
+        for (var j = 0; j < matriz1.length; j++) {
+            matrizRestada[i][j] = "[" + i + "," + j + "]"; // asigna a cada elemento de la matriz bidimensional 
+            // los valores de i y j
+        }
+    }
     for (let i = 0; i < matriz1.length; i++) {
-        for (let j = 0; j < matriz1.length; i++) {
+        for (let j = 0; j < matriz1.length; j++) {
             matrizRestada[i][j] = matriz1[i][j] - matriz2[i][j];
         }
-
     }
-
     return matrizRestada;
 }
 
 function multiplicarMatrices(matriz1, matriz2) {
+
     var matrizMultiplicada = [];
 
-    var numeroFilas=matriz1.length;
-    var numeroColumnas=matriz2[0].length;
-    console.log('matriz2: '+matriz2);
-    
-    for (let i = 0; i < numeroFilas; i++) {
-        console.log('matriz2: '+matriz2[i]);
-        for (let j = 0; j < numeroColumnas; j++) {
-            //matrizMultiplicada[i][j] = matriz1[i][j]*matriz2[j][i];
+    for (var i = 0; i < matriz1.length; i++) {
+        matrizMultiplicada.push([]);
+        for (var j = 0; j < matriz2[0].length; j++) {
+            var matrizAuxiliar = 0;
+            matrizMultiplicada[i].push([]);
+            for (var k = 0; k < matriz1[i].length; k++) {
+                matrizAuxiliar += (matriz1[i][k] * matriz2[k][j]);
+            }
+            matrizMultiplicada[i][j] = matrizAuxiliar;
         }
-
     }
+
+
+    /*for (var i = 0; i < matrizMultiplicada.length; i++) {
+        console.log('fila [' + i + '] :' + matrizMultiplicada[i]);
+    }*/
 
     return matrizMultiplicada;
 }
@@ -262,6 +197,8 @@ function completarConCeros(matriz) {
     }
     nuevaMatriz = completarConCerosFilas(nuevaMatriz, nuevaDimension, numeroFilas, numeroColumnas);
     nuevaMatriz = completarConCerosColumnas(nuevaMatriz, nuevaDimension, numeroFilas);
+
+    
     return nuevaMatriz;
 
 }
@@ -286,10 +223,9 @@ function completarConCerosColumnas(matriz, nuevaDimension, numeroFilas) {
         }
 
     }
-
-    for (let i = 0; i < matrizColumnasCompletadas.length; i++) {
+    /*for (let i = 0; i < matrizColumnasCompletadas.length; i++) {
         console.log('matriz[' + i + ']: ' + matrizColumnasCompletadas[i]);
-    }
+    }*/
     return matrizColumnasCompletadas;
 }
 //----------------------------------------
@@ -324,14 +260,42 @@ function subDividirMatriz(matriz) {
 
 }
 
-//----------------------------------------
+function strassen(matriz1, matriz2) {
 
-function probarPrograma() {
-    var matrizPrueba = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]];
-    var matrizPrueba2 = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16], [17, 18, 19, 20]];
-    var matrizPrueba3=[[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]];
-    //console.log('exponente ' + completarConCeros(matrizPrueba2));
-    console.log('multiplicaion' + multiplicarMatrices(matrizPrueba3,matrizPrueba));
+    console.log();
 
+    var matrizA = [];
+    var matrizB = [];
 
+    if (verificarMultiplicacion(matriz1, matriz2)) {
+        matrizA = completarConCeros(matriz1);
+        matrizB = completarConCeros(matriz2);
+    }
+
+    matrizA = subDividirMatriz(matrizA);
+    matrizB = subDividirMatriz(matrizB);
+
+    var m1 = multiplicarMatrices(sumarMatrices(matrizA[0], matrizA[3]), sumarMatrices(matrizB[0], matrizB[3]));
+    var m2 = multiplicarMatrices(sumarMatrices(matrizA[2], matrizA[3]), matrizB[0]);
+    var m3 = multiplicarMatrices(matrizA[0], restarMatrices(matrizB[1], matrizB[3]));
+    var m4 = multiplicarMatrices(matrizA[3], restarMatrices(matrizB[2], matrizB[0]));
+    var m5 = multiplicarMatrices(sumarMatrices(matrizA[0], matrizA[1]), matrizB[3]);
+    var m6 = multiplicarMatrices(restarMatrices(matrizA[2], matrizA[0]), sumarMatrices(matrizB[0], matrizB[1]));
+    var m7 = multiplicarMatrices(restarMatrices(matrizA[1], matrizA[3]), sumarMatrices(matrizB[2], matrizB[3]));
+
+    var c11 = sumarMatrices(restarMatrices(sumarMatrices(m1, m4), m5), m7);
+    var c12 = sumarMatrices(m3, m5);
+    var c21 = sumarMatrices(m2, m4);
+    var c22 = sumarMatrices(sumarMatrices(restarMatrices(m1, m2), m3), m6);
+
+    var matricesOperadas = [c11, c12, c21, c22];
+
+    return matricesOperadas;
 }
+
+function iprimirMatriz(matriz){
+    for(var i=0;i<matriz.length;i++){
+        console.log('matriz: '+matriz[i]);
+    }
+}
+//----------------------------------------
