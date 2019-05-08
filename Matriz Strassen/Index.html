@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Determinante </title>
 
-        <script src="calculoStrassen.js"></script>
-        <script src="operacionesMatrices.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Determinante </title>
 
-        <link type="text/css" rel="stylesheet" href="Estilos.css">
-    </head>
-    <body onload="comenzar()">
+    <script src="calculoStrassen.js"></script>
+    <script src="operacionesMatrices.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="Estilos.css">
+</head>
+
+<body>
     <center>
         <header>
             <h1>Multiplicacion de matrices</h1>
@@ -22,14 +24,15 @@
         </header>
         <main>
             <section>
-                <div >Matriz A</div>
+                <div>Matriz A</div>
                 <input type="text" id="filasA">
                 <input type="text" id="columnasA">
-                <button type="button" id="armarMatrizA" onclick="limpiarMatrizA(); crearMatrizA()">Crear matriz A</button>
+                <button type="button" id="armarMatrizA" onclick="limpiarMatrizA(); crearMatrizA()">Crear matriz
+                    A</button>
                 <table id="tablaA">
                 </table>
 
-                <div >Matriz B</div>
+                <div>Matriz B</div>
                 <input type="text" id="filasB">
                 <input type="text" id="columnasB">
                 <button type="button" id="columnasB" onclick="limpiarMatrizB(); crearMatrizB()">Crear Matriz B</button>
@@ -56,4 +59,5 @@
         </footer>
     </center>
 </body>
+
 </html>

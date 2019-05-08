@@ -6,21 +6,14 @@ function comenzar() {
     var matrizA1 = [[1, 2, 1, 2], [4, 4, 5, 6], [6, 5, 3, 7], [7, 8, 9, 8]];
     var matrizB2 = [[2, 3, 4, 7], [6, 2, 6, 5], [5, 1, 7, 1], [4, 3, 8, 9]];
 
-    var matrizPrueva = [
+    /*var matrizPrueva = [
         [['a', 'b'], ['c', 'd']],
         [[1, 2], [3, 4]],
         [['A', 'B'], ['C', 'D']],
         [[11, 22], [33, 44]]
-    ];
+    ];*/
 
-    var matrizA1 = [
-        [1, 2, 1, 2],
-        [4, 4, 5, 6],
-        [6, 5, 3, 7],
-        [7, 8, 9, 8]
-    ];
-
-    var matriz8x8 = [
+    /*var matriz8x8 = [
         [1, 2, 3, 4, 5, 6, 7, 8],
         [11, 12, 13, 14, 15, 16, 17, 18],
         [21, 22, 23, 24, 25, 26, 27, 28],
@@ -29,8 +22,9 @@ function comenzar() {
         [51, 52, 53, 54, 55, 56, 57, 58],
         [61, 62, 63, 64, 65, 66, 67, 68],
         [71, 72, 73, 74, 75, 76, 77, 78]
-    ];
-    var matriz16x16 = [
+    ];*/
+
+    /*var matriz16x16 = [
         [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
@@ -47,9 +41,9 @@ function comenzar() {
         [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []],
         [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
-    ];
+    ];*/
 
-    imprimirMatriz('8x8 ', matriz8x8);
+    /*imprimirMatriz('8x8 ', matriz8x8);
 
     console.log('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+');
     var ma = subDividir(matriz8x8);
@@ -59,9 +53,11 @@ function comenzar() {
     }
     console.log('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+');
 
-    var mb = reorganizarMatriz(ma);
-    //Strassenn(matrizA1, matrizB2);
-    //imprimirMatriz('reoganizada: ', mb);
+    var mb = reorganizarMatriz(ma);*/
+
+    var mc = multiplicar(matrizA1, matrizB2);
+
+    imprimirMatriz('multiplicada: ', mc);
 
 }
 
@@ -162,16 +158,13 @@ function completarConCerosColumnas(matriz, nuevaDimension, numeroFilas) {
 
 function reorganizarMatriz(matriz) {
     var matrizReorganizada = [];
-    for (var i = 0; i < matriz.length; i++) {
 
-        for (var j = 0; j < matriz[0].length; j++) {
-            matrizReorganizada.push([]);
-            for (var k = 0; k < matriz[0][0].length; k++) {
-                //matrizReorganizada[j].push(matriz[i][j][k]);
-                console.log('matriz[i][j][k]: ' + matriz[i][j][k]);
-            }
-        }
+    for (var i = 0; i < matriz[0].length; i++) {
+        matrizReorganizada.push([matriz[0][i].concat(matriz[1][i])]);
+    }
 
+    for (var i = 0; i < matriz[2].length; i++) {
+        matrizReorganizada.push([matriz[2][i].concat(matriz[3][i])]);
     }
 
     return matrizReorganizada;
@@ -185,6 +178,10 @@ function Strassenn(matrizA, matrizB) {
 
     if (verificarSiSePuedenMultiplicar(matrizA, matrizB)) {
 
+        imprimirMatriz('matriz A: ',matrizA);
+        console.log('------------------------');
+        imprimirMatriz('matriz B: ',matrizB);
+        console.log('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-++-+-');
 
         var matrizACompletada = completarConCeros(matrizA);
         var matrizBCompletada = completarConCeros(matrizB);
@@ -233,7 +230,8 @@ function Strassenn(matrizA, matrizB) {
     }
 
     var matrizC = [c11, c12, c21, c22];
-    var matrizMultiplicada = reorganizarMatriz(matrizC);
+    var matrizMultiplicda = reorganizarMatriz(matrizC);
+
     return matrizMultiplicda;
 }
 
@@ -302,5 +300,4 @@ function verificarSiSePuedenMultiplicar(matriz1, matriz2) {
     return sePuedeMultiplicar;
 
 }
-
 
