@@ -66,8 +66,8 @@ function prueba() {
     var matrizB = capturarmatriz(document.getElementById("filasB").value, document.getElementById("columnasB").value, "B");
 
 
-    var matrizC = multiplicarStrassen(matrizA, matrizB);
-    imprimirMatriz(' ', matrizC);
+    multiplicarStrassen(matrizA, matrizB);
+    //imprimirMatriz(' ', matrizC);
 
 }
 
@@ -315,6 +315,47 @@ function verificarSiSePuedenMultiplicar(matriz1, matriz2) {
 
 }
 
+function mostrarMatriz(matriz) {
+    // Obtener la referencia del elemento body
+    //var body = document.getElementsByTagName("body")[0];
+
+    var body = document.getElementById("resultado");
+
+    // Crea un elemento <table> y un elemento <tbody>
+    var tabla = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+
+    // Crea las celdas
+    for (var i = 0; i < matriz.length; i++) {
+        // Crea las hileras de la tabla
+        var hilera = document.createElement("tr");
+
+        for (var j = 0; j < matriz[0].length; j++) {
+            // Crea un elemento <td> y un nodo de texto, haz que el nodo de
+            // texto sea el contenido de <td>, ubica el elemento <td> al final
+            // de la hilera de la tabla
+            var celda = document.createElement("td");
+            var textoCelda = document.createTextNode(matriz[i][j]);
+            celda.appendChild(textoCelda);
+            hilera.appendChild(celda);
+        }
+        // agrega la hilera al final de la tabla (al final del elemento tblbody)
+        tblBody.appendChild(hilera);
+    }
+
+    // posiciona el <tbody> debajo del elemento <table>
+    tabla.appendChild(tblBody);
+    // appends <table> into <body>
+    body.appendChild(tabla);
+    // modifica el atributo "border" de la tabla y lo fija a "2";
+    tabla.setAttribute("border", "2");
+}
+
+function limpiarCampo(){
+    var limpia = document.getElementById("resultado");
+    limpia.textContent= "Resultado AxB";
+}
+
 
 
 
@@ -354,13 +395,16 @@ function verificarSiSePuedenMultiplicar(matriz1, matriz2) {
 
 function multiplicarStrassen(matrizA, matrizB) {
 
+    if (verificarSiSePuedenMultiplicar(matrizA, matrizB)) {
+        var matrizC = multiplicar(matrizA, matrizB);
+        //imprimirMatriz(' ', matrizC);
+        mostrarMatriz(matrizC);
+        return matrizC;
 
-    if (verificarSiSePuedenMultiplicar(matrizA, matrizB) && matrizA != null && matrizB != null) {
-        return matrizMultiplicda = multiplicar(matrizA, matrizB);
+
     } else {
-        alert('No se pueden multiplicar las matrices');
+        alert('no se pueden multiplicar');
     }
-
 
 
 

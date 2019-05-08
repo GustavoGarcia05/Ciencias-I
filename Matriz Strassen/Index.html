@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Determinante </title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Determinante </title>
 
-    <script src="calculoStrassen.js"></script>
-    <script src="operacionesMatrices.js"></script>
+        <script src="calculoStrassen.js"></script>
+        <link type="text/css" rel="stylesheet" href="Estilos.css">
+    </head>
 
-    <link type="text/css" rel="stylesheet" href="Estilos.css">
-</head>
-
-<body>
+    <body>
     <center>
         <header>
             <h1>Multiplicacion de matrices</h1>
@@ -40,8 +38,8 @@
                 </table>
                 <div>
                     Multiplicar
-                    <button type="button" onclick="prueba()">Calcular</button>
-                    <div id="detr">
+                    <button type="button" onclick="limpiarCampo(); prueba()">Calcular</button>
+                    <div id="resultado">
                         El resultado se mostrara aca.
                     </div>
                 </div>
@@ -50,6 +48,7 @@
                     Operaciones fundamentales por contador: <span id=contador></span>
                 </div>
             </section>
+
         </main>
         <footer>
             <br>
@@ -58,6 +57,7 @@
             Dannyr Gustavo Garcia Cardozo
         </footer>
     </center>
+
 </body>
 
 </html>
