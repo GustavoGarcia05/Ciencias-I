@@ -20,56 +20,52 @@ function iniciarQuickSort() {
         calculoMejorCasoQ();
 
         var arregloOrdenado = document.getElementById('arregloOrdenadoQ');
-        arregloOrdenado.innerHTML = vector.sort();
+        arregloOrdenado.innerHTML = vector.sort((a, b) => a - b);
     }
 }
 
 //--------- Funciones de ordenamiento-------
 
-var cont = 0;
+var conta = 0;
 const defaultSortingAlgorithm = (a, b) => {
     if (a < b) {
-        cont += 1;
+        conta += 1;
         return -1;
     }
     if (a > b) {
-        cont += 1;
+        conta += 1;
         return 1;
     }
     return 0;
 };
 
-const quickSort = (
-        unsortedArray,
-        sortingAlgorithm = defaultSortingAlgorithm
-        ) => {
+const quickSort = (unsortedArray, sortingAlgorithm = defaultSortingAlgorithm) => {
     // immutable version
     const sortedArray = [...unsortedArray];
-
-    cont += 1;
+    conta += 1;
 
     const swapArrayElements = (arrayToSwap, i, j) => {
         const a = arrayToSwap[i];
         arrayToSwap[i] = arrayToSwap[j];
         arrayToSwap[j] = a;
+        conta += 5;
     };
 
-    cont += 5;
 
     const partition = (arrayToDivide, start, end) => {
         const pivot = arrayToDivide[end];
         let splitIndex = start;
-        cont += 2;
+        conta += 2;
         for (let j = start; j <= end - 1; j++) {
             const sortValue = sortingAlgorithm(arrayToDivide[j], pivot);
             if (sortValue === -1) {
                 swapArrayElements(arrayToDivide, splitIndex, j);
                 splitIndex++;
-                cont += 1;
+                conta += 1;
             }
-            cont += 4;
+            conta += 4;
         }
-        cont += 1;
+        conta += 1;
         swapArrayElements(arrayToDivide, splitIndex, end);
         return splitIndex;
     };
@@ -77,19 +73,19 @@ const quickSort = (
     // Recursively sort sub-arrays.
     const recursiveSort = (arraytoSort, start, end) => {
         // stop condition
-        cont += 1;
+        conta += 1;
         if (start < end) {
             const pivotPosition = partition(arraytoSort, start, end);
             recursiveSort(arraytoSort, start, pivotPosition - 1);
             recursiveSort(arraytoSort, pivotPosition + 1, end);
-            cont += 3;
+            conta += 3;
         }
     };
 
     // Sort the entire array.
     recursiveSort(sortedArray, 0, unsortedArray.length - 1);
-    cont += 1;
-    return cont;
+    conta += 1;
+    return conta;
 };
 
 
@@ -128,22 +124,22 @@ function ordenarPorQuickSortPeorcaso(arreglo) {
 //---Calculo del numero de operaciones elementales mediante la funcion---
 
 function calculoPeorCasoQ() {
-    var calculo = (Math.pow(tamanioQ, 2)); //
+    var calculo = (10 * Math.pow(tamanioQ, 2)); //
     var prueba = document.getElementById('resultadoPCQF');
     prueba.innerHTML = calculo;
-    return calculo
+    return calculo;
 }
 
 function calculoCasoNormalQ() {
 
-    var calculo = (tamanioQ * Math.log10(tamanioQ));
+    var calculo = (10 * tamanioQ * Math.log2(tamanioQ));
     var prueba = document.getElementById('resultadoCNQF');
     prueba.innerHTML = calculo;
     return calculo;
 }
 
 function calculoMejorCasoQ() {
-    var calculo = (tamanioQ * Math.log10(tamanioQ));
+    var calculo = (10 * tamanioQ * Math.log2(tamanioQ));
     var prueba = document.getElementById('resultadoMCQF');
     prueba.innerHTML = calculo;
     return calculo;
@@ -153,9 +149,4 @@ function calculoMejorCasoQ() {
 
 function graficarQuickSort() {
     graficar(generarDatosQuickSort(), 'graficaQuickSort');
-}
-
-
-function prueba() {
-    console.log(quickSort([1, 2, 20, 99, 9, 100, 551, 1, 2]) + "cont: " + cont);
 }

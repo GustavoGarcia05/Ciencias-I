@@ -6,7 +6,7 @@ function generarDatosQuickSort() {
     var constanteAumento = 1;
     var constanteTamanio = 100;
 
-    for (i = 0; i < constanteTamanio; i += constanteAumento) {
+    for (var i = 0; i < constanteTamanio; i += constanteAumento) {
         pareja = [i, calcularQ(i)];
 
         if (i == 0) {
@@ -19,9 +19,7 @@ function generarDatosQuickSort() {
 
 function calcularQ(tam) {
 
-//    var array = generarDatosQuickSort();
     var cont = 0;
-
     const defaultSortingAlgorithm = (a, b) => {
         if (a < b) {
             cont += 1;
@@ -34,22 +32,18 @@ function calcularQ(tam) {
         return 0;
     };
 
-    const quickSort = (
-            unsortedArray,
-            sortingAlgorithm = defaultSortingAlgorithm
-            ) => {
+    const quickSort = (unsortedArray, sortingAlgorithm = defaultSortingAlgorithm) => {
         // immutable version
         const sortedArray = [...unsortedArray];
-
         cont += 1;
 
         const swapArrayElements = (arrayToSwap, i, j) => {
             const a = arrayToSwap[i];
             arrayToSwap[i] = arrayToSwap[j];
             arrayToSwap[j] = a;
+            cont += 5;
         };
 
-        cont += 5;
 
         const partition = (arrayToDivide, start, end) => {
             const pivot = arrayToDivide[end];
@@ -86,5 +80,17 @@ function calcularQ(tam) {
         cont += 1;
         return cont;
     };
-    return quickSort(generarDatosQuickSort());
+    return quickSort(generarArregloSinEtiqueta(tam));
+}
+
+
+
+function generarArregloSinEtiqueta(tamanio) {
+    var arreglo = [];
+
+    for (var i = 0; i < tamanio; i++) {
+        arreglo[i] = Math.round(Math.random() * tamanio);
+    }
+
+    return arreglo;
 }

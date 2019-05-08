@@ -20,13 +20,12 @@ function iniciarMergeSort() {
         calculoMejorCasoM();
 
         var arregloOrdenado = document.getElementById('arregloOrdenadoM');
-        arregloOrdenado.innerHTML = vector.sort();
+        arregloOrdenado.innerHTML = vector.sort((a, b) => a - b);
     }
 }
 
 //--------- Funciones de ordenamiento-------
 var cont = 0;
-
 function merge(leftArr, rightArr) {
     var sortedArr = [];
     cont += 1;
@@ -68,37 +67,6 @@ function mergesort(arr) {
     }
 }
 
-
-function ordenarPorSeleccion(arreglo) {
-
-    var contador = 0;
-
-    contador = 1;
-    for (var i = 0; i < tamanioM - 1; i++) {
-        contador += 6;
-        var min = i;
-        for (var j = i + 1; j < tamanioM; j++) {
-            contador += 5;
-            if (arreglo[j] < arreglo[min]) {
-
-                min = j;
-                contador += 1;
-            }
-        }
-        contador += 1;
-        contador += 1;
-        if (i != min) {
-            contador += 7;
-            var aux = arreglo[i];
-            arreglo[i] = arreglo[min];
-            arreglo[min] = aux;
-        }
-    }
-    contador += 2;
-
-    return contador;
-}
-
 //caso real(menor a mayor)
 function ordenarPorMergeSortCasoNormal(vector) {
 
@@ -132,22 +100,22 @@ function ordenarPorMergeSortPeorcaso(arreglo) {
 //---Calculo del numero de operaciones elementales mediante la funcion---
 
 function calculoPeorCasoM() {
-    var calculo = (tamanioM * Math.log2(tamanioM)); //
+    var calculo = (10 * tamanioM * Math.log2(tamanioM)); //
     var prueba = document.getElementById('resultadoPCMF');
     prueba.innerHTML = calculo;
-    return calculo
+    return calculo;
 }
 
 function calculoCasoNormalM() {
 
-    var calculo = (tamanioM * Math.log2(tamanioM));
+    var calculo = (10 * tamanioM * Math.log2(tamanioM));
     var prueba = document.getElementById('resultadoCNMF');
     prueba.innerHTML = calculo;
     return calculo;
 }
 
 function calculoMejorCasoM() {
-    var calculo = (tamanioM * Math.log2(tamanioM));
+    var calculo = (10 * tamanioM * Math.log2(tamanioM));
     var prueba = document.getElementById('resultadoMCMF');
     prueba.innerHTML = calculo;
     return calculo;
@@ -157,8 +125,4 @@ function calculoMejorCasoM() {
 
 function graficarMergeSort() {
     graficar(generarDatosMergeSort(), 'graficaMergeSort');
-}
-
-function prueba() {
-    console.log(quickSort([1, 2, 20, 99, 9, 100, 551, 1, 2]) + "cont: " + cont);
 }

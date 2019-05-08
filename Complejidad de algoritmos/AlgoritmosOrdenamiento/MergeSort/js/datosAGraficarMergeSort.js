@@ -1,4 +1,4 @@
-function generarDatosSeleccion() {
+function generarDatosMergeSort() {
 
     var pareja = [];
     var filas = [];
@@ -7,7 +7,7 @@ function generarDatosSeleccion() {
     var constanteTamanio = 100;
 
     for (i = 0; i < constanteTamanio; i += constanteAumento) {
-        pareja = [i, calcularS(i)];
+        pareja = [i, calcularM(i)];
 
         if (i == 0) {
             filas[i] = pareja;
@@ -17,45 +17,60 @@ function generarDatosSeleccion() {
     return filas;
 }
 
-function calcularS(tam) {
+function calcularM(tam) {
 
     var array = [];
     var cont = 0;
 
-    if (tam == 0) {
-        cont = 0;
-
-    } else {
-
-        for (i = 0; i < tam; i++) {
-            array[i] = Math.round(Math.random() * tam);
-        }
-
-        /*NOTA: si utilizo (i) en un for en el siguiente for no puedo usarla 
-         porque el programa no la entiende como otra (i) diferente 
-         (o por lo menos de la forma como escribi el codigo sucede de esa manera) */
-
-        cont = 1;
-        for (j = 0; j < tam - 1; j++) {
-            cont += 6;
-            min = j;
-            for (k = j + 1; k < tam; k++) {
-                cont += 5;
-                if (array[k] < array[min]) {
-                    min = k;
-                    cont += 1;
-                }
-            }
-            cont += 1;
-            cont += 1;
-            if (j != min) {
-                cont += 7;
-                var aux = array[j];
-                array[j] = array[min];
-                array[min] = aux;
+    function merge(leftArr, rightArr) {
+        var sortedArr = [];
+        cont += 1;
+        while (leftArr.length && rightArr.length) {
+            cont += 2;
+            if (leftArr[0] <= rightArr[0]) {
+                cont += 4;
+                sortedArr.push(leftArr[0]);
+                leftArr = leftArr.slice(1)
+            } else {
+                cont += 4;
+                sortedArr.push(rightArr[0]);
+                rightArr = rightArr.slice(1)
             }
         }
-        cont += 2;
+        cont += 1;
+        while (leftArr.length) {
+            cont += 1;
+            sortedArr.push(leftArr.shift());
+        }
+        cont += 1;
+        while (rightArr.length) {
+            cont += 1;
+            sortedArr.push(rightArr.shift());
+        }
+        return sortedArr;
     }
-    return cont;
+    function mergesort(arr) {
+        cont += 1;
+        if (arr.length < 2) {
+            return cont;
+        } else {
+            cont += 7;
+            var midpoint = parseInt(arr.length / 2);
+            var leftArr = arr.slice(0, midpoint);
+            var rightArr = arr.slice(midpoint, arr.length);
+            merge(mergesort(leftArr), mergesort(rightArr));
+            return cont;
+        }
+    }
+    return mergesort(generarArregloSinEtiqueta(tam));
+}
+
+
+function generarArregloSinEtiqueta(tamanio) {
+    var arreglo = [];
+
+    for (var i = 0; i < tamanio; i++) {
+        arreglo[i] = Math.round(Math.random() * tamanio);
+    }
+    return arreglo;
 }

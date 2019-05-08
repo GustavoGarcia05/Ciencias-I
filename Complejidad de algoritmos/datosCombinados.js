@@ -1,4 +1,4 @@
-function generarDatosCombinados(){
+function generarDatosCombinados() {
 
     var pareja = [];
     var filas = [];
@@ -7,7 +7,7 @@ function generarDatosCombinados(){
     var constanteTamanio = 100;
 
     for (var i = 0; i < constanteTamanio; i += constanteAumento) {
-        pareja = [i, calcular(i),calcularS(i),calcularI(i),calcularR(i)];
+        pareja = [i, calcular(i), calcularS(i), calcularI(i), calcularR(i), calcularQ(), calcularM()];
         if (i == 0) {
             filas[i] = pareja;
         }

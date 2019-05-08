@@ -25,15 +25,17 @@ function graficar(arreglo, id) {
     chart.draw(data, options);
 }
 
-function graficarTodos(){
+function graficarTodos() {
 
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'tamanio');
     data.addColumn('number', 'Burbuja');
     data.addColumn('number', 'Seleccion');
     data.addColumn('number', 'Insercion');
-    data.addColumn('number','Radix');
-    
+    data.addColumn('number', 'Radix');
+    data.addColumn('number', 'QuickSort');
+    data.addColumn('number', 'MergeSort');
+
     data.addRows(generarDatosCombinados());
     // Set chart options
     var options = {
