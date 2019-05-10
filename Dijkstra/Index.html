@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Determinante </title>
+
+        <script src="Dikjstra.js"></script>
+        <link type="text/css" rel="stylesheet" href="Estilos.css">
+    </head>
+
+    <body>
+    <center>
+        <header>
+            <h1>Algoritmo Dijkstra</h1>
+            <p>
+                En el siguiente programa recibe la matriz de pesos de un grafo podenrado e implementa
+                el algoritmo de Dijkstra para hallar el camino mas corto entre dos vertices dados.
+            </p>
+        </header>
+        <main>
+            <section>
+                <div>Matriz A</div>
+                <input type="text" id="filasA">
+                <button type="button" id="armarMatrizA" onclick="limpiarMatrizA(); crearMatrizA()">Crear matriz
+                    A</button>
+                <table id="tablaA">
+                </table>
+                Vertice inicio:
+                <input type="number" id="verticeInicio">
+
+                <div>
+                    Calcular camino mas corto
+                    <button type="button" onclick="prueba()">Calcular</button>
+                    <div id="resultado">
+                        El resultado se mostrara aca.
+                    </div>
+                </div>
+                <div>
+                    Operaciones fundamentales por formula: <span id=formula></span><br>
+                    Operaciones fundamentales por contador: <span id=contador></span>
+                </div>
+            </section>
+
+        </main>
+        <footer>
+            <br>
+            Hecho por: <br>
+            Brayan A. Lopez G. <br>
+            Dannyr Gustavo Garcia Cardozo
+        </footer>
+    </center>
+
+</body>
+
+</html>
