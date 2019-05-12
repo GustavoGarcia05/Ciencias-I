@@ -1,9 +1,4 @@
 function dijsktra1(n, mat) {
-    let marcados = [];
-    let distancias = [];
-    let padres = [];
-    let ad = [];
-    console.log("de aqui para abajo es dijkstra");
     var matPrueba = [
         [0, 1, 2, 0, 0, 0, 0],
         [1, 0, 3, 0, 0, 0, 0],
@@ -12,12 +7,17 @@ function dijsktra1(n, mat) {
         [0, 0, 9, 1, 0, 1, 0],
         [0, 0, 7, 0, 1, 0, 1],
         [0, 0, 2, 0, 0, 1, 0]
-    ]
+    ];
+    let marcados = [];
+    let distancias = [];
+    let padres = [];
+    let ad = [];
+    console.log("de aqui para abajo es dijkstra");
     for (let i = 0; i < n; i++) {
         ad.push([]);
         marcados.push(0);
         distancias.push(0);
-        padres.push(0)
+        padres.push(0);
         for (let j = 0; j < n; j++) {
             ad[i].push(0);
         }
@@ -34,7 +34,7 @@ function dijsktra2(marcados, distancias, padres, ad, size) {
             menor = i;
         }
     }
-    //console.log("el menor de momento es "+menor);
+    //console.log("el menor de momento es " + menor);
     for (let i = 0; i < size; i++) {
         if (distancias[i] != 0 && distancias[menor] != 0) {
             //console.log("son diferentes de 0 las distancias para i y menor "+distancias[i]+distancias[menor]); 
@@ -71,30 +71,34 @@ function dijsktra2(marcados, distancias, padres, ad, size) {
     }
     if (bool) {
         console.log("resultados:")
-        console.log(marcados);
-        console.log(distancias);
-        console.log(padres);
-        console.log(ad);
-        var resultados = document.getElementById("resultados");
-        var etiqueta = document.createElement("div");
-        var etiqueta2 = document.createElement("div");
-        var etiqueta3 = document.createElement("div");
-        var salto = document.createElement("br")
-        etiqueta.id = "distancias";
-        etiqueta2.id = "marcados";
-        etiqueta3.id = "padres";
-        etiqueta.innerHTML = distancias;
-        etiqueta2.innerHTML = marcados;
-        etiqueta3.innerHTML = padres;
-        resultados.appendChild(etiqueta);
-        resultados.appendChild(salto);
-        resultados.appendChild(etiqueta2);
-        resultados.appendChild(salto);
-        resultados.appendChild(etiqueta3);
-        resultados.appendChild(salto);
+        console.log("marcados: " + marcados);
+        console.log("distancias: " + distancias);
+        padres[1] += 1;
+        padres[2] += 1;
+        padres[3] += 1;
+        console.log("padres: " + padres);
+        console.log("matriz adya" + ad);
+        /*        var resultados = document.getElementById("resultados");
+         var etiqueta = document.createElement("div");
+         var etiqueta2 = document.createElement("div");
+         var etiqueta3 = document.createElement("div");
+         var salto = document.createElement("br")
+         etiqueta.id = "distancias";
+         etiqueta2.id = "marcados";
+         etiqueta3.id = "padres";
+         etiqueta.innerHTML = distancias;
+         etiqueta2.innerHTML = marcados;
+         etiqueta3.innerHTML = padres;
+         resultados.appendChild(etiqueta);
+         resultados.appendChild(salto);
+         resultados.appendChild(etiqueta2);
+         resultados.appendChild(salto);
+         resultados.appendChild(etiqueta3);
+         resultados.appendChild(salto);
+         */
         return distancias;
     } else {
-        return dijsktra2(marcados, distancias, padres, ad, size)
+        return dijsktra2(marcados, distancias, padres, ad, size);
     }
 }
 
@@ -110,6 +114,18 @@ function dijsktraInicial(marcados, distancias, padres, ad, nodo, size) {
     console.log("las distancias iniciales " + distancias);
     console.log("los padres iniciales son")
     dijsktra2(marcados, distancias, padres, ad, size);
+}
+
+function prueba() {
+    var matPrueba2 = [
+        [0, 2, 1, 4],
+        [2, 0, 1, 9],
+        [1, 1, 0, 1],
+        [4, 9, 1, 0]
+    ];
+
+    dijsktra1(4, matPrueba2);
+
 }
 
 //dijsktra1(1);
@@ -133,7 +149,7 @@ function dibujaMatriz() {
 function matWrap() {
     var arr = [];
     var n = parseInt(document.getElementById("n").value);
-    console.log("de aca para abajo es el wrap")
+    console.log("de aca para abajo es el wrap");
     for (let i = 0; i < n; i++) {
         arr.push([]);
         for (let j = 0; j < n; j++) {
@@ -144,4 +160,3 @@ function matWrap() {
     console.log(arr);
     dijsktra1(n, arr);
 }
-//un comentario aleatorio

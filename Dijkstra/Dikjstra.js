@@ -1,5 +1,3 @@
-var c;
-
 function crearMatrizA() {
     var filas = document.getElementById("filasA").value;
     var columnas = filas;
@@ -53,13 +51,132 @@ function verticeInicio() {
 
 
 
+//-------------------------------- aca va mi codigo -----------------------//
+
+/**Recibe una matriz y su tamaño para usar el algoritmo de Dijkstra
+ * @param {type} n
+ * @param {type} matriz
+ * */
+function dijkstra1(n, matriz) {
+    let marcados = [];
+    let distancias = [];
+    let padres = [];
+    let ad = [];
+    console.log("de aqui para abajo es dijkstra");
+    for (let i = 0; i < n; i++) {
+        ad.push([]);
+        marcados.push(0);
+        distancias.push(0);
+        padres.push(0);
+        for (let j = 0; j < n; j++) {
+            ad[i].push(0);
+        }
+    }
+    dijkstraInicial(marcados, distancias, padres, matriz, 1, n);
+}
+
+function dijkstra2(marcados, distancias, padres, ad, size) {
+    console.log(marcados);
+    console.log(distancias);
+    let menor;
+    for (let i = 0; i < size; i++) {
+        if (distancias[i] !== 0 && marcados[i] === 0) {
+            menor = i;
+        }
+    }
+    //console.log("el menor de momento es " + menor);
+    for (let i = 0; i < size; i++) {
+        if (distancias[i] !== 0 && distancias[menor] !== 0) {
+            //console.log("son diferentes de 0 las distancias para i y menor "+distancias[i]+distancias[menor]); 
+            if (distancias[i] < distancias[menor]) {
+                //console.log("el i finalista es: "+i+marcados[i]);
+                if (marcados[i] === 0) {
+                    menor = i;
+                }
+            }
+        }
+    }
+    marcados[menor] = 1;
+    console.log("se ha marcado " + menor);
+    for (let j = 0; j < size; j++) {
+        if (ad[menor][j] !== 0) {
+            if (marcados[j] === 0) {
+                if (distancias[j] > distancias[menor] + ad[menor][j] && distancias[j] !== 0) {
+                    distancias[j] = distancias[menor] + ad[menor][j];
+                    padres[j] = menor;
+                    //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
+                } else if (distancias[j] === 0) {
+                    distancias[j] = distancias[menor] + ad[menor][j];
+                    padres[j] = menor;
+                    //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
+                }
+            }
+        }
+    }
+    let bool = true;
+    for (let k = 0; k < size; k++) {
+        if (marcados[k] === 0) {
+            bool = false;
+        }
+    }
+    if (bool) {
+        console.log("resultados:");
+        console.log("marcados: " + marcados);
+        console.log("distancias: " + distancias);
+        padres[1] += 1;
+        padres[2] += 1;
+        padres[3] += 1;
+        console.log("padres: " + padres);
+        console.log("matriz adya" + ad);
+        /*        var resultados = document.getElementById("resultados");
+         var etiqueta = document.createElement("div");
+         var etiqueta2 = document.createElement("div");
+         var etiqueta3 = document.createElement("div");
+         var salto = document.createElement("br")
+         etiqueta.id = "distancias";
+         etiqueta2.id = "marcados";
+         etiqueta3.id = "padres";
+         etiqueta.innerHTML = distancias;
+         etiqueta2.innerHTML = marcados;
+         etiqueta3.innerHTML = padres;
+         resultados.appendChild(etiqueta);
+         resultados.appendChild(salto);
+         resultados.appendChild(etiqueta2);
+         resultados.appendChild(salto);
+         resultados.appendChild(etiqueta3);
+         resultados.appendChild(salto);
+         */
+        return distancias;
+    } else {
+        return dijkstra2(marcados, distancias, padres, ad, size);
+    }
+}
+
+function dijkstraInicial(marcados, distancias, padres, ad, nodo, size) {
+    for (let i = 0; i < size; i++) {
+        if (ad[nodo - 1][i] !== 0) {
+            distancias[i] = ad[nodo - 1][i];
+            padres[i] = nodo - 1;
+        }
+    }
+    marcados[nodo - 1] = 1;
+    console.log("los marcados iniciales" + marcados);
+    console.log("las distancias iniciales " + distancias);
+    console.log("los padres iniciales son");
+    dijkstra2(marcados, distancias, padres, ad, size);
+}
+
 function prueba() {
     var matrizA = capturarmatriz(document.getElementById("filasA").value, document.getElementById("filasA").value, "A");
 
     alert(matrizA);
 
+    var matPrueba2 = [
+        [0, 2, 1, 4],
+        [2, 0, 1, 9],
+        [1, 1, 0, 1],
+        [4, 9, 1, 0]
+    ];
+
+    dijkstra1(4, matPrueba2);
 }
-
-
-//-------------------------------- aca va mi codigo -----------------------//
-
