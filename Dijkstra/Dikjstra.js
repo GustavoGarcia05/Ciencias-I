@@ -53,7 +53,7 @@ function verticeInicio() {
 
 //-------------------------------- aca va mi codigo -----------------------//
 
-/**Recibe una matriz y su tamaño para usar el algoritmo de Dijkstra
+/**Recibe una matriz y su tamaï¿½o para usar el algoritmo de Dijkstra
  * @param {type} n
  * @param {type} matriz
  * */
@@ -123,9 +123,9 @@ function dijkstra2(marcados, distancias, padres, ad, size) {
         console.log("resultados:");
         console.log("marcados: " + marcados);
         console.log("distancias: " + distancias);
-        padres[1] += 1;
-        padres[2] += 1;
-        padres[3] += 1;
+        for (let i = 0; i < matriz.length; i++) {
+            padres[i] += 1;
+        }
         console.log("padres: " + padres);
         console.log("matriz adya" + ad);
         /*        var resultados = document.getElementById("resultados");
@@ -168,15 +168,55 @@ function dijkstraInicial(marcados, distancias, padres, ad, nodo, size) {
 
 function prueba() {
     var matrizA = capturarmatriz(document.getElementById("filasA").value, document.getElementById("filasA").value, "A");
-
     alert(matrizA);
+    dijkstra1(matrizA.length, matrizA);
+}
 
-    var matPrueba2 = [
-        [0, 2, 1, 4],
-        [2, 0, 1, 9],
-        [1, 1, 0, 1],
-        [4, 9, 1, 0]
-    ];
+function mostrarGrafo() {
+    var cy = cytoscape({
+        container: document.getElementById('cy'), // container to render in
 
-    dijkstra1(4, matPrueba2);
+        elements: [ // list of graph elements to start with
+            { // node a
+                data: { id: 'a' }
+            },
+            { // node b
+                data: { id: 'b' }
+            },
+            { // node c
+                data: { id: 'c' }
+            },
+            { // edge ab
+                data: { id: 'ab', source: 'a', target: 'b' }
+            },
+            { // edge ac
+                data: { id: 'ac', source: 'a', target: 'c' }
+            }
+        ],
+
+        style: [ // the stylesheet for the graph
+            {
+                selector: 'node',
+                style: {
+                    'background-color': '#666',
+                    'label': 'data(id)'
+                }
+            },
+
+            {
+                selector: 'edge',
+                style: {
+                    'width': 3,
+                    'line-color': '#ccc',
+                    'target-arrow-color': '#ccc',
+                    'target-arrow-shape': 'triangle'
+                }
+            }
+        ],
+
+        layout: {
+            name: 'grid',
+            rows: 2
+        }
+    });
 }
