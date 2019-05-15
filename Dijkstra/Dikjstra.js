@@ -102,12 +102,12 @@ function dijkstra2(marcados, distancias, padres, ad, size) {
         if (ad[menor][j] !== 0) {
             if (marcados[j] === 0) {
                 if (distancias[j] > distancias[menor] + ad[menor][j] && distancias[j] !== 0) {
-                    distancias[j] = distancias[menor] + ad[menor][j];
-                    padres[j] = menor;
+                    distanciasObj[j] = distancias[menor] + ad[menor][j];
+                    padresObj[j] = menor;
                     //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
                 } else if (distancias[j] === 0) {
-                    distancias[j] = distancias[menor] + ad[menor][j];
-                    padres[j] = menor;
+                    distanciasObj[j] = distancias[menor] + ad[menor][j];
+                    padresObj[j] = menor;
                     //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
                 }
             }
@@ -123,22 +123,22 @@ function dijkstra2(marcados, distancias, padres, ad, size) {
         console.log("resultados:");
         console.log("marcados: " + marcados);
         console.log("distancias: " + distancias);
-        for (let i = 0; i < matriz.length; i++) {
+        for (let i = 0; i < ad.length; i++) {
             padres[i] += 1;
         }
         console.log("padres: " + padres);
         console.log("matriz adya" + ad);
-        /*        var resultados = document.getElementById("resultados");
-         var etiqueta = document.createElement("div");
-         var etiqueta2 = document.createElement("div");
-         var etiqueta3 = document.createElement("div");
-         var salto = document.createElement("br")
+        var resultados = document.getElementById("resultados");
+        var distanciasObj = document.getElementById("distancias");
+        var padresObj = document.getElementById("padres");
+        //var etiqueta3 = document.createElement("div");
+        /*        var salto = document.createElement("br")
          etiqueta.id = "distancias";
-         etiqueta2.id = "marcados";
-         etiqueta3.id = "padres";
+         //etiqueta2.id = "marcados";
+         etiqueta2.id = "padres";
          etiqueta.innerHTML = distancias;
-         etiqueta2.innerHTML = marcados;
-         etiqueta3.innerHTML = padres;
+         //etiqueta2.innerHTML = marcados;
+         etiqueta2.innerHTML = padres;
          resultados.appendChild(etiqueta);
          resultados.appendChild(salto);
          resultados.appendChild(etiqueta2);
@@ -146,6 +146,8 @@ function dijkstra2(marcados, distancias, padres, ad, size) {
          resultados.appendChild(etiqueta3);
          resultados.appendChild(salto);
          */
+        distanciasObj.textContent = "Distancias: " + distancias;
+        padresObj.textContent = "Padres: " + padres;
         return distancias;
     } else {
         return dijkstra2(marcados, distancias, padres, ad, size);
@@ -170,53 +172,31 @@ function prueba() {
     var matrizA = capturarmatriz(document.getElementById("filasA").value, document.getElementById("filasA").value, "A");
     alert(matrizA);
     dijkstra1(matrizA.length, matrizA);
+    //mostrarGrafo(matrizA);
 }
 
-function mostrarGrafo() {
+function mostrarGrafo(Matriz) {
     var cy = cytoscape({
-        container: document.getElementById('cy'), // container to render in
-
-        elements: [ // list of graph elements to start with
-            { // node a
-                data: { id: 'a' }
-            },
-            { // node b
-                data: { id: 'b' }
-            },
-            { // node c
-                data: { id: 'c' }
-            },
-            { // edge ab
-                data: { id: 'ab', source: 'a', target: 'b' }
-            },
-            { // edge ac
-                data: { id: 'ac', source: 'a', target: 'c' }
-            }
-        ],
-
-        style: [ // the stylesheet for the graph
-            {
-                selector: 'node',
-                style: {
-                    'background-color': '#666',
-                    'label': 'data(id)'
-                }
-            },
-
-            {
-                selector: 'edge',
-                style: {
-                    'width': 3,
-                    'line-color': '#ccc',
-                    'target-arrow-color': '#ccc',
-                    'target-arrow-shape': 'triangle'
-                }
-            }
-        ],
-
-        layout: {
-            name: 'grid',
-            rows: 2
-        }
+        container: document.getElementById('cy')
     });
+    for (var i = 0; i < Matriz.length; i++) {
+        cy.add({
+            data: {id: 'node' + i}
+        }
+        );
+        for (var j = 0; j < Matriz.length; j++) {
+            if (Matriz[i][j] > 0) {
+                var source = 'node' + i;
+                var target = 'node' + j;
+                cy.add({
+                    data: {
+                        id: 'edge' + i + j,
+                        source: source,
+                        target: target
+                    }
+                });
+
+            }
+        }
+    }
 }

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dijkstra</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Dijkstra</title>
 
-    <script src="Dikjstra.js"></script>
-    <script src="cytoscape.min.js"></script>
-    <!--        <script src="Dijkstra_Dijkstra.js"></script>
-    -->
-    <link type="text/css" rel="stylesheet" href="Estilos.css">
-</head>
+        <script src="Dikjstra.js"></script>
+        <script src="cytoscape.min.js"></script>
+        <!--        <script src="Dijkstra_Dijkstra.js"></script>
+        -->
+        <link type="text/css" rel="stylesheet" href="Estilos.css">
+    </head>
 
-<body>
+    <body>
     <center>
         <header>
             <h1>Algoritmo Dijkstra</h1>
@@ -33,21 +33,23 @@
                 </table>
                 <!--Vertice inicio:
                 <input type="number" id="verticeInicio">
--->
+                -->
                 <div>
                     Calcular camino mas corto
                     <button type="button" onclick="prueba()">Calcular</button>
                     <div id="resultado">
                         El resultado se mostrara aca.
                     </div>
+                    <div id="distancias">
+                        El resultado se mostrara aca.
+                    </div>
+                    <div id="padres">
+                        El resultado se mostrara aca.
+                    </div>
+                    
                 </div>
-                <div id="cy">
-                    <button type="button" id="mostrarGrafo" onclick="mostrarGrafo()">mostrarGrafo</button>
-                </div>
-                <div>
-                    Operaciones fundamentales por formula: <span id=formula></span><br>
-                    Operaciones fundamentales por contador: <span id=contador></span>
-                </div>
+          <!--      <button type="button" id="mostrarGrafo" onclick="mostrarGrafo()"> <!--onclick="mostrarGrafo()mostrarGrafo</button>
+              -->  <div id="cy"></div>
             </section>
         </main>
         <footer>

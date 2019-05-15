@@ -1,4 +1,4 @@
-function dijsktra1(n, mat) {
+ function dijsktra1(n, mat) {
     var matPrueba = [
         [0, 1, 2, 0, 0, 0, 0],
         [1, 0, 3, 0, 0, 0, 0],
