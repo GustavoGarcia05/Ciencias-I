@@ -177,17 +177,45 @@ function prueba() {
 
 function mostrarGrafo(Matriz) {
     var cy = cytoscape({
-        container: document.getElementById('cy')
+        container: document.getElementById('cy'),
+        style: [ // the stylesheet for the graph
+            {
+                selector: 'node',
+                style: {
+                    'background-color': '#666',
+                    'label': 'data(id)'
+                }
+            },
+
+            {
+                selector: 'edge',
+                style: {
+                    'width': 3,
+                    'line-color': '#ccc',
+                    'target-arrow-color': '#ccc',
+                    'target-arrow-shape': 'triangle'
+                }
+            }
+        ],
     });
-    for (var i = 0; i < Matriz.length; i++) {
+    MatrizPrueba = [
+        [0, 2, 5],
+        [0, 0, 7],
+        [0, 0, 0]
+    ];
+    for (var i = 0; i < MatrizPrueba.length; i++) {
         cy.add({
-            data: {id: 'node' + i}
+            data: { id: 'node' + i }
         }
         );
-        for (var j = 0; j < Matriz.length; j++) {
-            if (Matriz[i][j] > 0) {
+    }
+    for (var i = 0; i < MatrizPrueba.length; i++) {
+        for (var j = 0; j < MatrizPrueba.length; j++) {
+            if (MatrizPrueba[i][j] > 0) {
                 var source = 'node' + i;
                 var target = 'node' + j;
+                console.log("Source " + source);
+                console.log("target " + target);
                 cy.add({
                     data: {
                         id: 'edge' + i + j,
@@ -195,8 +223,12 @@ function mostrarGrafo(Matriz) {
                         target: target
                     }
                 });
-
             }
         }
     }
+    cy.center();
+    eles = cy.collection();
+    console.log(eles);
+    weight = cy.nodes().data("weight");
+    console.log(cy.nodes()[0].data("weight") + ' == ' + weight);
 }
