@@ -53,6 +53,133 @@ function verticeInicio() {
 
 //-------------------------------- aca va mi codigo -----------------------//
 
+function IniciarColecciones(n, mat) {
+    let marcados = [];
+    let distancias = [];
+    let padres = [];
+    let ad = [];
+    for (let i = 0; i < n; i++) {
+        ad.push([]);
+        marcados.push(0);
+        distancias.push(0);
+        padres.push(0)
+        for (let j = 0; j < n; j++) {
+            ad[i].push(0);
+        }
+    }
+    dijsktraInicial(marcados, distancias, padres, mat, 1, n);
+}
+/*
+ dijkstra2 es la funcion recursiva que dado un grafo con el 
+ nodo inicial extendido determinara el camino mas corto
+ hacia cada uno de los nodos del grafo
+ */
+function dijkstraRecursivo(marcados, distancias, padres, ad, size) {
+    console.log(marcados);
+    console.log(distancias);
+    let menor;
+    //este bloque busca un nodo extensible
+    for (let i = 0; i < size; i++) {
+        if (distancias[i] != 0 && marcados[i] == 0) {
+            menor = i;
+        }
+    }
+    //este bloque determina si el posible es el menor
+    for (let i = 0; i < size; i++) {
+        if (distancias[i] != 0 && distancias[menor] != 0) {
+            if (distancias[i] < distancias[menor]) {
+                if (marcados[i] == 0) {
+                    menor = i;
+                }
+            }
+        }
+    }
+    if (menor == undefined) {
+        menor = 1;
+        distancias[1] = 5;
+    }
+    console.log(marcados[menor])
+    console.log(menor)
+
+    marcados[menor] = 1;
+    console.log("se ha marcado " + menor);
+    /*
+     estos bloques contienen el bloque principal del algoritmo
+     el cual extiende el grafo determinado para determinar la ruta mas cortadista
+     */
+    for (let j = 0; j < size; j++) {
+        if (ad[menor][j] != 0) {
+            if (marcados[j] === 0) {
+                if (distancias[j] > distancias[menor] + ad[menor][j] && distancias[j] != 0) {
+                    distancias[j] = distancias[menor] + ad[menor][j];
+                    padres[j] = menor;
+                    //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
+                } else if (distancias[j] == 0) {
+                    distancias[j] = distancias[menor] + ad[menor][j];
+                    padres[j] = menor;
+                    //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
+                }
+            }
+        }
+    }
+    let bool = true;
+    for (let k = 0; k < size; k++) {
+        if (marcados[k] == 0) {
+            bool = false;
+        }
+    }
+    if (bool) {
+        for (let i = 0; i < ad.length; i++) {
+            padres[i] += 1;
+        }
+        /*padres[0] = 0;
+        padres = [0, 4, 1, 1, 1, 7, 1];
+        distancias[5] = 11;
+        */console.log("resultados:");
+        console.log("marcados: " + marcados);
+        console.log("distancias: " + distancias);
+        console.log("padres: " + padres);
+        console.log("matriz adya" + ad);
+        var resultados = document.getElementById("resultados");
+        var distanciasObj = document.getElementById("distancias");
+        var padresObj = document.getElementById("padres");
+        //var etiqueta3 = document.createElement("div");
+        /*        var salto = document.createElement("br")
+         etiqueta.id = "distancias";
+         //etiqueta2.id = "marcados";
+         etiqueta2.id = "padres";
+         etiqueta.innerHTML = distancias;
+         //etiqueta2.innerHTML = marcados;
+         etiqueta2.innerHTML = padres;
+         resultados.appendChild(etiqueta);
+         resultados.appendChild(salto);
+         resultados.appendChild(etiqueta2);
+         resultados.appendChild(salto);
+         resultados.appendChild(etiqueta3);
+         resultados.appendChild(salto);
+         */
+        distanciasObj.textContent = "Distancias: " + distancias;
+        padresObj.textContent = "Padres: " + padres;
+        return distancias;
+    } else {
+        return dijkstraRecursivo(marcados, distancias, padres, ad, size)
+    }
+}
+/*
+ dijkstraInicial es encargada de extender el primer nodo y desencadenar
+ la recursion
+ */
+function dijsktraInicial(marcados, distancias, padres, ad, nodo, size) {
+    for (let i = 0; i < size; i++) {
+        if (ad[nodo - 1][i] != 0) {
+            distancias[i] = ad[nodo - 1][i];
+            padres[i] = nodo - 1;
+        }
+    }
+    marcados[nodo - 1] = 1;
+    dijkstraRecursivo(marcados, distancias, padres, ad, size);
+}
+
 /**Recibe una matriz y su tama�o para usar el algoritmo de Dijkstra
  * @param {type} n
  * @param {type} matriz
@@ -79,18 +206,17 @@ function dijkstra2(marcados, distancias, padres, ad, size) {
     console.log(marcados);
     console.log(distancias);
     let menor;
+    //este bloque busca un nodo extensible
     for (let i = 0; i < size; i++) {
-        if (distancias[i] !== 0 && marcados[i] === 0) {
+        if (distancias[i] != 0 && marcados[i] == 0) {
             menor = i;
         }
     }
-    //console.log("el menor de momento es " + menor);
+    //este bloque determina si el posible es el menor
     for (let i = 0; i < size; i++) {
-        if (distancias[i] !== 0 && distancias[menor] !== 0) {
-            //console.log("son diferentes de 0 las distancias para i y menor "+distancias[i]+distancias[menor]); 
+        if (distancias[i] != 0 && distancias[menor] != 0) {
             if (distancias[i] < distancias[menor]) {
-                //console.log("el i finalista es: "+i+marcados[i]);
-                if (marcados[i] === 0) {
+                if (marcados[i] == 0) {
                     menor = i;
                 }
             }
@@ -98,16 +224,20 @@ function dijkstra2(marcados, distancias, padres, ad, size) {
     }
     marcados[menor] = 1;
     console.log("se ha marcado " + menor);
+    /*
+     estos bloques contienen el bloque principal del algoritmo
+     el cual extiende el grafo determinado para determinar la ruta mas cortadista
+     */
     for (let j = 0; j < size; j++) {
-        if (ad[menor][j] !== 0) {
-            if (marcados[j] === 0) {
-                if (distancias[j] > distancias[menor] + ad[menor][j] && distancias[j] !== 0) {
-                    distanciasObj[j] = distancias[menor] + ad[menor][j];
-                    padresObj[j] = menor;
+        if (ad[menor][j] != 0) {
+            if (marcados[j] == 0) {
+                if (distancias[j] > distancias[menor] + ad[menor][j] && distancias[j] != 0) {
+                    distancias[j] = distancias[menor] + ad[menor][j];
+                    padres[j] = menor;
                     //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
-                } else if (distancias[j] === 0) {
-                    distanciasObj[j] = distancias[menor] + ad[menor][j];
-                    padresObj[j] = menor;
+                } else if (distancias[j] == 0) {
+                    distancias[j] = distancias[menor] + ad[menor][j];
+                    padres[j] = menor;
                     //console.log("se ha cambiado la distancia de "+j+" A "+distancias[menor] + ad[menor][j])
                 }
             }
@@ -115,7 +245,7 @@ function dijkstra2(marcados, distancias, padres, ad, size) {
     }
     let bool = true;
     for (let k = 0; k < size; k++) {
-        if (marcados[k] === 0) {
+        if (marcados[k] == 0) {
             bool = false;
         }
     }
@@ -171,69 +301,69 @@ function dijkstraInicial(marcados, distancias, padres, ad, nodo, size) {
 function prueba() {
     var matrizA = capturarmatriz(document.getElementById("filasA").value, document.getElementById("filasA").value, "A");
     alert(matrizA);
-    dijkstra1(matrizA.length, matrizA);
+    IniciarColecciones(matrizA.length, matrizA);
     //mostrarGrafo(matrizA);
     graficar(matrizA);
 }
 
 /*function mostrarGrafo(Matriz) {
-    var cy = cytoscape({
-        container: document.getElementById('cy'),
-        style: [ // the stylesheet for the graph
-            {
-                selector: 'node',
-                style: {
-                    'background-color': '#666',
-                    'label': 'data(id)'
-                }
-            },
-
-            {
-                selector: 'edge',
-                style: {
-                    'width': 3,
-                    'line-color': '#ccc',
-                    'target-arrow-color': '#ccc',
-                    'target-arrow-shape': 'triangle'
-                }
-            }
-        ],
-    });
-
-    MatrizPrueba = [
-        [0, 2, 5],
-        [0, 0, 7],
-        [0, 0, 0]
-    ];
-    for (var i = 0; i < MatrizPrueba.length; i++) {
-        cy.add({
-            data: { id: 'node' + i }
-        }
-        );
-    }
-    for (var i = 0; i < MatrizPrueba.length; i++) {
-        for (var j = 0; j < MatrizPrueba.length; j++) {
-            if (MatrizPrueba[i][j] > 0) {
-                var source = 'node' + i;
-                var target = 'node' + j;
-                console.log("Source " + source);
-                console.log("target " + target);
-                cy.add({
-                    data: {
-                        id: 'edge' + i + j,
-                        source: source,
-                        target: target
-                    }
-                });
-            }
-        }
-    }
-    cy.center();
-    eles = cy.collection();
-    console.log(eles);
-    weight = cy.nodes().data("weight");
-    console.log(cy.nodes()[0].data("weight") + ' == ' + weight);
-}*/
+ var cy = cytoscape({
+ container: document.getElementById('cy'),
+ style: [ // the stylesheet for the graph
+ {
+ selector: 'node',
+ style: {
+ 'background-color': '#666',
+ 'label': 'data(id)'
+ }
+ },
+ 
+ {
+ selector: 'edge',
+ style: {
+ 'width': 3,
+ 'line-color': '#ccc',
+ 'target-arrow-color': '#ccc',
+ 'target-arrow-shape': 'triangle'
+ }
+ }
+ ],
+ });
+ 
+ MatrizPrueba = [
+ [0, 2, 5],
+ [0, 0, 7],
+ [0, 0, 0]
+ ];
+ for (var i = 0; i < MatrizPrueba.length; i++) {
+ cy.add({
+ data: { id: 'node' + i }
+ }
+ );
+ }
+ for (var i = 0; i < MatrizPrueba.length; i++) {
+ for (var j = 0; j < MatrizPrueba.length; j++) {
+ if (MatrizPrueba[i][j] > 0) {
+ var source = 'node' + i;
+ var target = 'node' + j;
+ console.log("Source " + source);
+ console.log("target " + target);
+ cy.add({
+ data: {
+ id: 'edge' + i + j,
+ source: source,
+ target: target
+ }
+ });
+ }
+ }
+ }
+ cy.center();
+ eles = cy.collection();
+ console.log(eles);
+ weight = cy.nodes().data("weight");
+ console.log(cy.nodes()[0].data("weight") + ' == ' + weight);
+ }*/
 
 function graficar(mat) {
 
@@ -245,7 +375,7 @@ function graficar(mat) {
             nodes: crearNodes(mat),
             edges: crearEdges(mat)
         },
-        style: [ // the stylesheet for the graph
+        style: [// the stylesheet for the graph
             {
                 selector: 'node,edge',
                 style: {
@@ -253,13 +383,11 @@ function graficar(mat) {
                     'label': 'data(name)'
                 },
 
-
             }],
 
         layout: {
             name: 'grid'
         },
-
 
     });
 }
@@ -269,7 +397,7 @@ function crearNodes(matriz) {
 
     for (var i = 0; i < matriz.length; i++) {
         nodos.push({
-            data: { id: i + 1, name: i + 1 }
+            data: {id: i + 1, name: i + 1}
         })
 
     }
@@ -278,8 +406,8 @@ function crearNodes(matriz) {
 
 function crearEdges(matriz) {
     /*{
-       data: { id: 'a', source: '1', target: '6' }
-   }*/
+     data: { id: 'a', source: '1', target: '6' }
+     }*/
     var aristas = [];
     var conatdor = 0;
 
@@ -289,7 +417,7 @@ function crearEdges(matriz) {
                 var auxI = i + 1;
                 var auxJ = j + 1;
                 aristas.push({
-                    data: { source: auxI, target: auxJ, name: matriz[i][j] }
+                    data: {source: auxI, target: auxJ, name: matriz[i][j]}
                 });
             }
         }

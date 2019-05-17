@@ -14,8 +14,8 @@ header{
 }
 
 main{
-    background-image: url(605375_1.jpg);
-    color: white;
+   // background-image: url(605375_1.jpg);
+    color: black;
     height: 400px 100%;
     font-size: larger;
     font-family: sans-serif;
