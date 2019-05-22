@@ -24,7 +24,7 @@ function run() {
         [0, 0, 0, 0, 0, 0, 0]
     ];
 
-    graficar(matAux2);
+    graficar(matAux);
 }
 
 function graficar(mat) {
