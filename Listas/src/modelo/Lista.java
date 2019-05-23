@@ -17,7 +17,7 @@ public class Lista {
         cabeza = null;
     }
 
-    Nodo insertar(int info) {
+    public Nodo insertar(int info) {
         if (buscar(info)) {
             System.out.println("nodo ya esta en la lista");
             return null;
@@ -48,7 +48,7 @@ public class Lista {
         return cabeza;
     }
 
-    boolean retirar(int info) {
+    public boolean retirar(int info) {
         boolean esta;
         esta = buscar(info);
 
@@ -79,7 +79,7 @@ public class Lista {
         return true;
     }
 
-    void imprimir() {
+    public void imprimir() {
         Nodo q = cabeza;
 
         while (q != null) {
@@ -88,7 +88,7 @@ public class Lista {
         }
     }
 
-    boolean buscar(int info) {
+    public boolean buscar(int info) {
         Nodo q = cabeza;
         while (q != null && q.info < info) {
             q = q.sig;
