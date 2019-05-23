@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Vista;
+
+import java.awt.Canvas;
+import java.awt.Color;
 
 /**
  *
  * @author Gustavo_2
  */
-public class Nodo {
+public class Lienzo extends Canvas{
 
-    public int info;
-    public Nodo sig;
-
-    public Nodo(int x) {
-        info = x;
-        sig = null;
+    public Lienzo() {
+        setBackground(Color.orange);
     }
-
+    
 }
