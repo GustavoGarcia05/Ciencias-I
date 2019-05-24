@@ -61,5 +61,5 @@ function division(arr) {
             }
         }
     }
-    return raices.map((raices) => parseInt(raices));
+    return raices;
 }

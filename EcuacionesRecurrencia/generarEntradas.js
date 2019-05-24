@@ -52,7 +52,7 @@ function generarEntradas() {
 function mostrarEcuacionPantalla(ecuacion) {
     const divSalida = document.getElementById("divSalida");
     let pSalida = document.createElement("p");
-    ecuacion = "(0.183)*(5.44)^n+(0.025)n(5.44)^n+(-0.024)n^2(5.44)^n";
+//    ecuacion = "(0.183)*(5.44)^n+(0.025)n(5.44)^n+(-0.024)n^2(5.44)^n";
     pSalida.innerHTML = ecuacion;
     divSalida.appendChild(pSalida);
 }
