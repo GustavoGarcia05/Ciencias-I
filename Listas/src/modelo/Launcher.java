@@ -19,6 +19,5 @@ public class Launcher {
        // new Launcher().generarLista();
         
     }
-    private Lista l= new Lista();
     
 }

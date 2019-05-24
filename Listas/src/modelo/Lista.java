@@ -1,5 +1,9 @@
 package Modelo;
 
+import java.awt.Graphics;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,7 +23,7 @@ public class Lista {
 
     public Nodo insertar(int info) {
         if (buscar(info)) {
-            System.out.println("nodo ya esta en la lista");
+            JOptionPane.showMessageDialog(null, "El nodo ya esta en la lista");
             return null;
         }
         Nodo q;
@@ -91,17 +95,31 @@ public class Lista {
     public boolean buscar(int info) {
         Nodo q = cabeza;
         while (q != null && q.info < info) {
+
             q = q.sig;
         }
         if (q != null && q.info == info) {
             return true;
         } else {
+            // JOptionPane.showMessageDialog(null, "el elemento no esta");
             return false;
         }
 
     }
 
-    void dibujar() {
+    public void dibujar(Graphics g,int limite) {
+        Nodo q = cabeza;
+        ArrayList<Integer> infor = new ArrayList<Integer>();
+
+        while (q != null) {
+            infor.add(q.info);
+            q = q.sig;
+        }
+
+        //--------------dibujar---------------------
+        Dibujo dib = new Dibujo(infor,limite);
+        dib.paint(g);
+
     }
 
     public Nodo getCabeza() {
