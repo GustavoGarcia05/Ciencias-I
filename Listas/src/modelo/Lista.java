@@ -75,7 +75,11 @@ public class Lista {
         if (s != null) {
             q.info = s.info;
             q.sig = s.sig;
-        } else {
+        } else if(q==cabeza){
+            q=null;
+            cabeza=q;
+            JOptionPane.showMessageDialog(null, "se ha eliminado el unico elemento de la lista");
+        }else {
 
             aux.sig = null;
             q = aux;

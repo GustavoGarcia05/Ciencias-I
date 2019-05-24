@@ -20,13 +20,13 @@ import java.util.ArrayList;
 public class Dibujo extends Canvas {
 
     private ArrayList<Integer> l;
-    private int ancho,alto;
+    private int ancho, alto;
 
-    public Dibujo(ArrayList l,int ancho,int largo) {
+    public Dibujo(ArrayList l, int ancho, int largo) {
         this.l = l;
-        this.ancho=ancho;
-        this.alto=largo;
-        
+        this.ancho = ancho;
+        this.alto = largo;
+
     }
 
     private int anchoCuadro = 50;
@@ -44,30 +44,40 @@ public class Dibujo extends Canvas {
         g.setColor(Color.BLACK);
         int altoString, anchoString;
 
-        
-        Font fuente=new Font("Monospaced", Font.BOLD,36);
+        Font fuente = new Font("Monospaced", Font.BOLD, 36);
         g.setFont(fuente);
         FontMetrics fm = g.getFontMetrics();
-        for (int i = 0; i < l.size(); i++) {
-            
-            if (i == l.size() - 1) {
-                dato = l.get(i).toString();
-            }else{
-                dato = l.get(i).toString() + " ==>";
-            }
-            altoString=fm.getHeight();
-            anchoString = fm.stringWidth(dato);
-            //g.drawRect(x, y, anchoCuadro, largoCuadro);
-            g.drawString(dato, x, y);
-            //g.drawRect(xAdyacente, y, anchoCuadro, largoCuadro);
-            x += anchoString;
-            //xAdyacente += 3 * anchoCuadro;
-            if(x+anchoString>ancho){
-                x=10;
-                y+=altoString;
-            }
+        System.out.println("lista vacia " + l.isEmpty());
 
+        if (l.isEmpty()) {
+            g.setColor(Color.white);
+            g.fillRect(0, 0, ancho, alto);
+            g.setColor(Color.BLACK);
+
+        } else {
+
+            for (int i = 0; i < l.size(); i++) {
+
+                if (i == l.size() - 1) {
+                    dato = l.get(i).toString();
+                } else {
+                    dato = l.get(i).toString() + " ==>";
+                }
+                altoString = fm.getHeight();
+                anchoString = fm.stringWidth(dato);
+                //g.drawRect(x, y, anchoCuadro, largoCuadro);
+                g.drawString(dato, x, y);
+                //g.drawRect(xAdyacente, y, anchoCuadro, largoCuadro);
+                x += anchoString;
+                //xAdyacente += 3 * anchoCuadro;
+                if (x + anchoString > ancho) {
+                    x = 10;
+                    y += altoString;
+                }
+
+            }
         }
+
     }
 
 }
