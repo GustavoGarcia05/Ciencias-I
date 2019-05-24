@@ -7,6 +7,8 @@ package Vista;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -15,7 +17,7 @@ import java.awt.Color;
 public class Lienzo extends Canvas{
 
     public Lienzo() {
-        setBackground(Color.orange);
+        //setBackground(Color.orange);
     }
     
 }

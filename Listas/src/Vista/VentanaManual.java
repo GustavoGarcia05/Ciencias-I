@@ -49,10 +49,13 @@ public class VentanaManual extends JFrame implements ActionListener {
 
         inicializarPanel();
         inicializarPanel2();
+
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add(panel2, BorderLayout.CENTER);
         this.getContentPane().add(panel, BorderLayout.NORTH);
-        setSize(800, 600);
+        //setResizable(false);
+        //setLocationRelativeTo(null);
+        setSize(1080, 720);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -104,6 +107,7 @@ public class VentanaManual extends JFrame implements ActionListener {
             } else {
                 lis.insertar(Integer.parseInt(cajaInsertar.getText()));
                 cajaInsertar.setText("");
+                pintarLista();
 
             }
 
@@ -114,9 +118,10 @@ public class VentanaManual extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "¡No ha ingresado algun dato!", "No Hay Dato", JOptionPane.ERROR_MESSAGE);
             } else {
                 if (lis.retirar(Integer.parseInt(cajaRemover.getText()))) {
-                    JOptionPane.showMessageDialog(null, "se ha eliminado: " + cajaBuscar.getText());
+                    //JOptionPane.showMessageDialog(null, "se ha eliminado: " + cajaBuscar.getText());
+                    pintarLista();
                 } else {
-                    JOptionPane.showMessageDialog(null, "el elemento no se eliminó en la lista ");
+                    JOptionPane.showMessageDialog(null, "el elemento no esta en la lista ");
                 }
                 cajaRemover.setText("");
 
@@ -140,10 +145,14 @@ public class VentanaManual extends JFrame implements ActionListener {
         }
         //-----boton dibujar-----
         if (e.getSource() == dibujar) {
-            Graphics pincel = lienzo.getGraphics();
-            lis.dibujar(pincel,this.getWidth());
+            pintarLista();
         }
 
+    }
+
+    public void pintarLista() {
+        Graphics pincel = lienzo.getGraphics();
+        lis.dibujar(pincel, this.getWidth(), this.getHeight());
     }
 
 }

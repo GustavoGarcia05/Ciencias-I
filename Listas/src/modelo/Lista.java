@@ -107,7 +107,7 @@ public class Lista {
 
     }
 
-    public void dibujar(Graphics g,int limite) {
+    public void dibujar(Graphics g,int ancho,int alto) {
         Nodo q = cabeza;
         ArrayList<Integer> infor = new ArrayList<Integer>();
 
@@ -117,7 +117,7 @@ public class Lista {
         }
 
         //--------------dibujar---------------------
-        Dibujo dib = new Dibujo(infor,limite);
+        Dibujo dib = new Dibujo(infor,ancho,alto);
         dib.paint(g);
 
     }

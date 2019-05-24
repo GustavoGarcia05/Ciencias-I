@@ -20,11 +20,13 @@ import java.util.ArrayList;
 public class Dibujo extends Canvas {
 
     private ArrayList<Integer> l;
-    private int limite;
+    private int ancho,alto;
 
-    public Dibujo(ArrayList l,int limite) {
+    public Dibujo(ArrayList l,int ancho,int largo) {
         this.l = l;
-        this.limite=limite;
+        this.ancho=ancho;
+        this.alto=largo;
+        
     }
 
     private int anchoCuadro = 50;
@@ -37,7 +39,8 @@ public class Dibujo extends Canvas {
 
     @Override
     public void paint(Graphics g) {
-
+        g.setColor(Color.white);
+        g.fillRect(0, 0, ancho, alto);
         g.setColor(Color.BLACK);
         int altoString, anchoString;
 
@@ -50,7 +53,7 @@ public class Dibujo extends Canvas {
             if (i == l.size() - 1) {
                 dato = l.get(i).toString();
             }else{
-                dato = l.get(i).toString() + " ---> ";
+                dato = l.get(i).toString() + " ==>";
             }
             altoString=fm.getHeight();
             anchoString = fm.stringWidth(dato);
@@ -59,13 +62,12 @@ public class Dibujo extends Canvas {
             //g.drawRect(xAdyacente, y, anchoCuadro, largoCuadro);
             x += anchoString;
             //xAdyacente += 3 * anchoCuadro;
-            if(x+anchoString>limite){
+            if(x+anchoString>ancho){
                 x=10;
                 y+=altoString;
             }
 
         }
-
     }
 
 }
