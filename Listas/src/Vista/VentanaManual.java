@@ -130,7 +130,7 @@ public class VentanaManual extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == buscar) {
-            if (cajaInsertar.getText().equals("")) {
+            if (cajaBuscar.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "¡No ha ingresado algun dato!", "No Hay Dato", JOptionPane.ERROR_MESSAGE);
             } else {
 
