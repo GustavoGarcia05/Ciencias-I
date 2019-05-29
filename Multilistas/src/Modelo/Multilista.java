@@ -18,12 +18,77 @@ public class Multilista {
     }
 
     /**
-     * inserta un valor en la multilista.
+     * inserta un valor en las cabezas de la multilista, lo que corresponderia a
+     * la primera fila de la matriz.
      *
      * @param dato lo que se quiere insertar.
      */
-    int insertar(String dato) {
-        return 0;
+    boolean insertarCabeza(int dato) {
+        if (this.buscarCabeza(dato)) {
+            System.out.println("El nodo ya esta en la lista");
+            return false;
+        }
+
+        NodoNum nodoInsertar = new NodoNum(dato);
+        NodoNum s = this.cab;   //variable auxiliar 1
+        NodoNum q = null;       //variable auxiliar 2
+
+        while (s != null && s.info < dato) {
+            q = s;
+            s = q.sig;
+        }
+
+        if (q == null) {
+            nodoInsertar.sig = this.cab;
+            this.cab = nodoInsertar;
+        } else if (s == null) {
+            q.sig = nodoInsertar;
+        } else {
+            nodoInsertar.sig = s;
+            q.sig = nodoInsertar;
+        }
+        return true;
+
+    }
+
+    /**
+     * inserta un valor en la multilista, dado una cabeza y despues lo inserta
+     * creando un nodo siguiente al ultimo nodo.
+     *
+     * @param cabeza posicion de la primera fila en la cual se quiere insertar
+     * el dato.
+     * @param dato lo que se quiere insertar.
+     */
+    boolean insertarAbajo(int cabeza, String dato) {
+        NodoNum p = cab;
+        while (p != null && p.info < cabeza) {
+            p = p.sig;
+        }
+        if (p == null) {
+            //System.out.println("no existe");
+            return false;
+        }
+        if (p.info == cabeza) {
+            NodoN s, q;
+            s = null;
+            q = p.abajo;
+            while (q != null) {
+                s = q;
+                q = q.abajo;
+            }
+            if (s == null) {
+                NodoN n = new NodoN(dato);
+                p.abajo = n;
+                return true;
+            }
+            NodoN n = new NodoN(dato);
+            s.abajo = n;
+            return true;
+        }//p.i==x
+        else {
+            //System.out.println("no lo encontro");
+            return false;
+        }
     }
 
     /**
@@ -31,24 +96,47 @@ public class Multilista {
      *
      * @param dato lo que se quiere buscar.
      */
-    int buscar(String dato) {
+    boolean buscarCabeza(int dato) {
+        NodoNum aux = this.cab;
+        while (aux != null && aux.info < dato) {
+            aux = aux.sig;
+        }
+        if (aux != null && aux.info == dato) {
+            //System.out.println("el elemento se encontro");
+            return true;
+        } else {
+            //System.out.println("el elemento no esta");
+            return false;
+        }
+    }
+
+    /**
+     * busca un valor en la multilista.
+     *
+     * @param cabeza posicion de la primera fila en la cual se quiere buscar el
+     * dato.
+     * @param dato lo que se quiere buscar.
+     */
+    int buscarAbajo(int cabeza, String dato) {
         return 0;
     }
 
-    /**Imprime los datos de la multilista
-     * @param info posicion que quiere listar.
+    /**
+     * Imprime los datos de la multilista
+     *
+     * @param dato posicion que quiere listar.
      * @return retorna -1 o 1
      */
-    int listar(int info) {
+    int listarAbajo(int dato) {
         NodoNum p = cab;
-        while (p != null && p.i < info) {
+        while (p != null && p.info < dato) {
             p = p.sig;
         }
         if (p == null) {
             System.out.println("no existe");
             return -1;
         }
-        if (p.i == info) {
+        if (p.info == dato) {
             NodoN q;
             q = p.abajo;
             while (q != null) {
@@ -61,46 +149,6 @@ public class Multilista {
         }
         return 1;
     }
-
-    /**
-     * Busca un numero en una multilista, si lo encuntra inserta un nombre en la
-     * lista que corresponde a ese numero, despues del ultimo nodo
-     *
-     * @param info numero a buscar.
-     * @param nombre nombre a insertar.
-     * @return 1 si logro insertar o -1 si no logro insertar.
-     */
-    int insertarNombre(int info, String nombre) {
-        NodoNum p = cab;
-        while (p != null && p.i < info) {
-            p = p.sig;
-        }
-        if (p == null) {
-            System.out.println("\"no existe\"");
-            return -1;
-        }
-        if (p.i == info) {
-            NodoN s, q;
-            s = null;
-            q = p.abajo;
-            while (q != null) {
-                s = q;
-                q = q.abajo;
-            }
-            if (s == null) {
-                NodoN n = new NodoN(nombre);
-                p.abajo = n;
-                return 1;
-            }
-            NodoN n = new NodoN(nombre);
-            s.abajo = n;
-            return 1;
-        }//p.i==x
-        else {
-            System.out.println("no lo encontro");
-            return -1;
-        }
-    }//insertar
 
     int retirar() {
         return 0;

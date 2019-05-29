@@ -11,12 +11,12 @@ package Modelo;
  */
 public class NodoNum {
 
-    int i;
+    int info;
     NodoNum sig;
     NodoN abajo;
 
     public NodoNum(int i) {
-        this.i = i;
+        this.info = i;
         this.sig = null;
         this.abajo = null;
     }

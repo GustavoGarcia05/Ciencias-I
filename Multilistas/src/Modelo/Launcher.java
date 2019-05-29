@@ -18,8 +18,10 @@ public class Launcher {
 
         Multilista mLista = new Multilista();
 
-        mLista.insertarNombre(0, "brayan");
-        mLista.listar(0);
+        mLista.insertarCabeza(1030671263);
+        mLista.buscarCabeza(1030671263);
+        System.out.println("se inserto: " + mLista.insertarAbajo(1030671263, "brayan"));
+        mLista.listarAbajo(1030671263);
 
 //        System.out.println(mLista.buscar());
     }
