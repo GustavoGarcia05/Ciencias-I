@@ -11,12 +11,14 @@ package Modelo;
  */
 public class NodoNum {
 
-    int info;
+    int id;
+    String nombre;
     NodoNum sig;
     NodoN abajo;
 
-    public NodoNum(int i) {
-        this.info = i;
+    public NodoNum(int i, String nombre) {
+        this.id = i;
+        this.nombre = nombre;
         this.sig = null;
         this.abajo = null;
     }

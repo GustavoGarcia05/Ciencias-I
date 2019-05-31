@@ -11,12 +11,20 @@ package Modelo;
  */
 public class NodoN {
 
-    String n;
+    int id;
+    float valor;
+    String nombre;
+    String direccion;
+
     NodoN abajo;
 
-    public NodoN(String s) {
-        n = s;
-        abajo = null;
+    public NodoN(int id, float valor, String nombre, String direccion) {
+        this.id = id;
+        this.valor = valor;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.abajo = null;
     }
+
 
 }

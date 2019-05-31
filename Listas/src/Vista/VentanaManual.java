@@ -108,9 +108,7 @@ public class VentanaManual extends JFrame implements ActionListener {
                 lis.insertar(Integer.parseInt(cajaInsertar.getText()));
                 cajaInsertar.setText("");
                 pintarLista();
-
             }
-
         }
 
         if (e.getSource() == remover) {
