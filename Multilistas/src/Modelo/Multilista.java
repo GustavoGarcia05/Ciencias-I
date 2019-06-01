@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import Vista.Ventana;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +26,7 @@ public class Multilista {
      *
      * @param dato lo que se quiere insertar.
      */
-    boolean insertarEnFila(int dato, String nombre) {
+    public boolean insertarEnFila(int dato, String nombre) {
 
         NodoNum nodoInsertar = new NodoNum(dato, nombre);
         NodoNum s = this.cab;   //variable auxiliar 1
@@ -58,13 +59,14 @@ public class Multilista {
      *
      * @param dato lo que se quiere buscar.
      */
-    boolean buscarEnFila(int dato) {
+    public boolean buscarEnFila(int dato) {
         NodoNum aux = this.cab;
         while (aux != null && aux.id < dato) {
             aux = aux.sig;
         }
         if (aux != null && aux.id == dato) {
             //System.out.println("el elemento se encontro");
+            JOptionPane.showMessageDialog(null, Integer.toString(aux.id) + " " + aux.nombre);
             return true;
         } else {
             //System.out.println("el elemento no esta");
@@ -72,7 +74,7 @@ public class Multilista {
         }
     }
 
-    boolean retirarEnFila(int idPropietario) {
+    public boolean retirarEnFila(int idPropietario) {
         boolean esta;
         esta = this.buscarEnFila(idPropietario);
 
@@ -120,17 +122,19 @@ public class Multilista {
      * @param dato posicion que quiere listar.
      * @return retorna -1 o 1
      */
-    String listarEnFila() {
-        String Lista[] = new String[100];
+    public String listarEnFila() {
+        String Lista = "";
         NodoNum q = cab;
+
         if (q == null) {
-            JOptionPane.showMessageDialog(null, "No hay elementos en la multilista");
+            JOptionPane.showMessageDialog(null, "No hay propietarios registrados en la multilista");
         }
         while (q != null) {
-            System.out.println("ID: " + q.id + " Nombre: " + q.nombre);
+            Lista = Lista + "\n" + "ID: " + q.id + " Nombre: " + q.nombre;
+            //System.out.println("ID: " + q.id + " Nombre: " + q.nombre);           
             q = q.sig;
         }
-        return "aca va el array";
+        return Lista;
     }
 
     /**
@@ -141,7 +145,7 @@ public class Multilista {
      * insertar el dato.
      * @param idInmueble lo que se quiere insertar.
      */
-    boolean insertarAbajo(int idPropietario, int idInmueble, float valor, String nombre, String direccion) {
+    public boolean insertarAbajo(int idPropietario, int idInmueble, float valor, String nombre, String direccion) {
         NodoNum p = cab;
         while (p != null && p.id < idPropietario) {
             p = p.sig;
@@ -180,7 +184,7 @@ public class Multilista {
      * buscar el dato.
      * @param idInmueble lo que se quiere buscar.
      */
-    boolean buscarAbajo(int idPropietario, int idInmueble) {
+    public boolean buscarAbajo(int idPropietario, int idInmueble) {
         NodoNum q = this.cab;
         while (q != null && q.id < idPropietario) {
             q = q.sig;
@@ -202,7 +206,7 @@ public class Multilista {
         }
     }
 
-    boolean retirarAbajo(int idPropietario, int idInmueble) {
+    public boolean retirarAbajo(int idPropietario, int idInmueble) {
         return false;
     }
 
@@ -212,21 +216,25 @@ public class Multilista {
      * @param idPropietario posicion que quiere listar.
      * @return retorna -1 o 1
      */
-    void listarAbajo(int idPropietario) {
+    public String listarAbajo(int idPropietario) {
         NodoNum p = this.cab;
         NodoN q = p.abajo;
+        String Lista = "";
         if (q == null) {
             System.out.println("El propietario no tiene inmuebles");
         }
 
         while (p != null && p.id < idPropietario) {
+
             p = p.sig;
         }
         if (p != null) {
             while (q != null) {
-                System.out.println("ID: " + q.id + " Nombre: " + q.nombre + " Direccion: " + q.direccion);
+                //System.out.println("ID: " + q.id + " Nombre: " + q.nombre + " Direccion: " + q.direccion);
+                Lista = Lista + "\n" + "ID: " + q.id + " Nombre: " + q.nombre + " Valor $: " + q.valor + " Direccion: " + q.direccion;
                 q = q.abajo;
             }
         }
+        return Lista;
     }
 }
