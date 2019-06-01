@@ -8,7 +8,6 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.HeadlessException;
-import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,128 +15,143 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
  *
- * @author Gustavo_2
+ * @author estudiantes
  */
 public class Ventana extends JFrame implements ActionListener {
 
+    //------------- Paneles-----------
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
 
+    //------------- botones-----------    
     JButton insertarPropietario = new JButton("Insertar propietario");
+    JButton buscarPropietario = new JButton("Buscar propietario");
     JButton retirarPropietario = new JButton("Retirar propietario");
-    JButton buscarPropietario = new JButton("buscar propietario");
-    JButton listarPropietario = new JButton("listar propietario");
+    JButton listarPropietario = new JButton("Listar propietario");
 
     JButton insertarInmueble = new JButton("Insertar inmueble");
+    JButton buscarInmueble = new JButton("Buscar inmueble");
     JButton retirarInmueble = new JButton("Retirar inmueble");
-    JButton buscarInmueble = new JButton("buscar inmueble");
-    JButton listarInmueble = new JButton("listar inmueble");
+    JButton listarInmueble = new JButton("Listar inmueble");
 
-    JTextField cajaInsProp = new JTextField(5);
-    JTextField cajaRetProp = new JTextField(5);
-    JTextField cajaBusProp = new JTextField(5);
+    //------------- caja de texto-----------
+    JTextField cajaInsertarPropNombre = new JTextField(5);
+    JTextField cajaInsertarPropId = new JTextField(5);
+    JTextField cajaRetirarProp = new JTextField(5);
+    JTextField cajaBuscarProp = new JTextField(5);
 
-    JTextField cajaInsInmueble = new JTextField(5);
-    JTextField cajaRetInmueble = new JTextField(5);
-    JTextField cajaBusInmueble = new JTextField(5);
+    JTextField cajaInsertarInmuebleId = new JTextField(5);
+    JTextField cajaInsertarInmuebleNombre = new JTextField(5);
+    JTextField cajaInsertarInmuebleValor = new JTextField(5);
+    JTextField cajaInsertarInmuebleDireccion = new JTextField(5);
+    JTextField cajaRetirarInmueble = new JTextField(5);
+    JTextField cajaBuscarInmueble = new JTextField(5);
+    JTextField cajaListarInmueble = new JTextField(5);
 
-    TextArea Area1 = new TextArea(100, 100);
-    TextArea Area2 = new TextArea(100, 100);
+    //------------- areas donde se pondra la lista-----------
+    TextArea areaPanel1 = new TextArea();
+    TextArea areaPanel2 = new TextArea();
 
+    /**
+     * Ventana principal donde se ejecutara todo el programa
+     */
     public Ventana() {
+        this.getContentPane().setLayout(null);
 
-        setSize(800, 600);
-        getContentPane().setLayout(null);
+        setSize(1200, 800);
+        setVisible(true);
+        setResizable(false);
+
+        this.getContentPane().add(panel1, BorderLayout.NORTH);
+        this.getContentPane().add(panel2, BorderLayout.CENTER);
 
         inicializarPanel1();
         inicializarPanel2();
-        inicilizarBotones();
+        inicializarBotones();
+        inicializarCajasTexto();
+        inicializarAreas();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-
-        getContentPane().add(panel1);
-        getContentPane().add(panel2);
-//        System.out.println("posX: "+ getX());
-//        System.out.println("posY: "+ getY());
     }
 
+    /**
+     * inicializa el primer panel, donde se ubicaran los botones
+     * correspondientes al propietario
+     */
     void inicializarPanel1() {
 
-        this.panel1.setSize(getWidth(), getHeight() / 2);
-        this.panel1.setLocation(0, 0);
-        this.panel1.setBackground(Color.CYAN);
+        panel1.setBackground(Color.cyan);
+        panel1.setSize(getWidth(), getHeight() / 2);
+        panel1.setLocation(0, 0);
 
-        this.panel1.add(insertarPropietario);
-        this.panel1.add(cajaInsProp);
-        this.panel1.add(retirarPropietario);
-        this.panel1.add(cajaRetProp);
-        this.panel1.add(buscarPropietario);
-        this.panel1.add(cajaBusProp);
-        this.panel1.add(listarPropietario);
+        panel1.add(insertarPropietario);
+        panel1.add(cajaInsertarPropId);
+        panel1.add(cajaInsertarPropNombre);
+        panel1.add(buscarPropietario);
+        panel1.add(cajaBuscarProp);
+        panel1.add(retirarPropietario);
+        panel1.add(cajaRetirarProp);
+        panel1.add(listarPropietario);
 
-        this.panel1.add(Area1);
+        panel1.add(areaPanel1);
     }
 
+    /**
+     * inicializa el segundo panel, donde se ubicaran los botones
+     * correspondientes al inmueble
+     */
     void inicializarPanel2() {
 
-        this.panel2.setSize(getWidth(), getHeight());
-        this.panel2.setLocation(0, panel1.getHeight());
-        this.panel2.setBackground(Color.darkGray);
+        panel2.setBackground(Color.pink);
+        panel2.setSize(getWidth(), getHeight() / 2);
+        panel2.setLocation(0, getHeight() / 2);
 
-        this.panel2.add(insertarInmueble);
-        this.panel2.add(cajaInsInmueble);
-        this.panel2.add(retirarInmueble);
-        this.panel2.add(cajaRetInmueble);
-        this.panel2.add(buscarInmueble);
-        this.panel2.add(cajaBusInmueble);
-        this.panel2.add(listarInmueble);
+        panel2.add(insertarInmueble);
+        panel2.add(cajaInsertarInmuebleId);
+        panel2.add(cajaInsertarInmuebleNombre);
+        panel2.add(cajaInsertarInmuebleValor);
+        panel2.add(cajaInsertarInmuebleDireccion);
+        panel2.add(buscarInmueble);
+        panel2.add(cajaBuscarInmueble);
+        panel2.add(retirarInmueble);
+        panel2.add(cajaRetirarInmueble);
+        panel2.add(listarInmueble);
+        panel2.add(cajaListarInmueble);
 
-        this.panel2.add(Area2);
+        panel2.add(areaPanel2);
     }
 
-    void inicilizarBotones() {
+    void inicializarCajasTexto() {
+        cajaInsertarPropId.setText("id usuario");
+    }
 
+    void inicializarBotones() {
         insertarPropietario.addActionListener(this);
-        retirarPropietario.addActionListener(this);
         buscarPropietario.addActionListener(this);
+        retirarPropietario.addActionListener(this);
         listarPropietario.addActionListener(this);
 
         insertarInmueble.addActionListener(this);
-        retirarInmueble.addActionListener(this);
         buscarInmueble.addActionListener(this);
-        listarInmueble.addActionListener(this);
+        retirarInmueble.addActionListener(this);
+        listarPropietario.addActionListener(this);
+    }
+
+    void inicializarAreas() {
+        //areaPanel1.setEnabled(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == insertarPropietario) {
-            Area1.setText(cajaInsProp.getText());
-        }
-        if (e.getSource() == retirarPropietario) {
-            JOptionPane.showMessageDialog(null, "el boton si sirve");
-        }
-        if (e.getSource() == buscarPropietario) {
-            JOptionPane.showMessageDialog(null, "el boton si sirve");
-        }
-        if (e.getSource() == listarPropietario) {
-            JOptionPane.showMessageDialog(null, "el boton si sirve");
-        }
-        if (e.getSource() == insertarInmueble) {
-            JOptionPane.showMessageDialog(null, "el boton si sirve");
-        }
-        if (e.getSource() == retirarInmueble) {
-            JOptionPane.showMessageDialog(null, "el boton si sirve");
-        }
-        if (e.getSource() == buscarInmueble) {
-            JOptionPane.showMessageDialog(null, "el boton si sirve");
-        }
-        if (e.getSource() == listarInmueble) {
-            JOptionPane.showMessageDialog(null, "el boton si sirve");
+            areaPanel1.setText(cajaInsertarPropId.getText());
+
         }
     }
+
 }
