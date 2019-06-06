@@ -264,23 +264,6 @@ public class Multilista {
         return textoProp;
     }
 
-    /**
-     *
-     */
-    public ArrayList<String> listar() {
-        ArrayList<String> datosMulti = new ArrayList<String>();
-        NodoNum q = cab;
-
-        if (q == null) {
-            return null;
-        }
-
-        while (q != null) {
-            datosMulti.add(crearTextoPropietario(q.id));
-            q = q.sig;
-        }
-        return datosMulti;
-    }
 
     /**
      * Imprime los datos de la fila de la multilista
@@ -331,4 +314,44 @@ public class Multilista {
         return Lista;
     }
 
+    public String[] retornarPropietarios() {
+        String[] Lista = new String[20];
+        NodoNum q = cab;
+
+        if (q == null) {
+            return null;
+        }
+        int i = 0;
+        while (q != null) {
+            Lista[i] = "ID: " + q.id + " Nombre: " + q.nombre;
+            q = q.sig;
+            i++;
+        }
+        return Lista;
+    }
+
+    public String[] retornarInmuebles(int idPropietario) {
+        NodoNum p = this.cab;
+        String[] inmuebles = new String[20];
+
+        if (p == null) {
+            return null;
+        }
+        if (!buscarEnFila(idPropietario)) {
+            return null;
+        }
+
+        while (p != null && p.id < idPropietario) {
+            p = p.sig;
+        }
+        NodoN q = p.abajo;
+        int i = 0;
+
+        while (q != null) {
+            inmuebles[i] = (" IDinmueble: " + q.id + " Nombre: " + q.nombre + " Direccion: " + q.direccion + " Valor: $" + q.valor);
+            q = q.abajo;
+            i++;
+        }
+        return inmuebles;
+    }
 }

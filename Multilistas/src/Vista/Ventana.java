@@ -62,7 +62,7 @@ public class Ventana extends JFrame implements ActionListener {
     TextArea areaPanel2 = new TextArea();
 
     //------------------Multilista---------------------------
-    Multilista m = new Multilista();
+    Multilista multList = new Multilista();
 
     /**
      * Ventana principal donde se ejecutara todo el programa
@@ -157,6 +157,8 @@ public class Ventana extends JFrame implements ActionListener {
         insertarInmueble.addActionListener(this);
         buscarInmueble.addActionListener(this);
         retirarInmueble.addActionListener(this);
+
+        listar.addActionListener(this);
     }
 
     void inicializarAreas() {
@@ -166,38 +168,34 @@ public class Ventana extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == insertarPropietario) {
-            m.insertarEnFila(Integer.parseInt(cajaInsertarPropId.getText()), cajaInsertarPropNombre.getText());
+            multList.insertarEnFila(Integer.parseInt(cajaInsertarPropId.getText()), cajaInsertarPropNombre.getText());
             cajaInsertarPropId.setText("");
             cajaInsertarPropNombre.setText("");
         }
         if (e.getSource() == retirarPropietario) {
-            m.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
+            multList.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
         }
         if (e.getSource() == buscarPropietario) {
-            m.buscarEnFila(Integer.parseInt(cajaBuscarProp.getText()));
+            multList.buscarEnFila(Integer.parseInt(cajaBuscarProp.getText()));
         }
 
         if (e.getSource() == insertarInmueble) {
-            m.insertarAbajo(Integer.parseInt(cajaInsertarInmuebleIdProp.getText()),
+            multList.insertarAbajo(Integer.parseInt(cajaInsertarInmuebleIdProp.getText()),
                     Integer.parseInt(cajaInsertarInmuebleId.getText()),
                     Float.parseFloat(cajaInsertarInmuebleValor.getText()),
                     cajaInsertarInmuebleNombre.getText(),
                     cajaInsertarInmuebleDireccion.getText());
-
             cajaInsertarPropId.setText("");
             cajaInsertarPropNombre.setText("");
         }
         if (e.getSource() == retirarInmueble) {
-            m.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
+            multList.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
         }
         if (e.getSource() == buscarInmueble) {
-            m.buscarEnFila(Integer.parseInt(cajaBuscarProp.getText()));
+            multList.buscarEnFila(Integer.parseInt(cajaBuscarProp.getText()));
         }
         if (e.getSource() == listar) {
-            DefaultTableModel dtm = new DefaultTableModel(5,5);
-            final JTable table = new JTable(dtm);
-            JScrollPane scrollPane = new JScrollPane(table);
-            panelListar.add(scrollPane, BorderLayout.CENTER);            
+            ListarTabla contenido = new ListarTabla(multList);
         }
 
     }
