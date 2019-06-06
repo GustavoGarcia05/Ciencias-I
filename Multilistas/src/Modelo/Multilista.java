@@ -238,25 +238,48 @@ public class Multilista {
         return true;
     }
 
+    public String crearTextoPropietario(int dato) {
+        NodoNum p = this.cab;
+        String textoProp = "";
+
+        if (p == null) {
+            return textoProp;
+        }
+
+        while (p != null && p.id < dato) {
+            p = p.sig;
+        }
+
+        textoProp += " ID: " + p.id + " Nombre: " + p.nombre + "\n";
+        NodoN q = p.abajo;
+
+        while (q != null) {
+            textoProp += "\n";
+            textoProp += " IDinmueble: " + q.id + "\n";
+            textoProp += " Nombre: " + q.nombre + "\n";
+            textoProp += " Direccion: " + q.direccion + "\n";
+            textoProp += " Valor: $" + q.valor + "\n";
+            q = q.abajo;
+        }
+        return textoProp;
+    }
+
     /**
      *
      */
-    void listar() {
-        ArrayList<ArrayList<String>> matRetorno = new ArrayList<ArrayList<String>>();
-        matRetorno.add(new ArrayList<String>());
-
+    public ArrayList<String> listar() {
+        ArrayList<String> datosMulti = new ArrayList<String>();
         NodoNum q = cab;
-        NodoN s = q.abajo;
 
-        while (q != null) {
-            matRetorno.get(0).add("id: " + q.id + " nom: " + q.nombre);
-            while (q != null) {
-                matRetorno.get(1).add("id: " + s.id + " nom: " + s.nombre);
-                s = q.abajo;
-            }
-            q = q.sig;
+        if (q == null) {
+            return null;
         }
 
+        while (q != null) {
+            datosMulti.add(crearTextoPropietario(q.id));
+            q = q.sig;
+        }
+        return datosMulti;
     }
 
     /**

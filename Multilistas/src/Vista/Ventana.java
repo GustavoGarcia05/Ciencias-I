@@ -15,7 +15,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,18 +29,18 @@ public class Ventana extends JFrame implements ActionListener {
     //------------- Paneles-----------
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
-    JPanel panel3 = new JPanel();
+    JPanel panelListar = new JPanel();
 
     //------------- botones-----------    
     JButton insertarPropietario = new JButton("Insertar propietario");
     JButton buscarPropietario = new JButton("Buscar propietario");
     JButton retirarPropietario = new JButton("Retirar propietario");
-    JButton listarPropietario = new JButton("Listar propietario");
 
     JButton insertarInmueble = new JButton("Insertar inmueble");
     JButton buscarInmueble = new JButton("Buscar inmueble");
     JButton retirarInmueble = new JButton("Retirar inmueble");
-    JButton listarInmueble = new JButton("Listar inmueble");
+
+    JButton listar = new JButton("Listar");
 
     //------------- caja de texto-----------
     JTextField cajaInsertarPropNombre = new JTextField(5);
@@ -57,6 +60,7 @@ public class Ventana extends JFrame implements ActionListener {
     //------------- areas donde se pondra la lista-----------
     TextArea areaPanel1 = new TextArea();
     TextArea areaPanel2 = new TextArea();
+
     //------------------Multilista---------------------------
     Multilista m = new Multilista();
 
@@ -66,16 +70,18 @@ public class Ventana extends JFrame implements ActionListener {
     public Ventana() {
         this.getContentPane().setLayout(null);
 
-        setSize(1200, 800);
+        setExtendedState(MAXIMIZED_BOTH);
         setVisible(true);
         setResizable(false);
 
         this.getContentPane().add(panel1, BorderLayout.NORTH);
         this.getContentPane().add(panel2, BorderLayout.CENTER);
-        this.getContentPane().add(panel2, BorderLayout.CENTER);
+        this.getContentPane().add(panelListar, BorderLayout.CENTER);
 
         inicializarPanel1();
         inicializarPanel2();
+        inicializarPanelListar();
+
         inicializarBotones();
         inicializarCajasTexto();
 //        inicializarAreas();
@@ -90,7 +96,7 @@ public class Ventana extends JFrame implements ActionListener {
     void inicializarPanel1() {
 
         panel1.setBackground(Color.cyan);
-        panel1.setSize(getWidth(), getHeight() / 2);
+        panel1.setSize(getWidth() / 2, getHeight() / 2);
         panel1.setLocation(0, 0);
 
         panel1.add(insertarPropietario);
@@ -100,9 +106,8 @@ public class Ventana extends JFrame implements ActionListener {
         panel1.add(cajaBuscarProp);
         panel1.add(retirarPropietario);
         panel1.add(cajaRetirarProp);
-        panel1.add(listarPropietario);
 
-        panel1.add(areaPanel1);
+//        panel1.add(areaPanel1);
     }
 
     /**
@@ -112,7 +117,7 @@ public class Ventana extends JFrame implements ActionListener {
     void inicializarPanel2() {
 
         panel2.setBackground(Color.pink);
-        panel2.setSize(getWidth(), getHeight() / 2);
+        panel2.setSize(getWidth() / 2, getHeight() / 2);
         panel2.setLocation(0, getHeight() / 2);
 
         panel2.add(insertarInmueble);
@@ -125,10 +130,19 @@ public class Ventana extends JFrame implements ActionListener {
         panel2.add(cajaBuscarInmueble);
         panel2.add(retirarInmueble);
         panel2.add(cajaRetirarInmueble);
-        panel2.add(listarInmueble);
         panel2.add(cajaListarInmueble);
 
-        panel2.add(areaPanel2);
+        //    panel2.add(areaPanel2);
+    }
+
+    void inicializarPanelListar() {
+        panelListar.setBackground(Color.ORANGE);
+        panelListar.setSize(getWidth() / 2, getHeight());
+        panelListar.setLocation(getWidth() / 2, 0);
+
+        panelListar.add(listar);
+
+        panelListar.setVisible(true);
     }
 
     void inicializarCajasTexto() {
@@ -139,12 +153,10 @@ public class Ventana extends JFrame implements ActionListener {
         insertarPropietario.addActionListener(this);
         buscarPropietario.addActionListener(this);
         retirarPropietario.addActionListener(this);
-        listarPropietario.addActionListener(this);
 
         insertarInmueble.addActionListener(this);
         buscarInmueble.addActionListener(this);
         retirarInmueble.addActionListener(this);
-        listarInmueble.addActionListener(this);
     }
 
     void inicializarAreas() {
@@ -157,9 +169,6 @@ public class Ventana extends JFrame implements ActionListener {
             m.insertarEnFila(Integer.parseInt(cajaInsertarPropId.getText()), cajaInsertarPropNombre.getText());
             cajaInsertarPropId.setText("");
             cajaInsertarPropNombre.setText("");
-        }
-        if (e.getSource() == listarPropietario) {
-            areaPanel1.setText(m.listarEnFila());
         }
         if (e.getSource() == retirarPropietario) {
             m.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
@@ -178,14 +187,17 @@ public class Ventana extends JFrame implements ActionListener {
             cajaInsertarPropId.setText("");
             cajaInsertarPropNombre.setText("");
         }
-        if (e.getSource() == listarInmueble) {
-            areaPanel2.setText(m.listarAbajo(Integer.parseInt(cajaListarInmueble.getText())));
-        }
         if (e.getSource() == retirarInmueble) {
             m.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
         }
         if (e.getSource() == buscarInmueble) {
             m.buscarEnFila(Integer.parseInt(cajaBuscarProp.getText()));
+        }
+        if (e.getSource() == listar) {
+            DefaultTableModel dtm = new DefaultTableModel(5,5);
+            final JTable table = new JTable(dtm);
+            JScrollPane scrollPane = new JScrollPane(table);
+            panelListar.add(scrollPane, BorderLayout.CENTER);            
         }
 
     }
