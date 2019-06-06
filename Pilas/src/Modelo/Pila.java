@@ -15,7 +15,7 @@ package Modelo;
  */
 public class Pila {
 
-    public Nodo cab;
+    private Nodo cab;
 
     public Pila() {
         cab = null;
@@ -23,10 +23,14 @@ public class Pila {
 
     void insertar(char v) {
         Nodo t = new Nodo(v);
-        System.out.println(t.valor);
-/*        t.sig = cab.sig;
-        cab = t;
-   */ }
+        if(vacia()){
+           cab = t; 
+        }else{
+            t.sig=cab;
+            cab=t;
+        }
+        
+    }
 
     char retirar() {
         char v;
@@ -42,7 +46,7 @@ public class Pila {
         if (this.cab == null) {
             return true;
         } else {
-            return true;
+            return false;
         }
     }
 

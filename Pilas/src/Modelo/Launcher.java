@@ -15,17 +15,10 @@ public class Launcher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Pila p = new Pila();
-//        Nodo t = new Nodo('5');
+        Calculadora calc = new Calculadora();
+        
+        calc.insertarExpresion("(2+5)*88 puto el que lo lea");
 
-        System.out.println(p.cab.valor);
-        //System.out.println(t.valor);
-  //      p.insertar('5');
-        /*   p.insertar('7');
-        System.out.println(p.retirar());
-        System.out.println(p.retirar());
-        System.out.println(p.retirar());
-         */
     }
 
 }

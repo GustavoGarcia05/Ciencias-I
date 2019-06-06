@@ -12,19 +12,18 @@ package Modelo;
 public class NodoN {
 
     int id;
-    float valor;
+    double valor;
     String nombre;
     String direccion;
 
     NodoN abajo;
 
-    public NodoN(int id, float valor, String nombre, String direccion) {
+    public NodoN(int id, double valor, String nombre, String direccion) {
         this.id = id;
         this.valor = valor;
         this.nombre = nombre;
         this.direccion = direccion;
         this.abajo = null;
     }
-
 
 }

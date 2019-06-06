@@ -26,6 +26,7 @@ public class Ventana extends JFrame implements ActionListener {
     //------------- Paneles-----------
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
+    JPanel panel3 = new JPanel();
 
     //------------- botones-----------    
     JButton insertarPropietario = new JButton("Insertar propietario");
@@ -71,12 +72,13 @@ public class Ventana extends JFrame implements ActionListener {
 
         this.getContentPane().add(panel1, BorderLayout.NORTH);
         this.getContentPane().add(panel2, BorderLayout.CENTER);
+        this.getContentPane().add(panel2, BorderLayout.CENTER);
 
         inicializarPanel1();
         inicializarPanel2();
         inicializarBotones();
         inicializarCajasTexto();
-        inicializarAreas();
+//        inicializarAreas();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

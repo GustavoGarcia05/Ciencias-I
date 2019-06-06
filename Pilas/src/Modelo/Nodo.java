@@ -11,8 +11,8 @@ package Modelo;
  */
 public class Nodo {
 
-    char valor;
-    Nodo sig;
+    public char valor;
+    public Nodo sig;
 
     public Nodo(char v) {
         this.valor = v;

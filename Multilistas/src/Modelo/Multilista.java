@@ -6,6 +6,7 @@
 package Modelo;
 
 import Vista.Ventana;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,15 +66,15 @@ public class Multilista {
             aux = aux.sig;
         }
         if (aux != null && aux.id == dato) {
-            //System.out.println("el elemento se encontro");
-            JOptionPane.showMessageDialog(null, Integer.toString(aux.id) + " " + aux.nombre);
             return true;
-        } else {
-            //System.out.println("el elemento no esta");
+        } else { //elemento no esta
             return false;
         }
     }
 
+    /**
+     * @param idPropietario
+     */
     public boolean retirarEnFila(int idPropietario) {
         boolean esta;
         esta = this.buscarEnFila(idPropietario);
@@ -94,13 +95,12 @@ public class Multilista {
         //System.out.println("este es aux " + aux.info);
         //System.out.println("este es q " + q.info);
 
-        if (q.abajo != null) {
-            System.out.println("No se puede borrar porque tiene inmuebles a su name");
+        if (q.abajo != null) { //Caso0: el propietario tiene inmuebles a su nombre
+            //System.out.println("No se puede borrar porque tiene inmuebles a su name");
             JOptionPane.showMessageDialog(null, "No se puede borrar porque tiene inmuebles a su name");
             return false;
         }
-
-        if (s != null) {
+        if (s != null) { //Caso1: borro el inmusble dado, nodo entre dos nodos 
             q.id = s.id;
             q.nombre = s.nombre;
             q.abajo = s.abajo;
@@ -108,33 +108,12 @@ public class Multilista {
         } else if (q == this.cab) {
             q = null;
             this.cab = q;
-            //JOptionPane.showMessageDialog(null, "se ha eliminado el unico elemento de la lista");
+            JOptionPane.showMessageDialog(null, "se ha eliminado el unico elemento de la lista");
         } else {
             aux.sig = s;
             q = s;
         }
         return true;
-    }
-
-    /**
-     * Imprime los datos de la fila de la multilista
-     *
-     * @param dato posicion que quiere listar.
-     * @return retorna -1 o 1
-     */
-    public String listarEnFila() {
-        String Lista = "";
-        NodoNum q = cab;
-
-        if (q == null) {
-            JOptionPane.showMessageDialog(null, "No hay propietarios registrados en la multilista");
-        }
-        while (q != null) {
-            Lista = Lista + "\n" + "ID: " + q.id + " Nombre: " + q.nombre;
-            //System.out.println("ID: " + q.id + " Nombre: " + q.nombre);           
-            q = q.sig;
-        }
-        return Lista;
     }
 
     /**
@@ -145,7 +124,7 @@ public class Multilista {
      * insertar el dato.
      * @param idInmueble lo que se quiere insertar.
      */
-    public boolean insertarAbajo(int idPropietario, int idInmueble, float valor, String nombre, String direccion) {
+    public boolean insertarAbajo(int idPropietario, int idInmueble, double valor, String nombre, String direccion) {
         NodoNum p = cab;
         while (p != null && p.id < idPropietario) {
             p = p.sig;
@@ -195,7 +174,7 @@ public class Multilista {
             s = s.abajo;
         }
         if (s == null) {
-            JOptionPane.showMessageDialog(null, "No existen inmueble con id: " + idInmueble);
+            JOptionPane.showMessageDialog(null, "No existe inmueble con id: " + idInmueble);
             return false;
         }
         if (s.id == idInmueble) {
@@ -206,8 +185,99 @@ public class Multilista {
         }
     }
 
+    /**
+     * Retira en la lista de inmueble
+     *
+     * @param idPropietario propietario al cual se le quiere eliminar el
+     * inmueble
+     * @param idInmueble inmueble que se desea eliminar
+     */
     public boolean retirarAbajo(int idPropietario, int idInmueble) {
-        return false;
+        NodoNum q = this.cab;
+        if (q == null) {
+            JOptionPane.showMessageDialog(null, "No hay lista de propietarios");
+            return false;
+        }
+        if (!buscarEnFila(idPropietario)) {
+            JOptionPane.showMessageDialog(null, "El propietario no esta en la lista");
+            return false;
+        }
+        while (q != null && q.id < idPropietario) {
+            q = q.sig;
+        }
+        if (!buscarAbajo(idPropietario, idInmueble)) {
+            return false;
+        }
+        if (q.abajo == null) {
+            JOptionPane.showMessageDialog(null, "El propietario no tiene propiedades");
+            return false;
+        }
+        NodoN aux = null;
+        NodoN r = null;
+        NodoN s = q.abajo;
+
+        while (s != null && s.id <= idInmueble) {
+            aux = r;
+            r = s;
+            s = s.abajo;
+        }
+        if (s != null) { //Caso1: borro el inmusble dado, nodo entre dos nodos 
+            r.id = s.id;
+            r.nombre = s.nombre;
+            r.valor = s.valor;
+            r.direccion = s.direccion;
+            r.abajo = s.abajo;
+        } else if (r == q.abajo) {
+            r = null;
+            q.abajo = r;
+            JOptionPane.showMessageDialog(null, "se ha eliminado el unico elemento de la lista");
+        } else {
+            aux.abajo = s;
+            r = s;
+        }
+        return true;
+    }
+
+    /**
+     *
+     */
+    void listar() {
+        ArrayList<ArrayList<String>> matRetorno = new ArrayList<ArrayList<String>>();
+        matRetorno.add(new ArrayList<String>());
+
+        NodoNum q = cab;
+        NodoN s = q.abajo;
+
+        while (q != null) {
+            matRetorno.get(0).add("id: " + q.id + " nom: " + q.nombre);
+            while (q != null) {
+                matRetorno.get(1).add("id: " + s.id + " nom: " + s.nombre);
+                s = q.abajo;
+            }
+            q = q.sig;
+        }
+
+    }
+
+    /**
+     * Imprime los datos de la fila de la multilista
+     *
+     * @param dato posicion que quiere listar.
+     * @return retorna -1 o 1
+     */
+    public String listarEnFila() {
+        String Lista = "";
+        NodoNum q = cab;
+
+        if (q == null) {
+            JOptionPane.showMessageDialog(null, "No hay propietarios registrados en la multilista");
+        }
+        while (q != null) {
+            Lista += "\n" + "ID: " + q.id + " Nombre: " + q.nombre;
+            //System.out.println("ID: " + q.id + " Nombre: " + q.nombre);           
+            q = q.sig;
+        }
+        return Lista;
     }
 
     /**
@@ -237,4 +307,5 @@ public class Multilista {
         }
         return Lista;
     }
+
 }
