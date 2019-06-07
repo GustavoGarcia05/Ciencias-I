@@ -68,7 +68,7 @@ public class Multilista {
         }
         if (aux != null && aux.id == dato) {
             return true;
-        } else { 
+        } else {
             return false;
         }
     }
@@ -127,6 +127,10 @@ public class Multilista {
      */
     public boolean insertarAbajo(int idPropietario, int idInmueble, double valor, String nombre, String direccion) {
         NodoNum p = cab;
+        if (buscarAbajo(idPropietario, idInmueble)) {
+            JOptionPane.showMessageDialog(null, "el inmueble ya esta");
+            return false;
+        }
         while (p != null && p.id < idPropietario) {
             p = p.sig;
         }
@@ -166,7 +170,7 @@ public class Multilista {
      */
     public boolean buscarAbajo(int idPropietario, int idInmueble) {
         NodoNum q = this.cab;
-        if(q==null){
+        if (q == null) {
             return false;
         }
         while (q != null && q.id < idPropietario) {
@@ -178,7 +182,7 @@ public class Multilista {
             s = s.abajo;
         }
         if (s == null) {
-            JOptionPane.showMessageDialog(null, "No existe inmueble con id: " + idInmueble);
+            //JOptionPane.showMessageDialog(null, "No existe inmueble con id: " + idInmueble);
             return false;
         }
         if (s.id == idInmueble) {
@@ -226,11 +230,11 @@ public class Multilista {
             s = s.abajo;
         }
         if (s != null) { //Caso1: borro el inmusble dado, nodo entre dos nodos 
-            r.id = s.id;
-            r.nombre = s.nombre;
-            r.valor = s.valor;
-            r.direccion = s.direccion;
-            r.abajo = s.abajo;
+            aux.id = s.id;
+            aux.nombre = s.nombre;
+            aux.valor = s.valor;
+            aux.direccion = s.direccion;
+            aux.abajo = s.abajo;
         } else if (r == q.abajo) {
             r = null;
             q.abajo = r;
@@ -276,15 +280,13 @@ public class Multilista {
         if (p == null) {
             return null;
         }
-        
 
         while (p != null) {
-            dmt.addColumn("ID: "+p.id+" Nombre: "+p.nombre, crearTextoPropietario(p.id));
+            dmt.addColumn("ID: " + p.id + " Nombre: " + p.nombre, crearTextoPropietario(p.id));
             p = p.sig;
         }
-        
         return dmt;
-        
+
     }
 
     /**
