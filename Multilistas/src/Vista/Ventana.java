@@ -13,12 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import sun.nio.ch.DefaultAsynchronousChannelProvider;
 
 /**
  *
@@ -35,11 +37,11 @@ public class Ventana extends JFrame implements ActionListener {
     JButton insertarPropietario = new JButton("Insertar propietario");
     JButton buscarPropietario = new JButton("Buscar propietario");
     JButton retirarPropietario = new JButton("Retirar propietario");
-
+    
     JButton insertarInmueble = new JButton("Insertar inmueble");
     JButton buscarInmueble = new JButton("Buscar inmueble");
     JButton retirarInmueble = new JButton("Retirar inmueble");
-
+    
     JButton listar = new JButton("Listar");
 
     //------------- caja de texto-----------
@@ -47,14 +49,16 @@ public class Ventana extends JFrame implements ActionListener {
     JTextField cajaInsertarPropId = new JTextField(5);
     JTextField cajaRetirarProp = new JTextField(5);
     JTextField cajaBuscarProp = new JTextField(5);
-
+    
     JTextField cajaInsertarInmuebleIdProp = new JTextField(5);
     JTextField cajaInsertarInmuebleId = new JTextField(5);
     JTextField cajaInsertarInmuebleNombre = new JTextField(5);
     JTextField cajaInsertarInmuebleValor = new JTextField(5);
     JTextField cajaInsertarInmuebleDireccion = new JTextField(5);
-    JTextField cajaRetirarInmueble = new JTextField(5);
-    JTextField cajaBuscarInmueble = new JTextField(5);
+    JTextField cajaRetirarInmuebleIDProp = new JTextField(5);
+    JTextField cajaRetirarInmuebleIDInm = new JTextField(5);
+    JTextField cajaBuscarInmuebleIdProp = new JTextField(5);
+    JTextField cajaBuscarInmuebleIdInm = new JTextField(5);
     JTextField cajaListarInmueble = new JTextField(5);
 
     //------------- areas donde se pondra la lista-----------
@@ -69,21 +73,20 @@ public class Ventana extends JFrame implements ActionListener {
      */
     public Ventana() {
         this.getContentPane().setLayout(null);
-
+        
         setExtendedState(MAXIMIZED_BOTH);
         setVisible(true);
         setResizable(false);
-
+        
         this.getContentPane().add(panel1, BorderLayout.NORTH);
         this.getContentPane().add(panel2, BorderLayout.CENTER);
         this.getContentPane().add(panelListar, BorderLayout.CENTER);
-
+        
         inicializarPanel1();
         inicializarPanel2();
         inicializarPanelListar();
-
+        
         inicializarBotones();
-        inicializarCajasTexto();
 //        inicializarAreas();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -94,17 +97,21 @@ public class Ventana extends JFrame implements ActionListener {
      * correspondientes al propietario
      */
     void inicializarPanel1() {
-
+        
         panel1.setBackground(Color.cyan);
         panel1.setSize(getWidth() / 2, getHeight() / 2);
         panel1.setLocation(0, 0);
-
+        
         panel1.add(insertarPropietario);
+        panel1.add(new JLabel("ID propietario"));
         panel1.add(cajaInsertarPropId);
+        panel1.add(new JLabel("Nombre propietario"));
         panel1.add(cajaInsertarPropNombre);
         panel1.add(buscarPropietario);
+        panel1.add(new JLabel("ID propietario"));
         panel1.add(cajaBuscarProp);
         panel1.add(retirarPropietario);
+        panel1.add(new JLabel("ID propietario"));
         panel1.add(cajaRetirarProp);
 
 //        panel1.add(areaPanel1);
@@ -115,89 +122,133 @@ public class Ventana extends JFrame implements ActionListener {
      * correspondientes al inmueble
      */
     void inicializarPanel2() {
-
+        
         panel2.setBackground(Color.pink);
         panel2.setSize(getWidth() / 2, getHeight() / 2);
         panel2.setLocation(0, getHeight() / 2);
-
+        
         panel2.add(insertarInmueble);
+        panel2.add(new JLabel("ID propietario"));
         panel2.add(cajaInsertarInmuebleIdProp);
+        panel2.add(new JLabel("ID inmueble"));
         panel2.add(cajaInsertarInmuebleId);
+        panel2.add(new JLabel("Nombre inmueble"));
         panel2.add(cajaInsertarInmuebleNombre);
+        panel2.add(new JLabel("Valor inmueble"));
         panel2.add(cajaInsertarInmuebleValor);
+        panel2.add(new JLabel("Direccion inmueble"));
         panel2.add(cajaInsertarInmuebleDireccion);
         panel2.add(buscarInmueble);
-        panel2.add(cajaBuscarInmueble);
+        panel2.add(new JLabel("ID propietario"));
+        panel2.add(cajaBuscarInmuebleIdProp);
+        panel2.add(new JLabel("ID inmueble"));
+        panel2.add(cajaBuscarInmuebleIdInm);
         panel2.add(retirarInmueble);
-        panel2.add(cajaRetirarInmueble);
-        panel2.add(cajaListarInmueble);
-
-        //    panel2.add(areaPanel2);
+        panel2.add(new JLabel("ID propietario"));
+        panel2.add(cajaRetirarInmuebleIDProp);
+        panel2.add(new JLabel("ID inmueble"));
+        panel2.add(cajaRetirarInmuebleIDInm);
+        
     }
-
+    
     void inicializarPanelListar() {
         panelListar.setBackground(Color.ORANGE);
         panelListar.setSize(getWidth() / 2, getHeight());
         panelListar.setLocation(getWidth() / 2, 0);
-
+        
         panelListar.add(listar);
-
-        panelListar.setVisible(true);
     }
-
-    void inicializarCajasTexto() {
-        cajaInsertarPropId.setText("id usuario");
-    }
-
+    
     void inicializarBotones() {
         insertarPropietario.addActionListener(this);
         buscarPropietario.addActionListener(this);
         retirarPropietario.addActionListener(this);
-
+        
         insertarInmueble.addActionListener(this);
         buscarInmueble.addActionListener(this);
         retirarInmueble.addActionListener(this);
-
+        
         listar.addActionListener(this);
     }
-
+    
     void inicializarAreas() {
         //areaPanel1.setEnabled(false);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == insertarPropietario) {
+            if (cajaInsertarPropId.getText().equals("") || cajaInsertarPropNombre.getText().equals("")) {
+                JOptionPane.showMessageDialog(panel1, "No has llenado todos los campos");
+                return;
+            }
             multList.insertarEnFila(Integer.parseInt(cajaInsertarPropId.getText()), cajaInsertarPropNombre.getText());
             cajaInsertarPropId.setText("");
             cajaInsertarPropNombre.setText("");
         }
         if (e.getSource() == retirarPropietario) {
+            if (cajaRetirarProp.getText().equals("")) {
+                JOptionPane.showMessageDialog(panel1, "No has ingresado Una ID para retirar");
+                return;
+            }
             multList.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
+            cajaRetirarProp.setText("");
         }
         if (e.getSource() == buscarPropietario) {
+            
+            if (cajaBuscarProp.getText().equals("")) {
+                JOptionPane.showMessageDialog(panel1, "No has ingresado Una ID para buscar");
+                return;
+            }
             multList.buscarEnFila(Integer.parseInt(cajaBuscarProp.getText()));
+            cajaBuscarProp.setText("");
         }
-
+        
         if (e.getSource() == insertarInmueble) {
+            if (cajaInsertarInmuebleIdProp.getText().equals("") || cajaInsertarInmuebleId.getText().equals("") || cajaInsertarInmuebleValor.getText().equals("") || cajaInsertarInmuebleNombre.getText().equals("") || cajaInsertarInmuebleDireccion.getText().equals("")) {
+                JOptionPane.showMessageDialog(panel2, "No has llenado todos los campos");
+                return;
+            }
             multList.insertarAbajo(Integer.parseInt(cajaInsertarInmuebleIdProp.getText()),
                     Integer.parseInt(cajaInsertarInmuebleId.getText()),
                     Float.parseFloat(cajaInsertarInmuebleValor.getText()),
                     cajaInsertarInmuebleNombre.getText(),
                     cajaInsertarInmuebleDireccion.getText());
-            cajaInsertarPropId.setText("");
-            cajaInsertarPropNombre.setText("");
+
+            //cajaInsertarInmuebleIdProp.setText("");
+            cajaInsertarInmuebleId.setText("");
+            cajaInsertarInmuebleValor.setText("");
+            cajaInsertarInmuebleNombre.setText("");
+            cajaInsertarInmuebleDireccion.setText("");
         }
         if (e.getSource() == retirarInmueble) {
-            multList.retirarEnFila(Integer.parseInt(cajaRetirarProp.getText()));
+            if (cajaRetirarInmuebleIDProp.getText().equals("") || cajaRetirarInmuebleIDInm.getText().equals("")) {
+                JOptionPane.showMessageDialog(panel2, "Datos incompletos para retirar");
+                return;
+            }
+            multList.retirarAbajo(Integer.parseInt(cajaRetirarInmuebleIDProp.getText()), Integer.parseInt(cajaRetirarInmuebleIDInm.getText()));
+            
+            cajaRetirarInmuebleIDProp.setText("");
+            cajaRetirarInmuebleIDInm.setText("");
         }
         if (e.getSource() == buscarInmueble) {
-            multList.buscarEnFila(Integer.parseInt(cajaBuscarProp.getText()));
+            if (cajaBuscarInmuebleIdProp.getText().equals("") || cajaBuscarInmuebleIdInm.getText().equals("")) {
+                JOptionPane.showMessageDialog(panel2, "Datos incompletos para buscar");
+                return;
+            }
+            multList.buscarAbajo(Integer.parseInt(cajaBuscarInmuebleIdProp.getText()), Integer.parseInt(cajaBuscarInmuebleIdInm.getText()));
+            cajaBuscarInmuebleIdProp.setText("");
+            cajaBuscarInmuebleIdInm.setText("");
         }
         if (e.getSource() == listar) {
-            ListarTabla contenido = new ListarTabla(multList);
+            
+            JTable tabla = new JTable(multList.listar());
+            JScrollPane sP = new JScrollPane(tabla);
+            sP.setBounds(getWidth() / 2, getHeight() / 2, (getWidth() / 2) - 25, (getHeight() / 2) - 50);
+            getContentPane().add(sP);
+            
         }
-
+        
     }
-
+    
 }

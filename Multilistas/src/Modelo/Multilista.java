@@ -8,6 +8,7 @@ package Modelo;
 import Vista.Ventana;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -67,7 +68,7 @@ public class Multilista {
         }
         if (aux != null && aux.id == dato) {
             return true;
-        } else { //elemento no esta
+        } else { 
             return false;
         }
     }
@@ -165,6 +166,9 @@ public class Multilista {
      */
     public boolean buscarAbajo(int idPropietario, int idInmueble) {
         NodoNum q = this.cab;
+        if(q==null){
+            return false;
+        }
         while (q != null && q.id < idPropietario) {
             q = q.sig;
         }
@@ -238,32 +242,50 @@ public class Multilista {
         return true;
     }
 
-    public String crearTextoPropietario(int dato) {
+    public String[] crearTextoPropietario(int dato) {
         NodoNum p = this.cab;
-        String textoProp = "";
+        ArrayList<String> textoProp = new ArrayList<String>();
 
         if (p == null) {
-            return textoProp;
+            return null;
         }
 
         while (p != null && p.id < dato) {
             p = p.sig;
         }
 
-        textoProp += " ID: " + p.id + " Nombre: " + p.nombre + "\n";
+        //textoProp.add(" ID: " + p.id + " Nombre: " + p.nombre);
         NodoN q = p.abajo;
 
         while (q != null) {
-            textoProp += "\n";
-            textoProp += " IDinmueble: " + q.id + "\n";
-            textoProp += " Nombre: " + q.nombre + "\n";
-            textoProp += " Direccion: " + q.direccion + "\n";
-            textoProp += " Valor: $" + q.valor + "\n";
+            textoProp.add(" IDinmueble: " + q.id);
+            textoProp.add(" Nombre: " + q.nombre);
+            textoProp.add(" Direccion: " + q.direccion);
+            textoProp.add(" Valor: $" + q.valor);
+            textoProp.add("");
             q = q.abajo;
         }
-        return textoProp;
+        String[] aux = new String[textoProp.size()];
+        aux = textoProp.toArray(aux);
+        return aux;
     }
 
+    public DefaultTableModel listar() {
+        NodoNum p = cab;
+        DefaultTableModel dmt = new DefaultTableModel();
+        if (p == null) {
+            return null;
+        }
+        
+
+        while (p != null) {
+            dmt.addColumn("ID: "+p.id+" Nombre: "+p.nombre, crearTextoPropietario(p.id));
+            p = p.sig;
+        }
+        
+        return dmt;
+        
+    }
 
     /**
      * Imprime los datos de la fila de la multilista
