@@ -97,7 +97,6 @@ public class Multilista {
         //System.out.println("este es q " + q.info);
 
         if (q.abajo != null) { //Caso0: el propietario tiene inmuebles a su nombre
-            //System.out.println("No se puede borrar porque tiene inmuebles a su name");
             JOptionPane.showMessageDialog(null, "No se puede borrar porque tiene inmuebles a su name");
             return false;
         }
@@ -126,6 +125,7 @@ public class Multilista {
      * @param idInmueble lo que se quiere insertar.
      */
     public boolean insertarAbajo(int idPropietario, int idInmueble, double valor, String nombre, String direccion) {
+        NodoN nodoInsertar = new NodoN(idInmueble, valor, nombre, direccion);
         NodoNum p = cab;
         if (buscarAbajo(idPropietario, idInmueble)) {
             JOptionPane.showMessageDialog(null, "el inmueble ya esta");
@@ -134,25 +134,26 @@ public class Multilista {
         while (p != null && p.id < idPropietario) {
             p = p.sig;
         }
-        if (p == null) {
-            //System.out.println("no existe");
+        if (p == null) { //el propietario no existe
             return false;
         }
         if (p.id == idPropietario) {
-            NodoN s, q;
-            s = null;
-            q = p.abajo;
-            while (q != null) {
-                s = q;
-                q = q.abajo;
+            NodoN q, s;
+            q = null;
+            s = p.abajo;
+            while (s != null && s.id < idInmueble) {
+                q = s;
+                s = s.abajo;
             }
-            if (s == null) {
-                NodoN n = new NodoN(idInmueble, valor, nombre, direccion);
-                p.abajo = n;
-                return true;
+            if (q == null && s == null) {
+                p.abajo = nodoInsertar;
+            } else if (q == null) {
+                nodoInsertar.abajo = s;
+                p.abajo = nodoInsertar;
+            } else {
+                nodoInsertar.abajo = s;
+                q.abajo = nodoInsertar;
             }
-            NodoN n = new NodoN(idInmueble, valor, nombre, direccion);
-            s.abajo = n;
             return true;
         }//p.i==x
         else {
@@ -188,7 +189,7 @@ public class Multilista {
         if (s.id == idInmueble) {
             return true;
         } else {
-            JOptionPane.showMessageDialog(null, "no existen inmuebles para esta persona");
+            //JOptionPane.showMessageDialog(null, "no existen inmuebles para esta persona");
             return false;
         }
     }
@@ -213,11 +214,11 @@ public class Multilista {
         while (q != null && q.id < idPropietario) {
             q = q.sig;
         }
-        if (!buscarAbajo(idPropietario, idInmueble)) {
-            return false;
-        }
         if (q.abajo == null) {
             JOptionPane.showMessageDialog(null, "El propietario no tiene propiedades");
+            return false;
+        }
+        if (!buscarAbajo(idPropietario, idInmueble)) { //el propietario no tiene ese inmueble.
             return false;
         }
         NodoN aux = null;
@@ -229,12 +230,12 @@ public class Multilista {
             r = s;
             s = s.abajo;
         }
-        if (s != null) { //Caso1: borro el inmusble dado, nodo entre dos nodos 
-            aux.id = s.id;
-            aux.nombre = s.nombre;
-            aux.valor = s.valor;
-            aux.direccion = s.direccion;
-            aux.abajo = s.abajo;
+        if (aux == null && s != null) {
+            q.abajo = s;
+            r = null;
+        } else if (s != null) { //Caso1: borro el inmusble dado, nodo entre dos nodos 
+            aux.abajo = s;
+            r = null;
         } else if (r == q.abajo) {
             r = null;
             q.abajo = r;
@@ -244,6 +245,39 @@ public class Multilista {
             r = s;
         }
         return true;
+
+        /*
+                NodoNum aux = null;
+        NodoNum q = null;
+        NodoNum s = this.cab;
+
+        while (s != null && s.id <= idPropietario) {
+            aux = q;
+            q = s;
+            s = s.sig;
+        }
+        //System.out.println("este es aux " + aux.info);
+        //System.out.println("este es q " + q.info);
+
+        if (q.abajo != null) { //Caso0: el propietario tiene inmuebles a su nombre
+            JOptionPane.showMessageDialog(null, "No se puede borrar porque tiene inmuebles a su name");
+            return false;
+        }
+        if (s != null) { //Caso1: borro el inmusble dado, nodo entre dos nodos 
+            q.id = s.id;
+            q.nombre = s.nombre;
+            q.abajo = s.abajo;
+            q.sig = s.sig;
+        } else if (q == this.cab) {
+            q = null;
+            this.cab = q;
+            JOptionPane.showMessageDialog(null, "se ha eliminado el unico elemento de la lista");
+        } else {
+            aux.sig = s;
+            q = s;
+        }
+        return true;
+         */
     }
 
     public String[] crearTextoPropietario(int dato) {
