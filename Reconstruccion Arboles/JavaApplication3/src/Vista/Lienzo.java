@@ -23,7 +23,7 @@ public class Lienzo extends Canvas{
 	nodoArreglo = new ArrayList<NodoArreglo>();
     }
 	
-    public void dibujarNodo(Graphics g,String valor, char c, String padre){
+    public void dibujarNodo(Graphics g, String valor, char c, String padre){
 	if(g instanceof Graphics2D){
             Graphics2D g2 = (Graphics2D)g;
             g2.setStroke(new BasicStroke(2.0f));			

@@ -10,7 +10,7 @@ public class Cola {
 	cab=cola;
     }
 	
-    public void insertar(String in, String pos, char c, String padre, int hijos){		
+    public void insertar(String in, String pos, char c, String padre, int hijos){ //esta cola recibe una cade inOrden una cadena en posOrden un caracter, una referencia al padre de un nodo y la cantidad de hijos		
 	NodoFifo n = new NodoFifo();	
 	if(cab==cola){
             cab=n;

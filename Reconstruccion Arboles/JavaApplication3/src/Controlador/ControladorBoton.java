@@ -17,8 +17,8 @@ public class ControladorBoton implements ActionListener {
     public void actionPerformed(ActionEvent e) {						
 	if(e.getSource()==panelControles.getBtnEjecutar()){
             if(pos){
-                    arbol=new Arbol(panelControles.getTxtInOrden().getText(), panelControles.getTxtPostOrden().getText(),null , this);
-                    arbol.reconstruir();
+                arbol=new Arbol(panelControles.getTxtInOrden().getText(), panelControles.getTxtPostOrden().getText(),null , this);
+                arbol.reconstruir();
             }
             else{
 		arbol=new Arbol(panelControles.getTxtInOrden().getText(),null , panelControles.getTxtPreOrden().getText(), this);
