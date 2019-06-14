@@ -16,9 +16,8 @@ public class Launcher {
      */
     public static void main(String[] args) {
         Calculadora calc = new Calculadora();
-        
-        calc.insertarExpresion("(2+5)*88 puto el que lo lea");
 
+        calc.notacionPostFija("(5*(((10+8)*(4*6))+7))");
+        System.out.println(calc.notacionPostFija("(5*(((10+8)*(4*6))+7))"));
     }
-
 }
