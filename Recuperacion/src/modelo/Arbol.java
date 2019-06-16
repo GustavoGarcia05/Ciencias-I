@@ -64,6 +64,7 @@ public class Arbol {
     https://www.youtube.com/watch?v=KY_6Xduq8jc
     */
     
+    
     public void armandoMatrizInPre() {
         if (!verificarLongitudInYPos()) {
             return;
@@ -105,6 +106,8 @@ public class Arbol {
         }
         
         imprimirMatriz(matrizInPos);
+        
+        
 
     }
 
@@ -120,5 +123,12 @@ public class Arbol {
             //System.out.println("-----------------");
         }
     }
+
+    public int tamanioLienzo() {
+        return inOrden.length();
+    }
+    
+    
+    
 
 }
