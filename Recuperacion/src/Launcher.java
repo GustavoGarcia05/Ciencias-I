@@ -24,16 +24,16 @@ public class Launcher {
 
         //a.recibirInOrden("daecgfhb");
         //a.recibirPosOrden("deghfcba");
-        /*a.recibirInOrden("gdkhlbaeicfjm");
+        a.recibirInOrden("gdkhlbaeicfjm");
         a.recibirPosOrden("gklhdbiemjfca");
         a.recibirPreOrden("abdghklceifjm");
         a.armandoMatrizInPre();
         System.out.println("------------");
-        a.armandoMatrizInPos();*/
+        a.armandoMatrizInPos();
         
         //new Ventana();
-        //new prueba();
-        new Control();
+        new prueba();
+        //new Control();
   
     }
 

@@ -22,6 +22,7 @@ public class Lienzo extends Canvas {
     
     public Lienzo() {
         setBackground(Color.LIGHT_GRAY);
+        setSize(4000, 4000);
 
     }
 

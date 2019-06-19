@@ -9,6 +9,7 @@ import Vista.Ventana;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import modelo.Arbol;
 
 /**
@@ -33,13 +34,31 @@ public class Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == posOrden) {
-
+            String in;
+            String pos;
+            
             v.getCajaPos().setEditable(true);
             v.getCajaPre().setEditable(false);
-
-            ab.recibirInOrden(v.getCajaIn().getText());
-            ab.recibirPreOrden(v.getCajaPos().getText());
             
+            in=v.getCajaIn().getText();
+            pos=v.getCajaPos().getText();
+            
+            if(in.equals("")|| pos.equals("")){
+                JOptionPane.showMessageDialog(v, "No existe arbol");
+                return;
+            }
+            if(ab.verificarLetraRepetida(in)|| ab.verificarLetraRepetida(pos)){
+                JOptionPane.showMessageDialog(v, "Existen letras repetidas");
+                return;
+            }
+            
+            
+            ab.recibirInOrden(in);
+            ab.recibirPosOrden(pos);
+            
+            if(!ab.verificarLongitudInYPos()){
+                JOptionPane.showMessageDialog(v, "el In-orden y el Pos-Orden no coinciden");
+            }
             //ab.armandoMatrizInPos();
             
             //v.getLienzo().setArbolAPintar(ab.armandoMatrizInPre());

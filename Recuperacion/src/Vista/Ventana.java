@@ -46,16 +46,18 @@ public class Ventana extends JFrame {
     
     
     public Ventana() {
-        setExtendedState(MAXIMIZED_BOTH);
+        
+        //setExtendedState(MAXIMIZED_BOTH);
         setMinimumSize(new Dimension(800, 600));
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout());
         
         inicializarPaneles();
         
         getContentPane().add(panelArboles,BorderLayout.CENTER);
         getContentPane().add(panelBotones,BorderLayout.SOUTH);
         
+        //pack();
         setVisible(true);
     }
     

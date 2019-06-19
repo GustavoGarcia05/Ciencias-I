@@ -60,7 +60,7 @@ public class Arbol {
     }
 // matriz para reconstruir
     /*
-    video de donde saqu la idea para construir la matriz
+    video de donde sa que la idea para construir la matriz
     https://www.youtube.com/watch?v=KY_6Xduq8jc
     */
     

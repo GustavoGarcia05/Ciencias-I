@@ -9,6 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.TextArea;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -47,8 +48,9 @@ public class prueba extends JFrame{
     JButton b20 = new JButton("boton20");
     
     public prueba() {
+        p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
         setSize(800,600);
-        p.setSize(4000, 200);
+        p.setSize(4000, 2000);
         p.setBackground(Color.gray);
         agragarBotones();
         getContentPane().setPreferredSize(new Dimension(400, 100));
