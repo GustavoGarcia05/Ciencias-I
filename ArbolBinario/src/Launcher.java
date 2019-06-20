@@ -24,8 +24,11 @@ public class Launcher {
         ab.insertar(20);
         ab.insertar(32);
         ab.insertar(2);
+        ab.insertar(5);
+        System.out.println(ab.niveles());
+        System.out.println(ab.preOrden());
         System.out.println(ab.inOrden());
-        
+        System.out.println(ab.postOrden());
     }
-    
+
 }

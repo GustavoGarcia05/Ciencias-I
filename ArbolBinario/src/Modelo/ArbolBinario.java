@@ -5,6 +5,10 @@
  */
 package Modelo;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 /**
  *
  * @author estudiantes
@@ -56,36 +60,107 @@ public class ArbolBinario {
         return true;
     }
 
-    public void preOrden() {
+    public void retirar() {
 
     }
 
-    /**
-     * recorre el arbol en inorden
-     */
-    public String inOrden() {
-        return inOrden(raiz, "");
-    }
-
-    /**
-     * recorre el arbol en inorden
-     */
-    public String inOrden(Nodo r, String arreglo) {
-        if (r != null) {
-            inOrden(r.izq, arreglo);
-            //System.out.print(r.info + ", ");
-            arreglo += r.info + ", ";
-            inOrden(r.der, arreglo);
+    public String preOrden() {
+        String arreglo = "";
+        Stack<Nodo> pila = new Stack<>();
+        Nodo nodo = raiz;
+        while (nodo != null) {
+            arreglo += nodo.info + ", ";
+            pila.add(nodo);
+            nodo = nodo.izq;
+        }
+        while (!pila.isEmpty()) {
+            nodo = pila.pop();
+            nodo = nodo.der;
+            while (nodo != null) {
+                arreglo += nodo.info + ", ";
+                pila.add(nodo);
+                nodo = nodo.izq;
+            }
         }
         return arreglo;
     }
 
-    public void postOrden() {
-
+    /**
+     * recorre el arbol en inorden
+     *
+     * @return un string con el recorrido del arbol
+     */
+    public String inOrden() {
+        String arreglo = "";
+        Stack<Nodo> pila = new Stack<>();
+        Nodo nodo = raiz;
+        while (nodo != null) {
+            pila.add(nodo);
+            nodo = nodo.izq;
+        }
+        while (!pila.isEmpty()) {
+            nodo = pila.pop();
+            arreglo += nodo.info + ", ";
+            nodo = nodo.der;
+            while (nodo != null) {
+                pila.add(nodo);
+                nodo = nodo.izq;
+            }
+        }
+        return arreglo;
     }
 
-    public void niveles() {
+    /**
+     * recorre el arbol en postOrden
+     *
+     * @return un string con el recorrido del arbol
+     */
+    public String postOrden() {
+        String arreglo = "";
+        Stack<Nodo> pila = new Stack<>();
+        Nodo nodo = raiz;
+        while (nodo != null) {
+            pila.add(nodo);
+            nodo = nodo.izq;
+        }
+        while (!pila.isEmpty()) {
+            if (nodo == null) {
+                nodo = new Nodo(0);
+            }
+            if (nodo.der != null) {
+                nodo = nodo.der;
+                while (nodo != null) {
+                    pila.add(nodo);
+                    nodo = nodo.izq;
+                }
+            } else {
+                nodo = pila.pop();
+                arreglo += nodo.info + ", ";
+            }
+        }
+        return arreglo;
+    }
 
+    /**
+     * recorre el arbol por niveles
+     *
+     * @return un string con el recorrido del arbol
+     */
+    public String niveles() {
+        String arreglo = "";
+        Queue<Nodo> cola = new LinkedList<>();
+        cola.add(raiz);
+        while (!cola.isEmpty()) {
+            Nodo nodo = cola.poll();
+            arreglo += nodo.info + ", ";
+            if (nodo.izq != null) {
+                cola.add(nodo.izq);
+            }
+            if (nodo.der != null) {
+                cola.add(nodo.der);
+            }
+        }
+        return arreglo;
     }
 
     public Nodo getRaiz() {
