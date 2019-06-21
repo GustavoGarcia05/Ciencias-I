@@ -54,17 +54,15 @@ public class Arbol {
         return false;
     }
 
-
     public void posicionLetra(char letra, String palabra) {
         System.out.println(posOrden.indexOf(letra));
     }
 // matriz para reconstruir
+
     /*
     video de donde sa que la idea para construir la matriz
     https://www.youtube.com/watch?v=KY_6Xduq8jc
-    */
-    
-    
+     */
     public void armandoMatrizInPre() {
         if (!verificarLongitudInYPos()) {
             return;
@@ -80,7 +78,7 @@ public class Arbol {
                 }
             }
         }
-        imprimirMatriz(matrizInPre);
+        //imprimirMatriz(matrizInPre);
 
     }
 
@@ -88,11 +86,11 @@ public class Arbol {
         if (!verificarLongitudInYPos()) {
             return;
         }
-        String posOrden="";
-        for(int i=this.posOrden.length()-1;i>=0;i--){
-            posOrden+=this.posOrden.charAt(i);
+        String posOrden = "";
+        for (int i = this.posOrden.length() - 1; i >= 0; i--) {
+            posOrden += this.posOrden.charAt(i);
         }
-        
+
         char[][] matrizInPos = new char[inOrden.length()][posOrden.length()];
 
         for (int i = 0; i < inOrden.length(); i++) {
@@ -104,10 +102,28 @@ public class Arbol {
                 }
             }
         }
+         imprimirMatriz(matrizInPos);
+    }
+
+    public void construirEnPOsorden() {
+        NodoArbol auxPos = raiz;
         
-        imprimirMatriz(matrizInPos);
         
-        
+           
+            
+            int posChar = inOrden.indexOf(posOrden.charAt(posOrden.length() - 1));
+            int posCharIzq = posChar - 1;
+            int posCharDer = posChar + 1;
+
+            while(!posOrden.isEmpty()){
+                if(auxPos==null){
+                    auxPos.info=posOrden.charAt(posChar);
+                }
+                
+                //posOrden.in;
+            }
+
+
 
     }
 
@@ -120,15 +136,11 @@ public class Arbol {
                 aux += " " + m[i][j];
             }
             System.out.println(aux);
-            //System.out.println("-----------------");
         }
     }
 
     public int tamanioLienzo() {
         return inOrden.length();
     }
-    
-    
-    
 
 }

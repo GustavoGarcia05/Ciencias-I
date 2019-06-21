@@ -24,6 +24,7 @@ public class prueba extends JFrame{
 
     TextArea ta= new TextArea(5, 30);
     JPanel p= new JPanel();
+    Lienzo l= new Lienzo();
     JScrollPane jsp= new JScrollPane(p);
     
     JButton b1 = new JButton("boton1");
@@ -50,7 +51,7 @@ public class prueba extends JFrame{
     public prueba() {
         p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
         setSize(800,600);
-        p.setSize(4000, 2000);
+        //p.setSize(4000, 2000);
         p.setBackground(Color.gray);
         agragarBotones();
         getContentPane().setPreferredSize(new Dimension(400, 100));

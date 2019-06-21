@@ -6,12 +6,12 @@ package modelo;
  */
 public class NodoArbol {
 
-    private char c;
-    private NodoArbol izq;
-    private NodoArbol der;
+    public char info;
+    public NodoArbol izq;
+    public NodoArbol der;
 
     public NodoArbol(char info) {
-        c = info;
+        this.info = info;
         izq = der = null;
     }
 

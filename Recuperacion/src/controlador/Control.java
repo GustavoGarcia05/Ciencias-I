@@ -59,16 +59,13 @@ public class Control implements ActionListener {
             if(!ab.verificarLongitudInYPos()){
                 JOptionPane.showMessageDialog(v, "el In-orden y el Pos-Orden no coinciden");
             }
-            //ab.armandoMatrizInPos();
-            
-            //v.getLienzo().setArbolAPintar(ab.armandoMatrizInPre());
-            v.getLienzo().paint(v.getLienzo().getGraphics());
-            
+            ab.armandoMatrizInPos();
             
             System.out.println("in: " + v.getCajaIn().getText());
             System.out.println("pos: " + v.getCajaPos().getText());
 
         }
+        //----------------------------------------------------------------
         if (e.getSource() == preOrden) {
 
             v.getCajaPre().setEditable(true);
