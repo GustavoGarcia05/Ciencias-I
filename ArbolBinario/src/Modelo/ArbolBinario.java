@@ -21,6 +21,12 @@ public class ArbolBinario {
         raiz = null;
     }
 
+    /**
+     * busca un dato dentro del arbol.
+     *
+     * @param dato. El dato que buscara en el arbol
+     * @return true si lo encuentra y false si no.
+     */
     public boolean buscar(int dato) {
         Nodo p = raiz;
         while (p != null) {
@@ -28,13 +34,20 @@ public class ArbolBinario {
                 p = p.der;
             } else if (p.info > dato) {
                 p = p.izq;
-            } else {
-                return false;
+            } else if (p.info == dato) {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
+    /**
+     * inserta un dato dentro del arbol, si el dato a insertar ya se encuentra
+     * dentro del arbol, no lo insertara.
+     *
+     * @param dato. El dato que insertara en el arbol
+     * @return true si lo inserta aducuadamente o false si no lo puede insertar.
+     */
     public boolean insertar(int dato) {
         Nodo nuevo = new Nodo(dato);
         if (raiz == null) {
@@ -60,10 +73,139 @@ public class ArbolBinario {
         return true;
     }
 
-    public void retirar() {
+    /**
+     * elimina un dato dentro del arbol, si el dato no se encuentra no eliminara
+     * nada.
+     *
+     * @param dato. El dato que eliminara en el arbol
+     * @return true si lo elimina, false si no.
+     */
+    public boolean retirar(int dato) {
+        Nodo padre = null, hijo = raiz;
 
+        while (hijo != null) {
+            if (hijo.info < dato) {
+                padre = hijo;
+                hijo = hijo.der;
+            } else if (hijo.info > dato) {
+                padre = hijo;
+                hijo = hijo.izq;
+            } else if (hijo.info == dato) {
+                borrarNodo(padre, hijo);
+                return true;
+            }
+        }
+        return false;
     }
 
+    /**
+     * dados un padre y un hijo, decide como borrar un nodo teniendo en cuenta
+     * si tiene cero hijos, uno o dos.
+     *
+     * @param padre. padre del nodo que se quiere eliminar
+     * @param hijo. hijo del nodo que se quiere eliminar
+     */
+    void borrarNodo(Nodo padre, Nodo hijo) {
+        if (hijo.izq == null && hijo.der == null) {
+            borrarNoHijos(padre, hijo);
+        } else if (hijo.izq != null && hijo.der != null) {
+            borrarDosHijos(padre, hijo);
+        } else {
+            borrarUnHijo(padre, hijo);
+        }
+    }
+
+    /**
+     * dados un padre y un hijo, elimina el hijo. esta funcion sirve cuando el
+     * nodo a eliminar no tiene hijos
+     *
+     * @param padre. padre del nodo que se quiere eliminar
+     * @param hijo. hijo del nodo que se quiere eliminar
+     */
+    void borrarNoHijos(Nodo padre, Nodo hijo) {
+        if (hijo == raiz) {
+            raiz = null;
+        } else if (padre.der == hijo) {
+            padre.der = null;
+        } else {
+            padre.izq = null;
+        }
+    }
+
+    /**
+     * dados un padre y un hijo, elimina el hijo. esta funcion sirve cuando el
+     * nodo a eliminar tiene dos hijos
+     *
+     * @param padre. padre del nodo que se quiere eliminar
+     * @param hijo. hijo del nodo que se quiere eliminar
+     */
+    void borrarUnHijo(Nodo padre, Nodo hijo) {
+        if (padre == null) {
+            if (hijo.der != null) {
+                System.out.println(" 5   " + hijo.info);
+                raiz = hijo.der;
+                hijo.der = null;
+                System.out.println(hijo.info);
+            } else {
+                raiz = hijo.izq;
+                hijo.izq = null;
+            }
+        } else if (padre.izq == hijo) {
+            if (hijo.izq != null) {
+                padre.izq = hijo.izq;
+            } else {
+                padre.izq = hijo.der;
+            }
+        } else {
+            if (hijo.izq != null) {
+                padre.der = hijo.izq;
+            } else {
+                padre.der = hijo.der;
+            }
+        }
+    }
+
+    /**
+     * dados un padre y un hijo, elimina el hijo. esta funcion sirve cuando el
+     * nodo a eliminar tiene dos hijos
+     *
+     * @param padre. padre del nodo que se quiere eliminar
+     * @param hijo. hijo del nodo que se quiere eliminar
+     *
+     * Problema: intercambia valores cuando borra, si se arregla eso, ya queda.
+     */
+    void borrarDosHijos(Nodo padre, Nodo hijo) {
+        Nodo padreRempl = hijo;
+        Nodo hijoRempl = hijo.der;
+        while (hijoRempl.izq != null) {
+            padreRempl = hijoRempl;
+            hijoRempl = hijoRempl.izq;
+        }
+        Nodo aux = hijoRempl;
+        if (hijoRempl.izq == null && hijoRempl.der == null) {
+            borrarNoHijos(padreRempl, hijoRempl);
+        } else {
+            borrarUnHijo(padreRempl, hijoRempl);
+        }
+        if (hijo != null) {
+            aux.der = hijo.der;
+            aux.izq = hijo.izq;
+        }
+        if (padre == null) {
+            raiz = aux;
+            System.out.println("raz" + raiz.info);
+        } else if (padre.der == hijo) {
+            padre.der = aux;
+        } else {
+            padre.izq = aux;
+        }
+    }
+
+    /**
+     * Recorre el arbol en pre-orden
+     *
+     * @return una string con el recorrido del arbol
+     */
     public String preOrden() {
         String arreglo = "";
         Stack<Nodo> pila = new Stack<>();
@@ -142,7 +284,7 @@ public class ArbolBinario {
     }
 
     /**
-     * recorre el arbol por niveles
+     * recorre el arbol por niveles Posee errores
      *
      * @return un string con el recorrido del arbol
      */
