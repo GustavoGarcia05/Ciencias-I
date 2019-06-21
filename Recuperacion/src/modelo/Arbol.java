@@ -37,7 +37,7 @@ public class Arbol {
     }
 
     public boolean verificarLongitudInYPre() {
-        if (inOrden.length() == posOrden.length()) {
+        if (inOrden.length() == preOrden.length()) {
             return true;
         }
         return false;
@@ -63,9 +63,9 @@ public class Arbol {
     video de donde sa que la idea para construir la matriz
     https://www.youtube.com/watch?v=KY_6Xduq8jc
      */
-    public void armandoMatrizInPre() {
-        if (!verificarLongitudInYPos()) {
-            return;
+    public char[][] armandoMatrizInPre() {
+        if (!verificarLongitudInYPre()) {
+            return null;
         }
         char[][] matrizInPre = new char[inOrden.length()][preOrden.length()];
 
@@ -78,13 +78,14 @@ public class Arbol {
                 }
             }
         }
-        //imprimirMatriz(matrizInPre);
+        imprimirMatriz(matrizInPre);
+        return matrizInPre;
 
     }
 
-    public void armandoMatrizInPos() {
+    public char[][] armandoMatrizInPos() {
         if (!verificarLongitudInYPos()) {
-            return;
+            return null;
         }
         String posOrden = "";
         for (int i = this.posOrden.length() - 1; i >= 0; i--) {
@@ -103,6 +104,7 @@ public class Arbol {
             }
         }
          imprimirMatriz(matrizInPos);
+         return matrizInPos;
     }
 
     public void construirEnPOsorden() {
@@ -132,7 +134,7 @@ public class Arbol {
         String aux;
         for (int i = 0; i < inOrden.length(); i++) {
             aux = "";
-            for (int j = 0; j < posOrden.length(); j++) {
+            for (int j = 0; j < inOrden.length(); j++) {
                 aux += " " + m[i][j];
             }
             System.out.println(aux);

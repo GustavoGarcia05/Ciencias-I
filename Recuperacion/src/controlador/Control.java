@@ -36,46 +36,64 @@ public class Control implements ActionListener {
         if (e.getSource() == posOrden) {
             String in;
             String pos;
-            
+
             v.getCajaPos().setEditable(true);
             v.getCajaPre().setEditable(false);
-            
-            in=v.getCajaIn().getText();
-            pos=v.getCajaPos().getText();
-            
-            if(in.equals("")|| pos.equals("")){
+
+            in = v.getCajaIn().getText();
+            pos = v.getCajaPos().getText();
+
+            if (in.equals("") || pos.equals("")) {
                 JOptionPane.showMessageDialog(v, "No existe arbol");
                 return;
             }
-            if(ab.verificarLetraRepetida(in)|| ab.verificarLetraRepetida(pos)){
+            if (ab.verificarLetraRepetida(in) || ab.verificarLetraRepetida(pos)) {
                 JOptionPane.showMessageDialog(v, "Existen letras repetidas");
                 return;
             }
-            
-            
+
             ab.recibirInOrden(in);
             ab.recibirPosOrden(pos);
-            
-            if(!ab.verificarLongitudInYPos()){
+
+            if (!ab.verificarLongitudInYPos()) {
                 JOptionPane.showMessageDialog(v, "el In-orden y el Pos-Orden no coinciden");
             }
-            ab.armandoMatrizInPos();
-            
-            System.out.println("in: " + v.getCajaIn().getText());
-            System.out.println("pos: " + v.getCajaPos().getText());
+            //ab.armandoMatrizInPos();
+            v.getLienzo().setArbol(ab.armandoMatrizInPos());
+            v.getLienzo().repaint();
+            v.getLienzo().paint(v.getLienzo().getGraphics());
 
         }
         //----------------------------------------------------------------
         if (e.getSource() == preOrden) {
+            String in;
+            String pre;
 
-            v.getCajaPre().setEditable(true);
             v.getCajaPos().setEditable(false);
+            v.getCajaPre().setEditable(true);
 
-            ab.recibirInOrden(v.getCajaIn().getText());
-            ab.recibirPreOrden(v.getCajaPre().getText());
+            in = v.getCajaIn().getText();
+            pre = v.getCajaPre().getText();
 
-            System.out.println("in: " + v.getCajaIn().getText());
-            System.out.println("pre: " + v.getCajaPre().getText());
+            if (in.equals("") || pre.equals("")) {
+                JOptionPane.showMessageDialog(v, "No existe arbol");
+                return;
+            }
+            if (ab.verificarLetraRepetida(in) || ab.verificarLetraRepetida(pre)) {
+                JOptionPane.showMessageDialog(v, "Existen letras repetidas");
+                return;
+            }
+
+            ab.recibirInOrden(in);
+            ab.recibirPreOrden(pre);
+
+            if (!ab.verificarLongitudInYPre()) {
+                JOptionPane.showMessageDialog(v, "el In-orden y el Pos-Orden no coinciden");
+            }
+            //ab.armandoMatrizInPos();
+            v.getLienzo().setArbol(ab.armandoMatrizInPre());
+            v.getLienzo().repaint();
+            v.getLienzo().paint(v.getLienzo().getGraphics());
 
         }
     }
