@@ -32,8 +32,8 @@ public class Launcher {
         a.armandoMatrizInPos();
         
         //new Ventana();
-        new prueba();
-        //new Control();
+        //new prueba();
+        new Control();
   
     }
 

@@ -43,6 +43,7 @@ public class Ventana extends JFrame {
     
     //-----lienzo-----
     private Lienzo lienzo= new Lienzo();
+    private Thread hilo;
     
     
     public Ventana() {
@@ -56,7 +57,6 @@ public class Ventana extends JFrame {
         
         getContentPane().add(panelArboles,BorderLayout.CENTER);
         getContentPane().add(panelBotones,BorderLayout.SOUTH);
-        
         //pack();
         setVisible(true);
     }
@@ -65,6 +65,8 @@ public class Ventana extends JFrame {
         //panelArboles.setSize(getWidth()-200, HEIGHT);
         panelArboles.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         panelArboles.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        hilo= new Thread(lienzo);
+        hilo.start();
         panelArboles.setViewportView(lienzo);
         
         //panelBotones.setBackground(Color.DARK_GRAY);
