@@ -55,9 +55,12 @@ public class Control implements ActionListener {
             ab.recibirInOrden(in);
             ab.recibirPosOrden(pos);
 
-            if (!ab.verificarLongitudInYPos()) {
+            if (!ab.verificarLongitudInYPos() || !ab.verificarLetras(in, pos)) {
                 JOptionPane.showMessageDialog(v, "el In-orden y el Pos-Orden no coinciden");
+                return;
             }
+            
+            System.out.println(ab.verificarLetras(in, pos));
             //ab.armandoMatrizInPos();
             v.getLienzo().setArbol(ab.armandoMatrizInPos());
             v.getLienzo().repaint();
@@ -87,8 +90,9 @@ public class Control implements ActionListener {
             ab.recibirInOrden(in);
             ab.recibirPreOrden(pre);
 
-            if (!ab.verificarLongitudInYPre()) {
-                JOptionPane.showMessageDialog(v, "el In-orden y el Pos-Orden no coinciden");
+            if (!ab.verificarLongitudInYPre()|| !ab.verificarLetras(in, pre)) {
+                JOptionPane.showMessageDialog(v, "el In-orden y el Pre-Orden no coinciden");
+                return;
             }
             //ab.armandoMatrizInPos();
             v.getLienzo().setArbol(ab.armandoMatrizInPre());

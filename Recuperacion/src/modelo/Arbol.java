@@ -106,27 +106,21 @@ public class Arbol {
          imprimirMatriz(matrizInPos);
          return matrizInPos;
     }
-
-    public void construirEnPOsorden() {
-        NodoArbol auxPos = raiz;
+    public boolean verificarLetras(String in, String otro){
+        boolean es=true;
         
         
-           
-            
-            int posChar = inOrden.indexOf(posOrden.charAt(posOrden.length() - 1));
-            int posCharIzq = posChar - 1;
-            int posCharDer = posChar + 1;
-
-            while(!posOrden.isEmpty()){
-                if(auxPos==null){
-                    auxPos.info=posOrden.charAt(posChar);
+        for(int i=0;i<in.length();i++){
+        boolean aux=false;
+            System.out.println("es:"+es);
+            for(int j=0;j<otro.length();j++){
+                if(in.charAt(j)==otro.charAt(i)){
+                    aux=true;
                 }
-                
-                //posOrden.in;
             }
-
-
-
+            es= es && aux;
+        }
+        return es;
     }
 
     //metodo auxiliar para imprimir
