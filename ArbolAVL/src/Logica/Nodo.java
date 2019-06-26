@@ -10,11 +10,12 @@ package Logica;
  * @author estudiantes
  */
 public class Nodo {
-
+    
     int info;
-    int balance;
     Nodo izq;
     Nodo der;
+    int balance;
+    int altura;
 
     public Nodo(int info) {
         this.info = info;

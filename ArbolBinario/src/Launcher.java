@@ -1,5 +1,6 @@
 
 import Modelo.ArbolBinario;
+import Vista.Ventana;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,6 +17,8 @@ public class Launcher {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        Ventana vent = new Ventana();
 
         ArbolBinario ab = new ArbolBinario();
         ab.insertar(5);
