@@ -21,7 +21,7 @@ public class Launcher {
         //Ventana vent = new Ventana();
         ArbolAVL avl = new ArbolAVL();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i <10; i++) {
             if (i % 2 == 0) {
                 avl.insertar(i);
             } else {
@@ -29,6 +29,9 @@ public class Launcher {
             }
         }
         System.out.println(avl.inOrden());
+        
+        System.out.println(avl.eliminar(-1));
+ 
+        System.out.println(avl.inOrden());
     }
-
 }

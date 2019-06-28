@@ -11,7 +11,8 @@ import java.util.Stack;
 
 /**
  * clase donde se implementa un arbol AVL. Los metodos insertar, eliminar, los
- * balanceos y las rotaciones son tomados de la pagina porcomputador.com
+ * balanceos y las rotaciones son tomados de la pagina porcomputador.com, pero
+ * modificados para asegurar su funcionamiento.
  *
  * @author estudiantes
  */
@@ -133,7 +134,7 @@ public class ArbolAVL {
     }
 
     /**
-     * Rotacion doble a la izquierda dado un nodo padre y un hijo
+     * Rotacion doble a la derecha dado un nodo padre y un hijo
      *
      * @param padre nodo padre o donde se produce el desbalanceo
      * @param hijo nodo hijo o rama donde se desbalanceo
@@ -217,9 +218,147 @@ public class ArbolAVL {
 
     /**
      * Elimina un nodo dado
+     *
+     * @param n valor a eliminar en el arbol
+     *
+     * @return 1 cuando la raiz es nula, 0 cuando se elimino el nodo y 2 cuando
+     * el nodo no se encuentra en el arbol
      */
-    public void eliminar(int dato) {
+    public int eliminar(int n) {
+        Stack pila = new Stack();
+        Nodo p, q, t, r;
+        int llave, accion;
 
+        int[] terminar = new int[1];        //para trabajar terminar por referencia
+
+        boolean encontro = false;
+
+        if (raiz == null) {
+            return 1;
+        }
+        terminar[0] = 0;
+
+        p = raiz;
+
+        /*busca el dato en el arbol. no se puede remplazar por el metodo buscar 
+        poque la direccion de p que se obtiene de este metodo se usa mas adelante */
+        while (!encontro && p != null) {
+            pila.push(p);
+            if (n < p.info) {
+                p = p.izq;
+            } else if (n > p.info) {
+                p = p.der;
+            } else {
+                encontro = true;
+            }
+        }
+
+        if (!encontro) {
+            return 2;
+        }
+        t = null;
+        p = (Nodo) pila.pop();
+        llave = p.info;
+        if (p.izq == null && p.der == null) {
+            accion = 0;
+        } else if (p.der == null) {
+            accion = 1;
+        } else if (p.izq == null) {
+            accion = 2;
+        } else {
+            accion = 3;
+        }
+        if (accion == 3 || accion == 1 || accion == 2) {
+            if (!pila.empty()) {
+                q = (Nodo) pila.pop();
+                if (llave < q.info) {
+                    switch (accion) {
+                        case 0:
+                        case 1:
+                            q.izq = p.izq;
+                            t = balanceoDerecha(q, terminar);
+                            break;
+                        case 2:
+                            q.izq = p.der;
+                            t = balanceoIzquierda(q, terminar);
+                            break;
+                    }
+                } else {
+                    switch (accion) {
+                        case 0:
+                        case 1:
+                            q.der = p.izq;
+                            t = balanceoIzquierda(q, terminar);
+                            break;
+                        case 2:
+                            q.der = p.der;
+                            t = balanceoIzquierda(q, terminar);
+                            break;
+                    }
+                }
+            } else {
+                switch (accion) {
+                    case 0:
+                        raiz = null;
+                        terminar[0] = 1;
+                        break;
+                    case 1:
+                        raiz = p.izq;
+                        break;
+                    case 2:
+                        raiz = p.der;
+                        break;
+                }
+            }
+        } else {
+            pila.push(p);
+            r = p;
+            p = r.der;
+            q = null;
+            while (p.izq != null) {
+                pila.push(p);
+                q = p;
+                p = p.izq;
+            }
+            llave = r.info = p.info;
+            if (q != null) {
+                q.izq = p.der;
+                t = balanceoDerecha(q, terminar);
+            } else {
+                r.der = p.der;
+                t = balanceoIzquierda(r, terminar);
+            }
+            q = (Nodo) pila.pop();
+        }
+        while (!pila.empty() && terminar[0] == 0) {
+            q = (Nodo) pila.pop();
+            if (llave < q.info) {
+                if (t != null) {
+                    q.izq = t;
+                    t = null;
+                }
+                t = balanceoDerecha(q, terminar);
+            } else {
+                if (t != null) {
+                    q.der = t;
+                    t = null;
+                }
+                t = balanceoIzquierda(q, terminar);
+            }
+        }
+        if (t != null) {
+            if (pila.empty()) {
+                raiz = t;
+            } else {
+                q = (Nodo) pila.pop();
+                if (llave < q.info) {
+                    q.izq = t;
+                } else {
+                    q.der = t;
+                }
+            }
+        }
+        return 0;
     }
 
     Nodo balanceoDerecha(Nodo q, int[] terminar) {
