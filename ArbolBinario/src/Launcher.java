@@ -1,6 +1,8 @@
 
 import Modelo.ArbolBinario;
-import Vista.Ventana;
+import Modelo.Nodo;
+import Vista.PanelArbol;
+import Vista.VentanaPrincipal;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,20 +20,22 @@ public class Launcher {
      */
     public static void main(String[] args) {
 
-        Ventana vent = new Ventana();
-
         ArbolBinario ab = new ArbolBinario();
         ab.insertar(5);
         ab.insertar(2);
         ab.insertar(10);
 
-        System.out.println(ab.inOrden());
+        /*        System.out.println(ab.inOrden());
         System.out.println("retiro: " + ab.retirar(5));
         System.out.println(ab.inOrden());
         System.out.println("retiro: " + ab.retirar(10));
         System.out.println("retiro: " + ab.retirar(2));
-        System.out.println(ab.inOrden());
+         */ System.out.println(ab.inOrden());
         ab.insertar(3);
         System.out.println(ab.inOrden());
+
+        VentanaPrincipal vent = new VentanaPrincipal();
+        Nodo raiz = ab.getRaiz();
+        System.out.println(ab.getRaiz().nodosCompletos(raiz));
     }
 }

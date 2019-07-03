@@ -20,4 +20,40 @@ public class Nodo {
         izq = null;
         der = null;
     }
+
+    public int nodosCompletos(Nodo n) {
+        if (n == null) {
+            return 0;
+        } else {
+            if (n.izq != null && n.der != null) {
+                return nodosCompletos(n.izq) + nodosCompletos(n.der) + 1;
+            }
+            return nodosCompletos(n.izq) + nodosCompletos(n.der);
+        }
+    }
+
+    public int getInfo() {
+        return info;
+    }
+
+    public void setInfo(int info) {
+        this.info = info;
+    }
+
+    public Nodo getIzq() {
+        return izq;
+    }
+
+    public void setIzq(Nodo izq) {
+        this.izq = izq;
+    }
+
+    public Nodo getDer() {
+        return der;
+    }
+
+    public void setDer(Nodo der) {
+        this.der = der;
+    }
+
 }
