@@ -58,7 +58,9 @@ public class ArbolBinario {
             recorrido = raiz;
             while (recorrido != null) {
                 anterior = recorrido;
-                if (dato < recorrido.info) {
+                if (recorrido.info == dato) {
+                    return false;
+                } else if (dato < recorrido.info) {
                     recorrido = recorrido.izq;
                 } else {
                     recorrido = recorrido.der;
@@ -257,7 +259,7 @@ public class ArbolBinario {
      *
      * @return un string con el recorrido del arbol
      */
-    public String postOrden() {
+    /*public String postOrden() {
         String arreglo = "";
         Stack<Nodo> pila = new Stack<>();
         Nodo nodo = raiz;
@@ -281,6 +283,27 @@ public class ArbolBinario {
             }
         }
         return arreglo;
+    }*/
+    public String postOrden() {
+        String arreglo = "";
+        Stack<Nodo> pila = new Stack<>();
+        Nodo nodo = raiz;
+        while (nodo != null) {
+            //arreglo += nodo.info + ", ";
+            pila.add(nodo);
+            nodo = nodo.izq;
+        }
+        while (!pila.isEmpty()) {
+            nodo = pila.pop();
+            nodo = nodo.der;
+            arreglo += nodo.info + ", ";
+            while (nodo != null) {
+                pila.add(nodo);
+                arreglo += nodo.info + ", ";
+                nodo = nodo.izq;
+            }
+        }
+        return arreglo;
     }
 
     /**
@@ -291,7 +314,9 @@ public class ArbolBinario {
     public String niveles() {
         String arreglo = "";
         Queue<Nodo> cola = new LinkedList<>();
-        cola.add(raiz);
+        if (raiz != null) {
+            cola.add(raiz);
+        }
         while (!cola.isEmpty()) {
             Nodo nodo = cola.poll();
             arreglo += nodo.info + ", ";

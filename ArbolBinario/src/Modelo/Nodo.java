@@ -15,12 +15,24 @@ public class Nodo {
     Nodo izq;
     Nodo der;
 
+    /**
+     * Constructor de la clase Nodo
+     *
+     * @param dato sera el valor que se guarde en el atributo info.
+     */
     public Nodo(int dato) {
         info = dato;
         izq = null;
         der = null;
     }
 
+    /**
+     * Metodo necesario para graficar el arbol
+     *
+     * @param ´n no me acuerdo para que se necesita
+     *
+     * @return algo que tampoco me acuerdo
+     */
     public int nodosCompletos(Nodo n) {
         if (n == null) {
             return 0;
