@@ -24,14 +24,10 @@ public class PanelArbol extends JPanel {
     public static final int ANCHO = 50;
 
     public PanelArbol() {
-        objArbol.insertar(5);
-        objArbol.insertar(22);
-        objArbol.insertar(10);
-        objArbol.insertar(19);
-        objArbol.insertar(15);
-        objArbol.insertar(17);
-        objArbol.insertar(14);
-        objArbol.insertar(12);
+    }
+
+    public PanelArbol(ArbolBinario arbol) {
+        objArbol = arbol;
     }
 
     @Override
