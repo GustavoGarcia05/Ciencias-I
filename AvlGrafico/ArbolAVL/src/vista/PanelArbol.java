@@ -38,13 +38,16 @@ public class PanelArbol extends JPanel{
 
     private void pintar(Graphics g, int x, int y, Nodo nod) {
         if (nod != null) {
-            if(nod.balance==1){
+            int balance=nod.balance;
+            System.out.println("dato: "+nod.dato+" balance: "+balance);
+            
+            if(balance==1){
                 g.setColor(Color.red);
             }
-            if(nod.balance==-1){
+            if(balance==-1){
                 g.setColor(Color.blue);
             }
-            if(nod.balance==0){
+            if(balance==0){
                 g.setColor(Color.black);
             }
             int EXTRA = nod.nodosCompletos(nod) * (ANCHO / 2);

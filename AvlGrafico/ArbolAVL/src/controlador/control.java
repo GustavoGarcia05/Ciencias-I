@@ -24,6 +24,7 @@ public class control implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==v.getInsertar()){
             v.getAbAVL().insertar(Integer.parseInt(v.getCinsertar().getText()));
+            v.getCinsertar().setText("");
         }
         if(e.getSource()==v.getRetirar()){
             System.out.println("hy");

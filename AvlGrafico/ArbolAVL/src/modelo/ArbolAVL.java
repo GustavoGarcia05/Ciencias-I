@@ -32,7 +32,7 @@ public class ArbolAVL {
         }
     }
 
-    //obtener factor de equilibrio
+    //obtener factor de equilibrio. regresa -1 cuando el nodo el nulo.
     public int obtenerBalace(Nodo x) {
         if (x == null) {
             return -1;
@@ -76,8 +76,8 @@ public class ArbolAVL {
         temporal = rotacionDer(c);
         return temporal;
     }
-    //Metodo para insertar nodo
 
+    //Metodo para insertar nodo
     public Nodo insertarAVL(Nodo nuevo, Nodo subAr) {
         Nodo nuevoPadre = subAr;
         if (nuevo.dato < subAr.dato) {
@@ -85,7 +85,7 @@ public class ArbolAVL {
                 subAr.izq = nuevo;
             } else {
                 subAr.izq = insertarAVL(nuevo, subAr.izq);
-                if ((obtenerBalace(subAr.izq) - obtenerBalace(subAr.der) == 2)) {
+                if ((obtenerBalace(subAr.izq) - obtenerBalace(subAr.der)) == 2) {
                     if (nuevo.dato < subAr.izq.dato) {
                         nuevoPadre = rotacionIzq(subAr);
                     } else {
@@ -98,7 +98,7 @@ public class ArbolAVL {
                 subAr.der = nuevo;
             } else {
                 subAr.der = insertarAVL(nuevo, subAr.der);
-                if ((obtenerBalace(subAr.der) - obtenerBalace(subAr.izq) == 2)) {
+                if ((obtenerBalace(subAr.der) - obtenerBalace(subAr.izq)) == 2) {
                     if (nuevo.dato > subAr.der.dato) {
                         nuevoPadre = rotacionDer(subAr);
                     } else {
@@ -120,14 +120,14 @@ public class ArbolAVL {
 
         return nuevoPadre;
     }
-    
+
     //Metodo insertar
-    public void insertar(int d){
-        Nodo nuevo= new Nodo(d);
-        if(raiz==null){
-            raiz=nuevo;
-        }else{
-            raiz=insertarAVL(nuevo, raiz);
+    public void insertar(int d) {
+        Nodo nuevo = new Nodo(d);
+        if (raiz == null) {
+            raiz = nuevo;
+        } else {
+            raiz = insertarAVL(nuevo, raiz);
         }
     }
 }

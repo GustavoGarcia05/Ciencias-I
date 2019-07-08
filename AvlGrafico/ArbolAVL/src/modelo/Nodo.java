@@ -11,14 +11,14 @@ package modelo;
  */
 public class Nodo {
     public int dato, balance;
-    public Nodo izq,der; 
+    public Nodo izq,der,padre; 
 
  
 
     public Nodo(int dato) {
         this.dato = dato;
         balance=0;
-        izq=der=null;
+        izq=der=padre=null;
     }
     
     public int nodosCompletos(Nodo n) {
