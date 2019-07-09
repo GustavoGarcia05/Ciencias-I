@@ -5,9 +5,8 @@
  */
 package Modelo;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.awt.List;
+import java.util.*;
 
 /**
  *
@@ -255,11 +254,11 @@ public class ArbolBinario {
     }
 
     /**
-     * recorre el arbol en postOrden
+     * recorre el arbol en postOrden, tiene errores esta mierda
      *
      * @return un string con el recorrido del arbol
      */
-    /*public String postOrden() {
+    public String postOrdenFail() {
         String arreglo = "";
         Stack<Nodo> pila = new Stack<>();
         Nodo nodo = raiz;
@@ -283,27 +282,43 @@ public class ArbolBinario {
             }
         }
         return arreglo;
-    }*/
+    }
+
+    /**
+     * Este método recorre el árbol mediante el recorrido POSTORDEN y almacena
+     * cada elemento en una lista que se convierte en un String al terminar el
+     * recorrido y lo retorna. Basado en un codigo que encontramos que trabajaba
+     * con plantllas
+     *
+     * @return lista un arreglo con el recorrido postOrden del contenido del
+     * arbol.
+     */
     public String postOrden() {
         String arreglo = "";
-        Stack<Nodo> pila = new Stack<>();
-        Nodo nodo = raiz;
-        while (nodo != null) {
-            //arreglo += nodo.info + ", ";
-            pila.add(nodo);
-            nodo = nodo.izq;
-        }
-        while (!pila.isEmpty()) {
-            nodo = pila.pop();
-            nodo = nodo.der;
-            arreglo += nodo.info + ", ";
-            while (nodo != null) {
-                pila.add(nodo);
-                arreglo += nodo.info + ", ";
-                nodo = nodo.izq;
+        ArrayList<String> lista = new ArrayList<String>();
+        Nodo nodo = this.getRaiz();
+        Stack<Nodo> pila1 = new Stack<>();
+        Stack<Boolean> pila2 = new Stack<>();
+
+        while ((nodo != null) || !pila1.empty()) {
+
+            if (nodo != null) {
+                pila1.push(nodo);
+                pila2.push(true);
+                nodo = nodo.getIzq();
+            } else {
+                nodo = pila1.pop();
+                if (pila2.pop()) {
+                    pila1.push(nodo);
+                    pila2.push(false);
+                    nodo = nodo.getDer();
+                } else {
+                    lista.add(Integer.toString(nodo.getInfo()));
+                    nodo = null;
+                }
             }
         }
-        return arreglo;
+        return lista.toString();
     }
 
     /**
