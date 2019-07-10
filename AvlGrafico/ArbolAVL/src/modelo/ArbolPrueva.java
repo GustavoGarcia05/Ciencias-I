@@ -70,6 +70,7 @@ public class ArbolPrueva {
             } else if (p.padre.balance == 2 && p.balance == -1) {
                 rotacionDobleDerecha(p.padre, p);
             }
+            raiz.balance = factorBalance(raiz);
         }
 
     }
@@ -121,17 +122,20 @@ public class ArbolPrueva {
      * @param hijo nodo hijo o rama donde se desbalanceo
      */
     public void rotacionSimpleDerecha(Nodo padre, Nodo hijo) {
-//        Nodo abuelo = padre.padre;
+        Nodo abuelo = padre.padre;
         padre.izq = hijo.der;
         hijo.der = padre;
-        /* Posible rotacion 
+//        Posible rotacion 
         if (padre.padre == null) { // asignacion de raiz  a la rotacion
             raiz = hijo;
+        }else if(abuelo.izq == padre){            
+            abuelo.izq = hijo;
+        }else if(abuelo.der == padre){            
+            abuelo.der = hijo;
         }
-        abuelo.izq = hijo;
         hijo.padre = padre.padre;
         padre.padre = hijo;
-        */
+        
         padre.balance = factorBalance(padre);
         hijo.balance = factorBalance(hijo);
         System.out.println("new balance padre: " + padre.balance);
@@ -144,11 +148,25 @@ public class ArbolPrueva {
      * @param padre nodo padre o donde se produce el desbalanceo
      * @param hijo nodo hijo o rama donde se desbalanceo
      */
-    public void rotacionSimpleIzquierda(Nodo padre, Nodo hijo) {
-        padre.balance = 0;
-        hijo.balance = 0;
+    public void rotacionSimpleIzquierda(Nodo padre, Nodo hijo) {        
+        Nodo abuelo = padre.padre;
         padre.der = hijo.izq;
         hijo.izq = padre;
+//        Posible rotacion 
+        if (padre.padre == null) { // asignacion de raiz  a la rotacion
+            raiz = hijo;
+        }else if(abuelo.izq == padre){            
+            abuelo.izq = hijo;
+        }else if(abuelo.der == padre){            
+            abuelo.der = hijo;
+        }
+        hijo.padre = padre.padre;
+        padre.padre = hijo;
+        
+        padre.balance = factorBalance(padre);
+        hijo.balance = factorBalance(hijo);
+        System.out.println("new balance padre: " + padre.balance);
+        System.out.println("new balance hijo: " + hijo.balance);
     }
 
     /**
