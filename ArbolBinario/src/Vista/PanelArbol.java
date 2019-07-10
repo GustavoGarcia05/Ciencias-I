@@ -36,19 +36,39 @@ public class PanelArbol extends JPanel {
         pintar(g, getWidth() / 2, 20, objArbol.getRaiz());
     }
 
+    /**
+     * Metodo recursivo
+     */
     private void pintar(Graphics g, int x, int y, Nodo nod) {
         if (nod != null) {
             int EXTRA = nod.nodosCompletos(nod) * (ANCHO / 2);
             g.drawOval(x, y, DIAMETRO, DIAMETRO);
             g.drawString(Integer.toString(nod.getInfo()), x + 12, y + 18);
             if (nod.getIzq() != null) {
-                g.drawLine(x + RADIO, y + RADIO, x - ANCHO - EXTRA + RADIO, y + ANCHO + RADIO);
+                if (x - ANCHO - EXTRA + RADIO < x) {
+                    g.drawLine(x + RADIO, y + RADIO, (x - 2 * ANCHO - EXTRA + RADIO), y + ANCHO + RADIO);
+                    pintar(g, (x - 2*ANCHO - EXTRA), y + ANCHO, nod.getIzq());
+                    //pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.getDer());
+
+                } else {
+                    g.drawLine(x + RADIO, y + RADIO, (x - ANCHO - EXTRA + RADIO), y + ANCHO + RADIO);
+                    pintar(g, (x - ANCHO - EXTRA), y + ANCHO, nod.getIzq());
+                    //pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.getDer());
+                }
             }
             if (nod.getDer() != null) {
-                g.drawLine(x + RADIO, y + RADIO, x + ANCHO + EXTRA + RADIO, y + ANCHO + RADIO);
+                if (x + ANCHO + EXTRA + RADIO > x) {
+                    g.drawLine(x + RADIO, y + RADIO, x + 2 * ANCHO + EXTRA + RADIO, y + ANCHO + RADIO);
+                    //pintar(g, (x - ANCHO - EXTRA), y + ANCHO, nod.getIzq());
+                    pintar(g, x + 2*ANCHO + EXTRA, y + ANCHO, nod.getDer());
+                } else {
+                    g.drawLine(x + RADIO, y + RADIO, x + ANCHO + EXTRA + RADIO, y + ANCHO + RADIO);
+                   //pintar(g, (x - ANCHO - EXTRA), y + ANCHO, nod.getIzq());
+                    pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.getDer());
+                }
             }
-            pintar(g, x - ANCHO - EXTRA, y + ANCHO, nod.getIzq());
-            pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.getDer());
+            // pintar(g, (x - ANCHO - EXTRA), y + ANCHO, nod.getIzq());
+            // pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.getDer());
         }
     }
 
@@ -57,4 +77,11 @@ public class PanelArbol extends JPanel {
         repaint();
     }
 
+    public int altura(Nodo n) {
+        if (n == null) {
+            return 0;
+        } else {
+            return 1 + (Math.max(altura(n.getIzq()), altura(n.getDer())));
+        }
+    }
 }

@@ -29,9 +29,9 @@ public class Nodo {
     /**
      * Metodo necesario para graficar el arbol
      *
-     * @param ´n no me acuerdo para que se necesita
+     * @param n no me acuerdo para que se necesita
      *
-     * @return algo que tampoco me acuerdo
+     * @return la cantidad de hijos del nodo que recibe
      */
     public int nodosCompletos(Nodo n) {
         if (n == null) {

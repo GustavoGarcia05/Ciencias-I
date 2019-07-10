@@ -86,7 +86,6 @@ public class ArbolPrueva {
         } else {
             return 1 + (Math.max(altura(n.izq), altura(n.der)));
         }
-
     }
 
     public void rotarIzq(Nodo n) {

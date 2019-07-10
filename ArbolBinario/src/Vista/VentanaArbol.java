@@ -26,6 +26,7 @@ public class VentanaArbol extends JFrame {
     /**
      * Constructor de la clase VentanaArbol, define las caracteristicas de la
      * ventana e instancia el panel donde se pinta el grafo
+     * @param arbol no me acuerdo que hace
      */
     public VentanaArbol(ArbolBinario arbol) {
 

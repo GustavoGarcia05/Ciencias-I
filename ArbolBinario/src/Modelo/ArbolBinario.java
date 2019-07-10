@@ -345,6 +345,14 @@ public class ArbolBinario {
         return arreglo;
     }
 
+    public int altura(Nodo n) {
+        if (n == null) {
+            return 0;
+        } else {
+            return 1 + (Math.max(altura(n.izq), altura(n.der)));
+        }
+    }
+
     public Nodo getRaiz() {
         return raiz;
     }
