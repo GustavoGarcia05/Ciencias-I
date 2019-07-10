@@ -60,17 +60,31 @@ public class ArbolPrueva {
 //            System.out.println("p balance " + p.balance);
             System.out.println("p padre balance " + p.padre.balance);
 //            System.out.println("nuevo " + nuevo.padre.dato);
-            if (p.padre.balance == -2 && p.balance == -1) {
-                rotacionSimpleIzquierda(p.padre, p);
-            } else if (p.padre.balance == 2 && p.balance == 1) {
-                rotacionSimpleDerecha(p.padre, p);
-                System.out.println(p.dato);
-            } else if (p.padre.balance == -2 && p.balance == 1) {
-                rotacionDobleIzquierda(p.padre, p);
-            } else if (p.padre.balance == 2 && p.balance == -1) {
-                rotacionDobleDerecha(p.padre, p);
+
+            balancearArbol(p);
+            System.out.println("p: " + p.dato);
+            System.out.println("padre: " + p.padre.dato);
+            System.out.println("-----------------------");
+            if (p.padre != null) {
+                balancearArbol(p.padre);
             }
+            //balancearArbol(raiz);
             raiz.balance = factorBalance(raiz);
+        }
+
+    }
+
+    public void balancearArbol(Nodo p) {
+
+        if (p.padre.balance == -2 && p.balance == -1) {
+            rotacionSimpleIzquierda(p.padre, p);
+        } else if (p.padre.balance == 2 && p.balance == 1) {
+            rotacionSimpleDerecha(p.padre, p);
+            System.out.println(p.dato);
+        } else if (p.padre.balance == -2 && p.balance == 1) {
+            rotacionDobleIzquierda(p.padre, p);
+        } else if (p.padre.balance == 2 && p.balance == -1) {
+            rotacionDobleDerecha(p.padre, p);
         }
 
     }
@@ -90,27 +104,6 @@ public class ArbolPrueva {
         }
     }
 
-    public void rotarIzq(Nodo n) {
-        Nodo temp = n;
-
-        n = temp.der;
-        temp.der = n.izq;
-
-        n.izq = temp;
-    }
-
-    public void rotarDer(Nodo n) {
-        System.out.println(" rot simple der");
-    }
-
-    public void rotarIzq_Der(Nodo n) {
-        System.out.println(" rot simple izq der");
-    }
-
-    public void rotarDer_Izq(Nodo n) {
-        System.out.println(" rot simple der izq");
-    }
-
     public Nodo getRaiz() {
         return raiz;
     }
@@ -128,14 +121,14 @@ public class ArbolPrueva {
 //        Posible rotacion 
         if (padre.padre == null) { // asignacion de raiz  a la rotacion
             raiz = hijo;
-        }else if(abuelo.izq == padre){            
+        } else if (abuelo.izq == padre) {
             abuelo.izq = hijo;
-        }else if(abuelo.der == padre){            
+        } else if (abuelo.der == padre) {
             abuelo.der = hijo;
         }
         hijo.padre = padre.padre;
         padre.padre = hijo;
-        
+
         padre.balance = factorBalance(padre);
         hijo.balance = factorBalance(hijo);
         System.out.println("new balance padre: " + padre.balance);
@@ -148,21 +141,21 @@ public class ArbolPrueva {
      * @param padre nodo padre o donde se produce el desbalanceo
      * @param hijo nodo hijo o rama donde se desbalanceo
      */
-    public void rotacionSimpleIzquierda(Nodo padre, Nodo hijo) {        
+    public void rotacionSimpleIzquierda(Nodo padre, Nodo hijo) {
         Nodo abuelo = padre.padre;
         padre.der = hijo.izq;
         hijo.izq = padre;
 //        Posible rotacion 
         if (padre.padre == null) { // asignacion de raiz  a la rotacion
             raiz = hijo;
-        }else if(abuelo.izq == padre){            
+        } else if (abuelo.izq == padre) {
             abuelo.izq = hijo;
-        }else if(abuelo.der == padre){            
+        } else if (abuelo.der == padre) {
             abuelo.der = hijo;
         }
         hijo.padre = padre.padre;
         padre.padre = hijo;
-        
+
         padre.balance = factorBalance(padre);
         hijo.balance = factorBalance(hijo);
         System.out.println("new balance padre: " + padre.balance);
@@ -175,14 +168,14 @@ public class ArbolPrueva {
      * @param padre nodo padre o donde se produce el desbalanceo
      * @param hijo nodo hijo o rama donde se desbalanceo
      */
-    public void rotacionDobleDerecha(Nodo padre, Nodo hijo) {        
+    public void rotacionDobleDerecha(Nodo padre, Nodo hijo) {
         hijo.der.izq = hijo;
         hijo.der.padre = hijo.padre;
         padre.izq = hijo.der;
         hijo.padre = hijo.padre.izq;
         hijo.der = null;
         rotacionSimpleDerecha(padre, padre.izq);
-        hijo.balance = factorBalance(hijo);        
+        hijo.balance = factorBalance(hijo);
     }
 
     /**
@@ -199,29 +192,7 @@ public class ArbolPrueva {
         hijo.izq = null;
         rotacionSimpleIzquierda(padre, padre.der);
         hijo.balance = factorBalance(hijo);
-        /*
-        Nodo r;
-        r = hijo.izq;
-        hijo.izq = r.der;
-        r.der = hijo;
-        padre.der = r.izq;
-        r.izq = padre;
-        switch (r.balance) {
-            case -1:
-                hijo.balance = 0;
-                padre.balance = 1;
-                break;
-            case 0:
-                hijo.balance = padre.balance = 0;
-                break;
-            case 1:
-                hijo.balance = -1;
-                padre.balance = 0;
-                break;
-        }
-        r.balance = 0;
-        return r;
-        */
+
     }
 
 }

@@ -40,7 +40,7 @@ public class Ventana extends JFrame {
     
 
     public Ventana() {
-        setExtendedState(MAXIMIZED_BOTH);
+        //setExtendedState(MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(800, 600));
         setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -25,6 +25,9 @@ public class control implements ActionListener{
         if(e.getSource()==v.getInsertar()){
             v.getAbAVL().insertar(Integer.parseInt(v.getCinsertar().getText()));
             v.getCinsertar().setText("");
+            
+            v.getLienzo().setObjArbol(v.getAbAVL());
+            v.getArbol().setViewportView(v.getLienzo());
         }
         if(e.getSource()==v.getRetirar()){
             System.out.println("hy");
