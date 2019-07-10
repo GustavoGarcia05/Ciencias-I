@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import modelo.ArbolAVL;
+import modelo.ArbolPrueva;
 
 /**
  *
@@ -23,7 +24,7 @@ import modelo.ArbolAVL;
 public class Ventana extends JFrame {
 
     control c= new control(this);
-    ArbolAVL abAVL= new ArbolAVL();
+    ArbolPrueva abAVL= new ArbolPrueva();
     
     JPanel botones = new JPanel();
     PanelArbol lienzo = new PanelArbol();
@@ -63,7 +64,7 @@ public class Ventana extends JFrame {
         
     }
 
-    public ArbolAVL getAbAVL() {
+    public ArbolPrueva getAbAVL() {
         return abAVL;
     }
     

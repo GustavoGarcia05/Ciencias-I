@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 import modelo.ArbolAVL;
+import modelo.ArbolPrueva;
 import modelo.Nodo;
 
 /**
@@ -16,13 +17,13 @@ import modelo.Nodo;
  * @author Gustavo
  */
 public class PanelArbol extends JPanel{
-    private ArbolAVL arbolAVL;
+    private ArbolPrueva arbolAVL;
     
     public static final int DIAMETRO = 30;
     public static final int RADIO = DIAMETRO / 2;
     public static final int ANCHO = 50;
 
-    public PanelArbol(ArbolAVL arbolAVL) {
+    public PanelArbol(ArbolPrueva arbolAVL) {
         this.arbolAVL = arbolAVL;
     }
 
@@ -33,7 +34,7 @@ public class PanelArbol extends JPanel{
 @Override
     public void paint(Graphics g) {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
-        pintar(g, getWidth() / 2, 20, arbolAVL.raiz);
+        pintar(g, getWidth() / 2, 20, arbolAVL.getRaiz());
     }
 
     private void pintar(Graphics g, int x, int y, Nodo nod) {
@@ -65,7 +66,7 @@ public class PanelArbol extends JPanel{
         }
     }
 
-    public void setObjArbol(ArbolAVL objArbol) {
+    public void setObjArbol(ArbolPrueva objArbol) {
         this.arbolAVL = objArbol;
         repaint();
     }

@@ -20,7 +20,7 @@ public class ArbolAVL {
 
     Nodo raiz;
 
-    
+     
     //prueba 
     public ArbolAVL() {
         this.raiz = null;
