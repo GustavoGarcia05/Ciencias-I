@@ -175,13 +175,26 @@ public class ArbolPrueva {
      * @param padre nodo padre o donde se produce el desbalanceo
      * @param hijo nodo hijo o rama donde se desbalanceo
      */
-    public Nodo rotacionDobleDerecha(Nodo padre, Nodo hijo) {
-
-        Nodo r;
-
+//    public Nodo rotacionDobleDerecha(Nodo padre, Nodo hijo) {
+    public void rotacionDobleDerecha(Nodo padre, Nodo hijo) {
+        
+        Nodo aux;
+        /*
         r = hijo.der;
         hijo.der = r.izq;
         r.izq = hijo;
+        */
+        hijo.der.izq = hijo;
+        hijo.der.padre = hijo.padre;
+        padre.izq = hijo.der;
+        hijo.padre = hijo.padre.izq;
+        hijo.der = null;        
+//        aux = hijo;
+//        padre.izq = hijo.der;
+//        padre.izq.der = aux;
+        rotacionSimpleDerecha(padre, padre.izq);
+        hijo.balance = factorBalance(hijo);
+        /*
         padre.izq = r.der;
         r.der = padre;
         switch (r.balance) {
@@ -199,6 +212,7 @@ public class ArbolPrueva {
         }
         r.balance = 0;
         return r;
+        */
     }
 
     /**
