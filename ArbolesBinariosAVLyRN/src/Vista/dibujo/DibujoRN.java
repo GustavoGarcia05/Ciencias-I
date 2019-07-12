@@ -15,12 +15,10 @@ import javax.swing.JPanel;
  *
  * @author Gustavo
  */
-public class DibujoRN extends JPanel{
-    
-    
-    
+public class DibujoRN extends JPanel {
+
     private ArbolRN arbolAVL;
-    
+
     public static final int DIAMETRO = 30;
     public static final int RADIO = DIAMETRO / 2;
     public static final int ANCHO = 50;
@@ -30,10 +28,10 @@ public class DibujoRN extends JPanel{
     }
 
     public DibujoRN() {
- 
+
     }
 
-@Override
+    @Override
     public void paint(Graphics g) {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
         pintar(g, getWidth() / 2, 20, arbolAVL.raiz);
@@ -41,15 +39,6 @@ public class DibujoRN extends JPanel{
 
     private void pintar(Graphics g, int x, int y, NodoRN nod) {
         if (nod != null) {
-            if(nod.balance==1){
-                g.setColor(Color.red);
-            }
-            if(nod.balance==-1){
-                g.setColor(Color.blue);
-            }
-            if(nod.balance==0){
-                g.setColor(Color.black);
-            }
             int EXTRA = nod.nodosCompletos(nod) * (ANCHO / 2);
             g.drawOval(x, y, DIAMETRO, DIAMETRO);
             g.drawString(Integer.toString(nod.dato), x + 12, y + 18);
@@ -69,5 +58,5 @@ public class DibujoRN extends JPanel{
         this.arbolAVL = objArbol;
         repaint();
     }
-    
+
 }
