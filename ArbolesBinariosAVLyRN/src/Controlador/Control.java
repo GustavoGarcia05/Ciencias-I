@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.Integer;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,8 +27,9 @@ public class Control implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == v.getInsertar()) {
-            Object numero=Integer.parseInt(v.getCajaInsertar().getText());
-            if(!numero.equals(Integer)){
+
+            if (!isInteger(v.getCajaInsertar().getText())) {
+                JOptionPane.showMessageDialog(null, "No es un numero");
                 return;
             }
             v.getArbolAVL().insertar(Integer.parseInt(v.getCajaInsertar().getText()));
@@ -39,10 +41,15 @@ public class Control implements ActionListener {
             dibujarRN();
 
         }
-        
-        if(e.getSource()== v.getRetirar()){
+
+        if (e.getSource() == v.getRetirar()) {
+
+            if (!isInteger(v.getCajaRetirar().getText())) {
+                JOptionPane.showMessageDialog(null, "No es un numero");
+                return;
+            }
             v.getArbolAVL().retirar(Integer.parseInt(v.getCajaRetirar().getText()));
-            
+
             v.getCajaRetirar().setText("");
             dibujarAVL();
         }
@@ -60,6 +67,15 @@ public class Control implements ActionListener {
         v.getDibujoRN().setObjArbol(v.getArbolRN());
         v.getPanelRN().setViewportView(v.getDibujoRN());
 
+    }
+
+    private boolean isInteger(String numero) {
+        try {
+            Integer.parseInt(numero);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
 }
