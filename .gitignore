@@ -331,4 +331,9 @@ ASALocalRun/
 /Listas/dist/
 /Recuperacion/nbproject/private/
 /Recuperacion/build/
+<<<<<<< HEAD
 /ArbolAVL/dist/
+=======
+/ArbolesBinariosAVLyRN/build/
+/ArbolesBinariosAVLyRN/nbproject/private/
+>>>>>>> Gustavo
