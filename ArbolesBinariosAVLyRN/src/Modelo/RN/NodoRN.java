@@ -11,12 +11,12 @@ package Modelo.RN;
  */
 public class NodoRN {
 
-    public int dato;
-    boolean color; //r es rojo y n es negro
-    public NodoRN padre, izq, der;
+    public int dato, balance;
+    public NodoRN izq, der;
 
     public NodoRN(int dato) {
         this.dato = dato;
+        balance = 0;
         izq = der = null;
     }
 

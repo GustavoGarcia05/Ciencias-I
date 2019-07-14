@@ -28,27 +28,15 @@ public class Control implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == v.getInsertar()) {
 
-<<<<<<< HEAD
-=======
             if (!isInteger(v.getCajaInsertar().getText())) {
                 JOptionPane.showMessageDialog(null, "No es un numero");
                 return;
             }
->>>>>>> Gustavo
             v.getArbolAVL().insertar(Integer.parseInt(v.getCajaInsertar().getText()));
             v.getArbolRN().insertar(Integer.parseInt(v.getCajaInsertar().getText()));
 
             v.getCajaInsertar().setText("");
 
-<<<<<<< HEAD
-            v.getDibujoAVL().setObjArbol(v.getArbolAVL());
-            v.getPanelAVL().setViewportView(v.getDibujoAVL());
-
-            /*  v.getDibujoRN().setObjArbol(v.getArbolRN());
-            v.getPanelRN().setViewportView(v.getDibujoRN());
-            
-             */
-=======
             dibujarAVL();
             dibujarRN();
 
@@ -87,7 +75,6 @@ public class Control implements ActionListener {
             return true;
         } catch (NumberFormatException e) {
             return false;
->>>>>>> Gustavo
         }
     }
 
