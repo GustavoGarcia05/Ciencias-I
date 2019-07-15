@@ -1,4 +1,5 @@
 
+import Modelo.RN.ArbolRN;
 import Vista.Ventana;
 
 /*
@@ -6,7 +7,6 @@ import Vista.Ventana;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Gustavo
@@ -18,7 +18,15 @@ public class Launcher {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new Ventana();
+        //new Ventana();
+        ArbolRN prueba = new ArbolRN();
+        
+        prueba.insertar(0);
+//        prueba.insertar(2);
+//        prueba.insertar(4);
+        
+        System.out.println(prueba.eliminar(prueba.getRaiz(), 0));
+        System.out.println(prueba.getRaiz().llave);
     }
-    
+
 }
