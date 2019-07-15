@@ -10,16 +10,17 @@ package Modelo.AVL;
  * @author Gustavo
  */
 public class NodoAVL {
+        public int dato, balance;
+    public NodoAVL izq,der; 
 
-    public int dato, balance;
-    public NodoAVL izq, der;
+ 
 
     public NodoAVL(int dato) {
         this.dato = dato;
-        balance = 0;
-        izq = der = null;
+        balance=0;
+        izq=der=null;
     }
-
+    
     public int nodosCompletos(NodoAVL n) {
         if (n == null) {
             return 0;
@@ -30,5 +31,5 @@ public class NodoAVL {
             return nodosCompletos(n.izq) + nodosCompletos(n.der);
         }
     }
-
+    
 }

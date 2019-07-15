@@ -11,13 +11,17 @@ package Modelo.RN;
  */
 public class NodoRN {
 
-    public int dato, balance;
-    public NodoRN izq, der;
+    public int llave;
+    int color; //1 es rojo y 0 es negro
+    public NodoRN padre, izq, der;
 
     public NodoRN(int dato) {
-        this.dato = dato;
-        balance = 0;
-        izq = der = null;
+        this.llave = dato;
+    }
+
+    public NodoRN(int dato, int color) {
+        this.llave = dato;
+        this.color = color;
     }
 
     public int nodosCompletos(NodoRN n) {

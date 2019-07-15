@@ -36,7 +36,7 @@ public class DibujoAVL extends JPanel{
 @Override
     public void paint(Graphics g) {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
-        pintar(g, getWidth() / 2, 20, arbolAVL.getRaiz());
+        pintar(g, getWidth() / 2, 20, arbolAVL.raiz);
     }
 
     private void pintar(Graphics g, int x, int y, NodoAVL nod) {
