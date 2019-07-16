@@ -17,14 +17,14 @@ import javax.swing.JPanel;
  */
 public class DibujoRN extends JPanel {
 
-    private ArbolRN arbolAVL;
+    private ArbolRN arbolRN;
 
     public static final int DIAMETRO = 30;
     public static final int RADIO = DIAMETRO / 2;
     public static final int ANCHO = 50;
 
     public DibujoRN(ArbolRN arbolAVL) {
-        this.arbolAVL = arbolAVL;
+        this.arbolRN = arbolAVL;
     }
 
     public DibujoRN() {
@@ -34,28 +34,34 @@ public class DibujoRN extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g); //To change body of generated methods, choose Tools | Templates.
-        pintar(g, getWidth() / 2, 20, arbolAVL.raiz);
+        pintar(g, getWidth() / 2, 20, arbolRN.raiz);
     }
 
     private void pintar(Graphics g, int x, int y, NodoRN nod) {
         if (nod != null) {
-            int EXTRA = nod.nodosCompletos(nod) * (ANCHO / 2);
-            g.drawOval(x, y, DIAMETRO, DIAMETRO);
-            g.drawString(Integer.toString(nod.llave), x + 12, y + 18);
-            g.setColor(Color.black);
-            if (nod.izq != null) {
-                g.drawLine(x + RADIO, y + RADIO, x - ANCHO - EXTRA + RADIO, y + ANCHO + RADIO);
+            if (nod.color == 1) {
+                g.setColor(Color.red);
             }
-            if (nod.der != null) {
-                g.drawLine(x + RADIO, y + RADIO, x + ANCHO + EXTRA + RADIO, y + ANCHO + RADIO);
+            if (nod.color == 0) {
+                g.setColor(Color.black);
+                int EXTRA = nod.nodosCompletos(nod) * (ANCHO / 2);
+                g.drawOval(x, y, DIAMETRO, DIAMETRO);
+                g.drawString(Integer.toString(nod.llave), x + 12, y + 18);
+                g.setColor(Color.black);
+                if (nod.izq != null) {
+                    g.drawLine(x + RADIO, y + RADIO, x - ANCHO - EXTRA + RADIO, y + ANCHO + RADIO);
+                }
+                if (nod.der != null) {
+                    g.drawLine(x + RADIO, y + RADIO, x + ANCHO + EXTRA + RADIO, y + ANCHO + RADIO);
+                }
+                pintar(g, x - ANCHO - EXTRA, y + ANCHO, nod.izq);
+                pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.der);
             }
-            pintar(g, x - ANCHO - EXTRA, y + ANCHO, nod.izq);
-            pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.der);
         }
     }
 
     public void setObjArbol(ArbolRN objArbol) {
-        this.arbolAVL = objArbol;
+        this.arbolRN = objArbol;
         repaint();
     }
 

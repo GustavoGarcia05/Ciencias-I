@@ -6,8 +6,8 @@
 package Vista;
 
 import Controlador.Control;
-import Modelo.AVL.*;
-import Modelo.RN.*;
+import Modelo.AVL.ArbolAVL;
+import Modelo.RN.ArbolRN;
 import Vista.dibujo.DibujoAVL;
 import Vista.dibujo.DibujoRN;
 import java.awt.BorderLayout;
@@ -63,6 +63,7 @@ public class Ventana extends JFrame {
         setMinimumSize(new Dimension(800, 600)); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
+        arbolRN.inicializar();
         inicializar();
         
         setVisible(true);

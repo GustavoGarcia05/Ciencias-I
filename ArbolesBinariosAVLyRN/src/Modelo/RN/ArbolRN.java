@@ -18,7 +18,7 @@ public class ArbolRN {
     final int negro = 0;
     final int rojo = 1;
 
-    void inicializar() {
+    public void inicializar() {
         z = new NodoRN(0, negro);
         z.izq = z;
         z.der = z;
@@ -77,10 +77,10 @@ public class ArbolRN {
     public NodoRN insertar(int v) {
         NodoRN gf, g, p, x;
 
-        /*if (raiz == null) {
+/*        if (raiz == null) {
             raiz = new NodoRN(v);
-        }*/
-        x = raiz;
+        }
+*/        x = raiz;
         p = x;
         g = x;
         do {
@@ -289,6 +289,10 @@ public class ArbolRN {
             }
         }
         return 1;
+    }
+    
+    public void retirar(int n){
+        eliminar(raiz, n);
     }
 
     /**

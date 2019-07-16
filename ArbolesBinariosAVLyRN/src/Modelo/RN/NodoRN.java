@@ -12,7 +12,7 @@ package Modelo.RN;
 public class NodoRN {
 
     public int llave;
-    int color; //1 es rojo y 0 es negro
+    public int color; //1 es rojo y 0 es negro
     public NodoRN padre, izq, der;
 
     public NodoRN(int dato) {
@@ -34,5 +34,4 @@ public class NodoRN {
             return nodosCompletos(n.izq) + nodosCompletos(n.der);
         }
     }
-
 }
