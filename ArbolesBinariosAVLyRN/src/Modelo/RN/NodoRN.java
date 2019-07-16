@@ -14,7 +14,6 @@ public class NodoRN {
     public int llave;
     public int color; //1 es rojo y 0 es negro
     public NodoRN padre, izq, der;
-
     public NodoRN(int dato) {
         this.llave = dato;
     }
@@ -25,13 +24,16 @@ public class NodoRN {
     }
 
     public int nodosCompletos(NodoRN n) {
-        if (n == null) {
+        
+        if (n.color == 0 && n.llave==0) {
             return 0;
         } else {
-            if (n.izq != null && n.der != null) {
+            if (n.izq.llave != 0 && n.der.llave != 0) {
                 return nodosCompletos(n.izq) + nodosCompletos(n.der) + 1;
             }
             return nodosCompletos(n.izq) + nodosCompletos(n.der);
         }
     }
+    
+    
 }

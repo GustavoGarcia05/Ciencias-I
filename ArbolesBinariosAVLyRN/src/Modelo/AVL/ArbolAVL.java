@@ -13,7 +13,7 @@ import java.util.Stack;
  */
 public class ArbolAVL {
 
-    private NodoAVL raiz;
+    public NodoAVL raiz;
     private int fila;
 
     public ArbolAVL() {

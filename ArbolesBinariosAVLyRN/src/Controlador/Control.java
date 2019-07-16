@@ -39,7 +39,12 @@ public class Control implements ActionListener {
             v.getCajaInsertar().setText("");
 
             dibujarAVL();
-           // dibujarRN();
+            dibujarRN();
+            ArbolRN var = v.getArbolRN();
+            System.out.println("Insertar------");
+            System.out.println("llave raiz" + var.getRaiz().der.llave);
+            System.out.println("#nodosRN: " + var.getRaiz().nodosCompletos(var.getRaiz()));
+            System.out.println("#nodosAVL: " + v.getArbolAVL().raiz.nodosCompletos(v.getArbolAVL().raiz));
         }
 
         if (e.getSource() == v.getRetirar()) {
@@ -53,6 +58,12 @@ public class Control implements ActionListener {
 
             v.getCajaRetirar().setText("");
             dibujarAVL();
+            dibujarRN();
+            ArbolRN var = v.getArbolRN();
+            System.out.println("Insertar------");
+            System.out.println("llave raiz" + var.getRaiz().der.llave);
+            System.out.println("#nodosRN: " + var.getRaiz().nodosCompletos(var.getRaiz()));
+            System.out.println("#nodosAVL: " + v.getArbolAVL().raiz.nodosCompletos(v.getArbolAVL().raiz));
         }
     }
 

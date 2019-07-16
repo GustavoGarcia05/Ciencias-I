@@ -77,10 +77,7 @@ public class ArbolRN {
     public NodoRN insertar(int v) {
         NodoRN gf, g, p, x;
 
-/*        if (raiz == null) {
-            raiz = new NodoRN(v);
-        }
-*/        x = raiz;
+        x = raiz;
         p = x;
         g = x;
         do {
@@ -290,8 +287,8 @@ public class ArbolRN {
         }
         return 1;
     }
-    
-    public void retirar(int n){
+
+    public void retirar(int n) {
         eliminar(raiz, n);
     }
 
