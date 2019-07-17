@@ -28,7 +28,6 @@ public class DibujoRN extends JPanel {
     }
 
     public DibujoRN() {
-
     }
 
     @Override
@@ -42,6 +41,18 @@ public class DibujoRN extends JPanel {
         if (nod != arbolRN.getZ()) {
             if (nod.color == 1) {
                 g.setColor(Color.red);
+                int EXTRA = nod.nodosCompletos(nod) * (ANCHO / 2);
+                g.drawOval(x, y, DIAMETRO, DIAMETRO);
+                g.drawString(Integer.toString(nod.llave), x + 12, y + 18);
+                g.setColor(Color.black);
+                if (nod.izq != arbolRN.getZ()) {
+                    g.drawLine(x + RADIO, y + RADIO, x - ANCHO - EXTRA + RADIO, y + ANCHO + RADIO);
+                }
+                if (nod.der != arbolRN.getZ()) {
+                    g.drawLine(x + RADIO, y + RADIO, x + ANCHO + EXTRA + RADIO, y + ANCHO + RADIO);
+                }
+                pintar(g, x - ANCHO - EXTRA, y + ANCHO, nod.izq);
+                pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.der);
             }
             if (nod.color == 0) {
                 g.setColor(Color.black);

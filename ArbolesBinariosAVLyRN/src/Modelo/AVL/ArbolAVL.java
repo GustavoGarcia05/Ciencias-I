@@ -15,6 +15,8 @@ public class ArbolAVL {
 
     public NodoAVL raiz;
     private int fila;
+    public int contadorIns;
+    public int contadorEli;
 
     public ArbolAVL() {
         raiz = null;
@@ -114,14 +116,19 @@ public class ArbolAVL {
             if (p.balance != 0) {
                 pp = q;
                 pivote = p;
+                contadorIns += 1;
             }
             if (llave == p.dato) {
+                contadorIns += 1;
                 return 2; //ya existe
             } else {
+                contadorIns += 1;
                 q = p;
                 if (llave < p.dato) {
+                    contadorIns += 1;
                     p = p.izq;
                 } else {
+                    contadorIns += 1;
                     p = p.der;
                 }
 
@@ -129,15 +136,19 @@ public class ArbolAVL {
         }
 
         if (llave < q.dato) {
+            contadorIns += 1;
             q.izq = nuevo;
         } else {
+            contadorIns += 1;
             q.der = nuevo;
         }
 
         if (llave < pivote.dato) {
             s = pivote.izq;
             altura = 1;
+            contadorIns += 1;
         } else {
+            contadorIns += 1;
             s = pivote.der;
             altura = -1;
         }
@@ -145,40 +156,53 @@ public class ArbolAVL {
         p = s;
         while (p != nuevo) {
             if (llave < p.dato) {
-
+                contadorIns += 1;
                 p.balance = 1;
                 p = p.izq;
             } else {
+                contadorIns += 1;
                 p.balance = -1;
                 p = p.der;
             }
         }
 
         if (pivote.balance == 0) {
+            contadorIns += 1;
             pivote.balance = altura;
         } else if (pivote.balance + altura == 0) {
+            contadorIns += 1;
             pivote.balance = 0;
         } else {
+            contadorIns += 1;
             if (altura == 1) {
+                contadorIns += 1;
                 if (s.balance == 1) {
+                    contadorIns += 1;
                     rDerecha(pivote, s);
                 } else {
+                    contadorIns += 1;
                     s = drDerecha(pivote, s);
                 }
             } else {
+                contadorIns += 1;
                 // esta puede ser la que esta mal
                 if (s.balance == -1) {
+                    contadorIns += 1;
                     rIzquierda(pivote, s);
                 } else {
+                    contadorIns += 1;
                     s = drIzquierda(pivote, s);
                 }
             }
 
             if (pp == null) {
+                contadorIns += 1;
                 raiz = s;
             } else if (pp.izq == pivote) {
+                contadorIns += 1;
                 pp.izq = s;
             } else {
+                contadorIns += 1;
                 pp.der = s;
             }
         }
@@ -187,6 +211,7 @@ public class ArbolAVL {
 
     public void insertar(int d) {
         insertarAVL(d);
+        System.out.println("** Cantidad de if para insertar los numeros en AVL: " + contadorIns);
     }
 
     //Retirar
@@ -269,6 +294,7 @@ public class ArbolAVL {
         boolean encontro = false;
 
         if (raiz == null) {
+            contadorEli += 1;
             return 1;
         }
 
@@ -279,14 +305,18 @@ public class ArbolAVL {
             pila.push(p);
             if (n < p.dato) {
                 p = p.izq;
+                contadorEli += 1;
             } else if (n > p.dato) {
                 p = p.der;
+                contadorEli += 1;
             } else {
                 encontro = true;
+                contadorEli += 1;
             }
         }
 
         if (!encontro) {
+            contadorEli += 1;
             return 2;
         }
 
@@ -296,18 +326,25 @@ public class ArbolAVL {
         llave = p.dato;
         if (p.izq == null && p.der == null) {
             accion = 0;
+            contadorEli += 1;
         } else if (p.der == null) {
             accion = 1;
+            contadorEli += 1;
         } else if (p.izq == null) {
             accion = 2;
+            contadorEli += 1;
         } else {
             accion = 3;
+            contadorEli += 1;
         }
 
         if (accion == 0 || accion == 1 || accion == 2) {
+            contadorEli += 1;
             if (!pila.empty()) {
+                contadorEli += 1;
                 q = (NodoAVL) pila.pop();
                 if (llave < q.dato) {
+                    contadorEli += 1;
                     switch (accion) {
                         case 0:
                         case 1:
@@ -320,6 +357,7 @@ public class ArbolAVL {
                             break;
                     }
                 } else {
+                    contadorEli += 1;
                     switch (accion) {
                         case 0:
                         case 2:
@@ -333,6 +371,7 @@ public class ArbolAVL {
                     }
                 }
             } else {
+                contadorEli += 1;
                 switch (accion) {
                     case 0:
                         raiz = null;
@@ -352,7 +391,7 @@ public class ArbolAVL {
             r = p;
             p = r.der;
             q = null;
-
+            contadorEli += 1;
             while (p.izq != null) {
                 pila.push(p);
                 q = p;
@@ -363,9 +402,11 @@ public class ArbolAVL {
             if (q != null) {
                 q.izq = p.der;
                 t = bal_der(q, terminar);
+                contadorEli += 1;
             } else {
                 r.der = p.der;
                 t = bal_izq(r, terminar);
+                contadorEli += 1;
             }
             q = (NodoAVL) pila.pop();
         }
@@ -373,37 +414,47 @@ public class ArbolAVL {
         while (!pila.empty() && terminar[0] == 0) {
             q = (NodoAVL) pila.pop();
             if (llave < q.dato) {
+                contadorEli += 1;
                 if (t != null) {
                     q.izq = t;
                     t = null;
+                    contadorEli += 1;
                 }
                 t = bal_der(q, terminar);
             } else {
+                contadorEli += 1;
                 if (t != null) {
                     q.der = t;
                     t = null;
+                    contadorEli += 1;
                 }
                 t = bal_izq(q, terminar);
             }
         }
 
         if (t != null) {
+            contadorEli += 1;
             if (pila.empty() == true) {
                 raiz = t;
+                contadorEli += 1;
             } else {
                 q = (NodoAVL) pila.pop();
+                contadorEli += 1;
                 if (llave < q.dato) {
                     q.izq = t;
+                    contadorEli += 1;
                 } else {
                     q.der = t;
+                    contadorEli += 1;
                 }
             }
         }
         return 0;
     }
-    
-    public void retirar(int d){
+
+    public void retirar(int d) {
         retirarAVL(d);
+        System.out.println("** Cantidad de if para eliminar el numero en AVL: " + contadorEli);
     }
 
     public NodoAVL getRaiz() {

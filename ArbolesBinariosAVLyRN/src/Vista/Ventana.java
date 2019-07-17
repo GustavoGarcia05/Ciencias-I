@@ -58,7 +58,7 @@ public class Ventana extends JFrame {
     
 
     public Ventana() {
-        //setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(800, 600)); 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,7 +75,7 @@ public class Ventana extends JFrame {
         
         panelBotones.setBackground(Color.white);
         panelBotones.add(insertar);
-        panelBotones.add(cajaInsertar);
+//        panelBotones.add(cajaInsertar);
         panelBotones.add(retirar);
         panelBotones.add(cajaRetirar);
         
@@ -132,15 +132,4 @@ public class Ventana extends JFrame {
     public DibujoRN getDibujoRN() {
         return dibujoRN;
     }
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-
 }
