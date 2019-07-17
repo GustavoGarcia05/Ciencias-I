@@ -20,6 +20,14 @@ public class ArbolRN {
     public int contadorIns = 0;
     public int contadorEli = 0;
 
+    public int getContadorIns() {
+        return contadorIns;
+    }
+
+    public int getContadorEli() {
+        return contadorEli;
+    }
+    
     public void inicializar() {
         z = new NodoRN(0, negro);
         z.izq = z;

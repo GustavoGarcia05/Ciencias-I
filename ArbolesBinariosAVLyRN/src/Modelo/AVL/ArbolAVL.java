@@ -18,6 +18,15 @@ public class ArbolAVL {
     public int contadorIns;
     public int contadorEli;
 
+    public int getContadorIns() {
+        return contadorIns;
+    }
+
+    public int getContadorEli() {
+        return contadorEli;
+    }
+    
+
     public ArbolAVL() {
         raiz = null;
     }

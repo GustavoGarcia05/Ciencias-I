@@ -30,7 +30,6 @@ public class DibujoAVL extends JPanel{
     }
 
     public DibujoAVL() {
- 
     }
 
 @Override
@@ -63,6 +62,8 @@ public class DibujoAVL extends JPanel{
             pintar(g, x - ANCHO - EXTRA, y + ANCHO, nod.izq);
             pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.der);
         }
+        g.drawString("Cantidad de if que usa para insertar: " + arbolAVL.getContadorIns(), 0, 15);
+        g.drawString("Cantidad de if que usa para retirar: " + arbolAVL.getContadorEli(), 0, 50);
     }
 
     public void setObjArbol(ArbolAVL objArbol) {

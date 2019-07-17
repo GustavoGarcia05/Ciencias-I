@@ -8,8 +8,12 @@ package Vista.dibujo;
 import Modelo.RN.ArbolRN;
 import Modelo.RN.NodoRN;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.ScrollPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
@@ -70,6 +74,8 @@ public class DibujoRN extends JPanel {
                 pintar(g, x + ANCHO + EXTRA, y + ANCHO, nod.der);
             }
         }
+        g.drawString("Cantidad de if que usa para insertar: " + arbolRN.getContadorIns(), 0, 15);
+        g.drawString("Cantidad de if que usa para retirar: " + arbolRN.getContadorEli(), 0, 50);
     }
 
     public void setObjArbol(ArbolRN objArbol) {
