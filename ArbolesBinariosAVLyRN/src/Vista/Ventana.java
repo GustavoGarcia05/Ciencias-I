@@ -17,8 +17,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
@@ -47,6 +49,7 @@ public class Ventana extends JFrame {
     private JScrollPane panelRN = new JScrollPane();
     private JScrollPane scPane;
     private JScrollPane scPane2;
+    private JScrollPane scPane3;
 
     //Botones
     private JButton insertar = new JButton("Insertar");
@@ -55,6 +58,8 @@ public class Ventana extends JFrame {
     //Cajas de texto
     private JTextField cajaInsertar = new JTextField(5);
     private JTextField cajaRetirar = new JTextField(5);
+    //label
+    private JTextArea etqNumAle = new JTextArea();
 
     public Ventana() {
         setExtendedState(MAXIMIZED_BOTH);
@@ -80,8 +85,12 @@ public class Ventana extends JFrame {
         panelBotones.add(insertar);
         panelBotones.add(retirar);
         panelBotones.add(cajaRetirar);
+        scPane3 = new JScrollPane(etqNumAle, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        cont.add(scPane3);
+        scPane3.setBounds(0, 50, 1820, 50);
+        
         cont.add(panelBotones);
-        panelBotones.setBounds(50, 15, 300, 50);
+        panelBotones.setBounds(50, 5, 300, 50);
         //panel Central
         panelCentral.setLayout(new GridLayout(2, 1));
         scPane = new JScrollPane(panelAVL, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -133,4 +142,9 @@ public class Ventana extends JFrame {
     public DibujoRN getDibujoRN() {
         return dibujoRN;
     }
+
+    public JTextArea getEtqNumAle() {
+        return etqNumAle;
+    }
+    
 }

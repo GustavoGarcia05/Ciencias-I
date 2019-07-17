@@ -32,7 +32,7 @@ public class Control implements ActionListener {
         int num = cant;
         ArrNum = new int[num];
         for (int k = 0; k < num; k++) {
-            random = (int) (Math.random() * 200 + 1);
+            random = (int) (Math.random() * 500 + 1);
             ArrNum[k] = random;
         }
         System.out.println("**** Algoritmo de ordenacion QuickSort **** \n");
@@ -47,6 +47,7 @@ public class Control implements ActionListener {
             for(int i = 0; i < ArrNum.length; i++){
                 v.getArbolAVL().insertar(ArrNum[i]);
                 v.getArbolRN().insertar(ArrNum[i]);
+                v.getEtqNumAle().setText("El arreglo de numeros aleatorios que se utiliza es: \n" + Arrays.toString(ArrNum));
                 
                 dibujarAVL();
                 dibujarRN();
